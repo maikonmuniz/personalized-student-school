@@ -5,8 +5,9 @@
 
 ### Pré-requisitos
 
-### JRE v21
+#### JRE v21
 
+## Steps run project
 ````
  mvn install
 ````
