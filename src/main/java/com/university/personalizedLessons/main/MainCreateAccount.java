@@ -1,4 +1,4 @@
 package com.university.personalizedLessons.main;
 
-public class GenerateAccount {
+public class MainCreateAccount {
 }
