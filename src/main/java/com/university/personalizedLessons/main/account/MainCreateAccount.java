@@ -1,4 +1,4 @@
-package com.university.personalizedLessons.main;
+package com.university.personalizedLessons.main.account;
 
 import com.university.personalizedLessons.application.usecases.Account.CreateAccount;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
