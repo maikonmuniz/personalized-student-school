@@ -8,11 +8,11 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name = "account_discipline")
 public class AccountDisciplineModel {
 
@@ -28,11 +28,51 @@ public class AccountDisciplineModel {
     private DisciplineModel discipline;
 
     @ManyToOne
-    @JoinColumn(name = "id_account", nullable = false)
-    private AccountModel account;
-
-    @ManyToOne
     @JoinColumn(name = "id_type_note", nullable = false)
     private TypeNoteModel typeNote;
 
+    @ManyToOne
+    @JoinColumn(name = "id_account_course", nullable = false)
+    private AccountCourse accountCourse;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public BigDecimal getNotes() {
+        return notes;
+    }
+
+    public void setNotes(BigDecimal notes) {
+        this.notes = notes;
+    }
+
+    public DisciplineModel getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(DisciplineModel discipline) {
+        this.discipline = discipline;
+    }
+
+    public TypeNoteModel getTypeNote() {
+        return typeNote;
+    }
+
+    public void setTypeNote(TypeNoteModel typeNote) {
+        this.typeNote = typeNote;
+    }
+
+    public AccountCourse getAccountCourse() {
+        return accountCourse;
+    }
+
+    public void setAccountCourse(AccountCourse accountCourse) {
+        this.accountCourse = accountCourse;
+    }
 }
+
