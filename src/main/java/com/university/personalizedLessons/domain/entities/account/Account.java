@@ -1,4 +1,4 @@
-package com.university.personalizedLessons.domain.entities;
+package com.university.personalizedLessons.domain.entities.account;
 
 public class Account {
 
