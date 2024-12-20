@@ -11,8 +11,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "type_note")
-public class TypeNote {
+@Table(name = "course")
+public class CourseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,11 @@ public class TypeNote {
     @Column(nullable = false, length = 150)
     private String name;
 
-    @Column(length = 255)
+    @Column(length = 250)
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "type_course_id")
+    private TypeCourseModel typeCourse;
 
 }

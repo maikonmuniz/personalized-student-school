@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "account_discipline")
-public class AccountDiscipline {
+public class AccountDisciplineModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class AccountDiscipline {
 
     @ManyToOne
     @JoinColumn(name = "id_discipline", nullable = false)
-    private Discipline discipline;
+    private DisciplineModel discipline;
 
     @ManyToOne
     @JoinColumn(name = "id_account", nullable = false)
@@ -33,8 +33,6 @@ public class AccountDiscipline {
 
     @ManyToOne
     @JoinColumn(name = "id_type_note", nullable = false)
-    private TypeNote typeNote;
+    private TypeNoteModel typeNote;
 
 }
-
-

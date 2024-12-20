@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "discipline")
-public class Discipline {
+public class DisciplineModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class Discipline {
 
     @ManyToOne
     @JoinColumn(name = "id_course", nullable = false)
-    private Course course;
+    private CourseModel course;
 
 }
 

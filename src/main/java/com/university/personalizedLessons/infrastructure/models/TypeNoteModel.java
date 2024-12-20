@@ -6,15 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @Entity
-@Table(name = "course")
-public class Course {
+@Table(name = "type_note")
+public class TypeNoteModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +21,7 @@ public class Course {
     @Column(nullable = false, length = 150)
     private String name;
 
-    @Column(length = 250)
+    @Column(length = 255)
     private String description;
-
-    @ManyToOne
-    @JoinColumn(name = "type_course_id")
-    private TypeCourse typeCourse;
 
 }
