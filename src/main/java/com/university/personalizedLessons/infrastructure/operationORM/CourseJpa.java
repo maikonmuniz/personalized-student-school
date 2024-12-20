@@ -1,4 +1,7 @@
 package com.university.personalizedLessons.infrastructure.operationORM;
 
-public class CourseJpa {
+import com.university.personalizedLessons.infrastructure.models.CourseModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CourseJpa extends JpaRepository<CourseModel, Integer> {
 }
