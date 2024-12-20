@@ -23,10 +23,18 @@ public class AccountDiscipline {
     @Column(nullable = false, precision = 2, scale = 2)
     private BigDecimal notes;
 
-    @Column(name = "id_discipline", nullable = false)
-    private Integer disciplineId;
+    @ManyToOne
+    @JoinColumn(name = "id_discipline", nullable = false)
+    private Discipline discipline;
 
-    @Column(name = "id_account", nullable = false)
-    private Long accountId;
+    @ManyToOne
+    @JoinColumn(name = "id_account", nullable = false)
+    private AccountModel account;
+
+    @ManyToOne
+    @JoinColumn(name = "id_type_note", nullable = false)
+    private TypeNote typeNote;
 
 }
+
+
