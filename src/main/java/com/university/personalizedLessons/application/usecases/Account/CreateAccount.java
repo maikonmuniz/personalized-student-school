@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.application.usecases.Account;
 
-import com.university.personalizedLessons.domain.entities.Account;
+import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 
 public class CreateAccount {
