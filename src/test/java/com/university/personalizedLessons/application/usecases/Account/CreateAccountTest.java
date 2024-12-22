@@ -3,7 +3,7 @@ package com.university.personalizedLessons.application.usecases.Account;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.university.personalizedLessons.domain.entities.Account;
+import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
@@ -21,9 +21,6 @@ class CreateAccountTest {
 
     @InjectMocks
     private CreateAccount createAccount;
-
-    @Mock
-    private AccountRepo accountRepo;
 
     @Test
     @DisplayName("Should save entity in data base!")
