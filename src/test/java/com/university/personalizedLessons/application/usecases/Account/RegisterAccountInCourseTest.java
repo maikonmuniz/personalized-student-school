@@ -2,11 +2,7 @@ package com.university.personalizedLessons.application.usecases.Account;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
-import com.university.personalizedLessons.infrastructure.models.AccountModel;
-import com.university.personalizedLessons.infrastructure.models.CourseModel;
-import com.university.personalizedLessons.infrastructure.models.TypeCourseModel;
-import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
-import com.university.personalizedLessons.infrastructure.operationORM.CourseJpa;
+
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 import org.junit.jupiter.api.DisplayName;
@@ -16,11 +12,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.mock;
+import static org.junit.jupiter.api.Assertions.*;
+
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -67,6 +61,34 @@ class RegisterAccountInCourseTest {
 
         assertEquals("maikon@muniz", output.username());
         assertEquals(1, output.idCourse());
+
+    }
+
+    @Test
+    @DisplayName("Should return exeption!")
+    public void ReturnExeption () {
+
+        Account account = new Account(
+                "maikon",
+                "muniz",
+                "423423423424",
+                "maikon@muniz",
+                "senha@senha"
+        );
+
+        when(accountRepo.findAccount("maikon@muniz")).thenReturn(account);
+
+        when(courseRep.findCourse(2)).thenReturn(null);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            RegisterAccountInCourse.Output output = this.registerAccountInCourse.execute(
+                    new RegisterAccountInCourse.Input (
+                            "maikon@muniz",
+                            2
+                    ));
+        });
+
+        assertEquals("No existe register!", exception.getMessage());
 
     }
 }

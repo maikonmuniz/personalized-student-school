@@ -21,6 +21,7 @@ public class RegisterAccountInCourse {
     public Output execute (Input input) {
         Account account = this.accountRepo.findAccount(input.username);
         CourseAggregate course = this.courseRepo.findCourse(input.idCourse);
+        if (course == null) throw new IllegalArgumentException("No existe register!");
         return new Output(
                 account.getUsername(),
                 course.getId()
