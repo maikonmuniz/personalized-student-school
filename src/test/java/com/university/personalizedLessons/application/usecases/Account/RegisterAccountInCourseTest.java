@@ -13,6 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
@@ -28,61 +29,44 @@ class RegisterAccountInCourseTest {
     @InjectMocks
     private RegisterAccountInCourse registerAccountInCourse;
 
+    @Mock
+    AccountRepo accountRepo;
+
+    @Mock
+    CourseRepo courseRep;
+
+
     @Test
     @DisplayName("Should create register in course")
     public void CreateRegisterAccountCourse () {
 
-        CourseJpa courseJpa = mock(CourseJpa.class);
-
-        CourseRepo courseRepo = new CourseRepo(courseJpa);
-
-        AccountJPA accountJPAMock = mock(AccountJPA.class);
-
-        AccountRepo accountRepo = new AccountRepo(accountJPAMock);
-
         Account account = new Account(
                 "maikon",
                 "muniz",
-                "123456789",
-                "maikon@maikon",
-                "senha123"
+                "423423423424",
+                "maikon@muniz",
+                "senha@senha"
         );
 
-        AccountModel savedAccountModel = new AccountModel();
-        savedAccountModel.setFirstName("maikon");
-        savedAccountModel.setLastName("muniz");
-        savedAccountModel.setCpf("123456789");
-        savedAccountModel.setUsername("maikon@maikon");
-        savedAccountModel.setPassword("senha123");
+        when(accountRepo.findAccount("maikon@muniz")).thenReturn(account);
 
-        when(accountJPAMock.findByUsername(account.getUsername())).thenReturn(savedAccountModel);
+        CourseAggregate course = new CourseAggregate(
+                1,
+                "Logica de Programação",
+                "Matéria criada para logica de programação!",
+                2
+        );
 
-        Account accountConsult = accountRepo.findAccount(account.getUsername());
+        when(courseRep.findCourse(1)).thenReturn(course);
 
-        CourseModel courseModel = new CourseModel();
+        RegisterAccountInCourse.Output output = this.registerAccountInCourse.execute(
+                new RegisterAccountInCourse.Input (
+                        "maikon@muniz",
+                        1
+                ));
 
-        TypeCourseModel typeCourseModel = new TypeCourseModel();
-        typeCourseModel.setId(1);
-
-        courseModel.setId(1);
-        courseModel.setName("Lógica de programação");
-        courseModel.setDescription("Desenvolvimento de logica, para aluno aprender a programar");
-        courseModel.setTypeCourse(typeCourseModel);
-
-        when(courseJpa.findById(1)).thenReturn(Optional.of(courseModel));
-
-        CourseAggregate courseAggregateConsult = courseRepo.findCourse(1);
-
-        assertNotNull(accountConsult);
-
-        assertEquals("Lógica de programação", courseAggregateConsult.getName());
-        assertEquals("Desenvolvimento de logica, para aluno aprender a programar", courseAggregateConsult.getDescription());
-        assertEquals(typeCourseModel.getId(), courseAggregateConsult.getTypeCourseId());
-        assertEquals("maikon", accountConsult.getFirstName());
-        assertEquals("muniz", accountConsult.getLastName());
-        assertEquals("123456789", accountConsult.getCpf());
-        assertEquals("maikon@maikon", accountConsult.getUsername());
-        assertEquals("senha123", accountConsult.getPassword());
+        assertEquals("maikon@muniz", output.username());
+        assertEquals(1, output.idCourse());
 
     }
 }
