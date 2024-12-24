@@ -12,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import static org.mockito.Mockito.when;
@@ -28,7 +27,6 @@ class RegisterAccountInCourseTest {
 
     @Mock
     CourseRepo courseRep;
-
 
     @Test
     @DisplayName("Should create register in course")
@@ -81,14 +79,14 @@ class RegisterAccountInCourseTest {
         when(courseRep.findCourse(2)).thenReturn(null);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            RegisterAccountInCourse.Output output = this.registerAccountInCourse.execute(
+            this.registerAccountInCourse.execute(
                     new RegisterAccountInCourse.Input (
                             "maikon@muniz",
                             2
                     ));
         });
 
-        assertEquals("No existe register!", exception.getMessage());
+        assertEquals("There is no course!", exception.getMessage());
 
     }
 }
