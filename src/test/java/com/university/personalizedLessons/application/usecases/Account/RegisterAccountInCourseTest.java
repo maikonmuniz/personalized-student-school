@@ -29,6 +29,24 @@ class RegisterAccountInCourseTest {
     CourseRepo courseRep;
 
     @Test
+    @DisplayName("Should return exeption account!")
+    public void ReturnExeptionAccount () {
+
+        when(accountRepo.findAccount("maikon@muniz2")).thenReturn(null);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            this.registerAccountInCourse.execute(
+                    new RegisterAccountInCourse.Input (
+                            "maikon@muniz2",
+                            2
+                    ));
+        });
+
+        assertEquals("There is no account!", exception.getMessage());
+
+    }
+
+    @Test
     @DisplayName("Should create register in course")
     public void CreateRegisterAccountCourse () {
 
