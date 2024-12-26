@@ -2,20 +2,25 @@ package com.university.personalizedLessons.application.usecases.Account;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.entities.registerCourse.Enrollment;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
+import com.university.personalizedLessons.infrastructure.repository.EnrollmentRepo;
 
 public class RegisterAccountInCourse {
 
-    AccountRepo accountRepo;
-    CourseRepo courseRepo;
+    private final AccountRepo accountRepo;
+    private final CourseRepo courseRepo;
+    private final EnrollmentRepo enrollmentRepo;
 
     public RegisterAccountInCourse (
             AccountRepo accountRepo,
-            CourseRepo courseRepo
+            CourseRepo courseRepo,
+            EnrollmentRepo enrollmentRepo
     ) {
         this.accountRepo = accountRepo;
         this.courseRepo = courseRepo;
+        this.enrollmentRepo = enrollmentRepo;
     }
 
     public Output execute (Input input) {
@@ -23,9 +28,13 @@ public class RegisterAccountInCourse {
         if (account == null) throw new IllegalArgumentException("There is no account!");
         CourseAggregate course = this.courseRepo.findCourse(input.idCourse);
         if (course == null) throw new IllegalArgumentException("There is no course!");
+        Enrollment enrollmentRepoRegister = this.enrollmentRepo.save (
+                account,
+                course
+        );
         return new Output(
-                account.getUsername(),
-                course.getId()
+                enrollmentRepoRegister.getIdAccount(),
+                enrollmentRepoRegister.getIdCourse()
         );
     }
 
@@ -35,7 +44,7 @@ public class RegisterAccountInCourse {
     ) {}
 
     public static record Output (
-            String username,
+            Long idAccount,
             int idCourse
     ) {}
 }
