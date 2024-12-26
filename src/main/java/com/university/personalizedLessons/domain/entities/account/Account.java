@@ -2,6 +2,7 @@ package com.university.personalizedLessons.domain.entities.account;
 
 public class Account {
 
+    private final long id;
     private final String firstName;
     private final String lastName;
     private final String cpf;
@@ -9,12 +10,14 @@ public class Account {
     private final String password;
 
     public Account (
+            Long id,
             String firstName,
             String lastName,
             String cpf,
             String username,
             String password
     ) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.cpf = cpf;
@@ -40,5 +43,9 @@ public class Account {
 
     public String getPassword() {
         return password;
+    }
+
+    public long getId() {
+        return id;
     }
 }
