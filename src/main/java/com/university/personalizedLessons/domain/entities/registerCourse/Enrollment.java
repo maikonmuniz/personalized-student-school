@@ -1,4 +1,4 @@
-package com.university.personalizedLessons.domain.entities.RegisterCourse;
+package com.university.personalizedLessons.domain.entities.registerCourse;
 
 public class Enrollment {
 
@@ -9,7 +9,7 @@ public class Enrollment {
     public Enrollment (
             Long id,
             int idCourse,
-            long idAccount
+            Long idAccount
     ) {
         this.id = id;
         this.idCourse = idCourse;
