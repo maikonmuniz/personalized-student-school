@@ -25,7 +25,8 @@ public class AccountRepo implements AccountRepository {
 
         AccountModel accountModelRegister = accountJPA.save(accountModel);
 
-        return new Account(
+        return new Account (
+                accountModelRegister.getId(),
                 accountModelRegister.getFirstName(),
                 accountModelRegister.getLastName(),
                 accountModelRegister.getCpf(),
@@ -40,6 +41,7 @@ public class AccountRepo implements AccountRepository {
         AccountModel accountModel = accountJPA.findByUsername(username);
 
         return new Account(
+                accountModel.getId(),
                 accountModel.getFirstName(),
                 accountModel.getLastName(),
                 accountModel.getCpf(),
