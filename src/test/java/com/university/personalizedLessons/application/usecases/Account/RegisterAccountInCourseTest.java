@@ -3,8 +3,10 @@ package com.university.personalizedLessons.application.usecases.Account;
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 
+import com.university.personalizedLessons.domain.entities.registerCourse.Enrollment;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
+import com.university.personalizedLessons.infrastructure.repository.EnrollmentRepo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,17 +30,24 @@ class RegisterAccountInCourseTest {
     @Mock
     CourseRepo courseRep;
 
+    @Mock
+    EnrollmentRepo enrollmentRepo;
+
     @Test
     @DisplayName("Should return exeption account!")
     public void ReturnExeptionAccount () {
 
-        when(accountRepo.findAccount("maikon@muniz2")).thenReturn(null);
+        String usernameTest = "maikon@muniz2";
+
+        when(accountRepo.findAccount(usernameTest)).thenReturn(null);
+
+        int idCourseTest = 2;
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             this.registerAccountInCourse.execute(
                     new RegisterAccountInCourse.Input (
-                            "maikon@muniz2",
-                            2
+                            usernameTest,
+                            idCourseTest
                     ));
         });
 
@@ -50,17 +59,20 @@ class RegisterAccountInCourseTest {
     @DisplayName("Should create register in course")
     public void CreateRegisterAccountCourse () {
 
+        String username = "maikon@muniz";
+
         Account account = new Account(
+                1L,
                 "maikon",
                 "muniz",
                 "423423423424",
-                "maikon@muniz",
+                username,
                 "senha@senha"
         );
 
-        when(accountRepo.findAccount("maikon@muniz")).thenReturn(account);
+        when(accountRepo.findAccount(username)).thenReturn(account);
 
-        CourseAggregate course = new CourseAggregate(
+        CourseAggregate course = new CourseAggregate (
                 1,
                 "Logica de Programação",
                 "Matéria criada para logica de programação!",
@@ -69,14 +81,29 @@ class RegisterAccountInCourseTest {
 
         when(courseRep.findCourse(1)).thenReturn(course);
 
+        long idEnrollment = 2L;
+
+        Enrollment enrollment = new Enrollment(
+                idEnrollment,
+                course.getId(),
+                account.getId()
+        );
+
+        when(enrollmentRepo.save(account,
+                course)).thenReturn(enrollment);
+
+        int idCourse = 1;
+
         RegisterAccountInCourse.Output output = this.registerAccountInCourse.execute(
                 new RegisterAccountInCourse.Input (
-                        "maikon@muniz",
-                        1
+                        username,
+                        idCourse
                 ));
 
-        assertEquals("maikon@muniz", output.username());
-        assertEquals(1, output.idCourse());
+        assertEquals(account.getId(), output.idAccount());
+
+        int numberIdResult = 1;
+        assertEquals(numberIdResult, output.idCourse());
 
     }
 
@@ -85,6 +112,7 @@ class RegisterAccountInCourseTest {
     public void ReturnExeption () {
 
         Account account = new Account(
+                1L,
                 "maikon",
                 "muniz",
                 "423423423424",
@@ -94,13 +122,17 @@ class RegisterAccountInCourseTest {
 
         when(accountRepo.findAccount("maikon@muniz")).thenReturn(account);
 
-        when(courseRep.findCourse(2)).thenReturn(null);
+        int idCourse = 2;
+
+        when(courseRep.findCourse(idCourse)).thenReturn(null);
+
+        String username = "maikon@muniz";
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             this.registerAccountInCourse.execute(
                     new RegisterAccountInCourse.Input (
-                            "maikon@muniz",
-                            2
+                            username,
+                            idCourse
                     ));
         });
 
