@@ -1,7 +1,7 @@
 package com.university.personalizedLessons.infrastructure.repository;
 
 import com.university.personalizedLessons.application.repository.EnrollmentRepository;
-import com.university.personalizedLessons.domain.entities.RegisterCourse.Enrollment;
+import com.university.personalizedLessons.domain.entities.registerCourse.Enrollment;
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 import com.university.personalizedLessons.infrastructure.models.AccountCourse;
@@ -28,7 +28,6 @@ public class EnrollmentRepo implements EnrollmentRepository {
         accountModel.setUsername(account.getUsername());
         accountModel.setPassword(account.getPassword());
 
-
         CourseModel courseModel = new CourseModel();
         courseModel.setName(courseAggregate.getName());
         courseModel.setDescription(courseAggregate.getDescription());
@@ -44,15 +43,11 @@ public class EnrollmentRepo implements EnrollmentRepository {
 
         accountCourse = this.enrollmentJpa.save(accountCourse);
 
-        Enrollment enrollment = new Enrollment(
+        return new Enrollment(
                 accountCourse.getId(),
                 accountCourse.getCourse().getId(),
                 accountCourse.getAccount().getId()
         );
 
-        this.enrollmentJpa.save(accountCourse);
-
-        return enrollment;
     }
-
 }
