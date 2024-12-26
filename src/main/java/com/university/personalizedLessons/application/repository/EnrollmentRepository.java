@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.application.repository;
 
-import com.university.personalizedLessons.domain.entities.RegisterCourse.Enrollment;
+import com.university.personalizedLessons.domain.entities.registerCourse.Enrollment;
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 
