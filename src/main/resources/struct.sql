@@ -5,8 +5,10 @@ CREATE TABLE `account` (
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `cpf` varchar(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_account` varchar(36) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_account` (`id_account`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 CREATE TABLE `account_course` (
   `id` bigint NOT NULL AUTO_INCREMENT,
