@@ -14,6 +14,9 @@ public class AccountModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "id_account", length = 36)
+    private String idAccount;
+
     @Column(name = "username", length = 100)
     private String username;
 
