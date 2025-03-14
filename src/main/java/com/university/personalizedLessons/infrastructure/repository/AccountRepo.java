@@ -19,6 +19,7 @@ public class AccountRepo implements AccountRepository {
     public Account save(Account account) {
 
         AccountModel accountModel = new AccountModel();
+        accountModel.setIdAccount(account.getIdAccount());
         accountModel.setFirstName(account.getFirstName());
         accountModel.setLastName(account.getLastName());
         accountModel.setCpf(account.getCpf());
