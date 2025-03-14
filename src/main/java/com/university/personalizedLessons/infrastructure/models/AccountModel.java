@@ -82,6 +82,10 @@ public class AccountModel {
         this.id = id;
     }
 
+    public void setIdAccount(UUID idAccount) {
+        this.idAccount = idAccount.toString();
+    }
+
     public UUID getIdAccount() {
         return UUID.fromString(this.idAccount);
     }
