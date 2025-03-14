@@ -1,8 +1,11 @@
 package com.university.personalizedLessons.domain.entities.account;
 
+import java.util.UUID;
+
 public class Account {
 
-    private final long id;
+    private final UUID idAccount;
+    private long id;
     private final String firstName;
     private final String lastName;
     private final String cpf;
@@ -10,13 +13,30 @@ public class Account {
     private final String password;
 
     public Account (
-            Long id,
             String firstName,
             String lastName,
             String cpf,
             String username,
             String password
     ) {
+        this.idAccount = UUID.randomUUID();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.cpf = cpf;
+        this.username = username;
+        this.password = password;
+    }
+
+    public Account (
+            UUID idAccount,
+            long id,
+            String firstName,
+            String lastName,
+            String cpf,
+            String username,
+            String password
+    ) {
+        this.idAccount = idAccount;
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,7 +65,15 @@ public class Account {
         return password;
     }
 
+    public UUID getIdAccount() {
+        return idAccount;
+    }
+
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
