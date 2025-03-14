@@ -16,7 +16,6 @@ public class CreateAccount {
     public Output execute (Input input) {
 
         Account account = new Account(
-                1L,
                 input.firstName,
                 input.lastName,
                 input.cpf,
@@ -50,5 +49,4 @@ public class CreateAccount {
             String username,
             String password
     ) {}
-
 }
