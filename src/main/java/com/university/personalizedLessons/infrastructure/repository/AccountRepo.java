@@ -5,6 +5,8 @@ import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 
+import java.util.UUID;
+
 public class AccountRepo implements AccountRepository {
 
     private final AccountJPA accountJPA;
@@ -26,7 +28,8 @@ public class AccountRepo implements AccountRepository {
         AccountModel accountModelRegister = accountJPA.save(accountModel);
 
         return new Account (
-                accountModelRegister.getId(),
+                account.getIdAccount(),
+                account.getId(),
                 accountModelRegister.getFirstName(),
                 accountModelRegister.getLastName(),
                 accountModelRegister.getCpf(),
@@ -41,6 +44,7 @@ public class AccountRepo implements AccountRepository {
         AccountModel accountModel = accountJPA.findByUsername(username);
 
         return new Account(
+                accountModel.getIdAccount(),
                 accountModel.getId(),
                 accountModel.getFirstName(),
                 accountModel.getLastName(),
