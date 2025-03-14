@@ -40,7 +40,7 @@ public class CreateAccount {
             String cpf,
             String username,
             String password
-    ) { }
+    ) {}
 
     public static record Output (
             String firstName,
