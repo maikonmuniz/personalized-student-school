@@ -31,7 +31,6 @@ class CreateAccountTest {
         AccountRepo accountRepo = new AccountRepo(accountJPAMock);
 
         Account account = new Account(
-                1L,
                 "maikon",
                 "muniz",
                 "123456789",
