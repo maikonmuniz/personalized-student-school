@@ -1,7 +1,7 @@
 package com.university.personalizedLessons.infrastructure.repository;
 
 import com.university.personalizedLessons.application.repository.EnrollmentRepository;
-import com.university.personalizedLessons.domain.entities.registerCourse.Enrollment;
+import com.university.personalizedLessons.domain.domainServices.Enrollment;
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 import com.university.personalizedLessons.infrastructure.models.AccountCourse;
@@ -48,6 +48,5 @@ public class EnrollmentRepo implements EnrollmentRepository {
                 accountCourse.getCourse().getId(),
                 accountCourse.getAccount().getId()
         );
-
     }
 }
