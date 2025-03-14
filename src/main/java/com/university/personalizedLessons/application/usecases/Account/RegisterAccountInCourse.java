@@ -2,7 +2,7 @@ package com.university.personalizedLessons.application.usecases.Account;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
-import com.university.personalizedLessons.domain.entities.registerCourse.Enrollment;
+import com.university.personalizedLessons.domain.domainServices.Enrollment;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 import com.university.personalizedLessons.infrastructure.repository.EnrollmentRepo;
