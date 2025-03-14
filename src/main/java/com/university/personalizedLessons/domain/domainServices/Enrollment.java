@@ -1,10 +1,12 @@
-package com.university.personalizedLessons.domain.entities.registerCourse;
+package com.university.personalizedLessons.domain.domainServices;
+
+import java.util.UUID;
 
 public class Enrollment {
 
-    private final long idAccount;
-    private final int idCourse;
     private final Long id;
+    private final int idCourse;
+    private final Long idAccount;
 
     public Enrollment (
             Long id,
@@ -16,7 +18,7 @@ public class Enrollment {
         this.idAccount = idAccount;
     }
 
-    public long getIdAccount() {
+    public Long getIdAccount() {
         return idAccount;
     }
 
