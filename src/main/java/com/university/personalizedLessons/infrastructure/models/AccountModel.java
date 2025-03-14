@@ -3,6 +3,8 @@ package com.university.personalizedLessons.infrastructure.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -78,5 +80,9 @@ public class AccountModel {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public UUID getIdAccount() {
+        return UUID.fromString(this.idAccount);
     }
 }
