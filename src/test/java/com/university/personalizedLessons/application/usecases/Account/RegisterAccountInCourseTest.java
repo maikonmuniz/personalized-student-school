@@ -3,7 +3,7 @@ package com.university.personalizedLessons.application.usecases.Account;
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 
-import com.university.personalizedLessons.domain.entities.registerCourse.Enrollment;
+import com.university.personalizedLessons.domain.domainServices.Enrollment;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 import com.university.personalizedLessons.infrastructure.repository.EnrollmentRepo;
@@ -13,6 +13,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,8 +63,11 @@ class RegisterAccountInCourseTest {
 
         String username = "maikon@muniz";
 
+        UUID uuid = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
+
         Account account = new Account(
-                1L,
+                uuid,
+                2L,
                 "maikon",
                 "muniz",
                 "423423423424",
@@ -111,8 +116,11 @@ class RegisterAccountInCourseTest {
     @DisplayName("Should return exeption!")
     public void ReturnExeption () {
 
+        UUID uuid = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
+
         Account account = new Account(
-                1L,
+                uuid,
+                2L,
                 "maikon",
                 "muniz",
                 "423423423424",
