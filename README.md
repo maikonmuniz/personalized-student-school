@@ -1,13 +1,13 @@
-# personalized-student-school
+# 🎓 Personalized Student School 🚀
 
-## OBJETIVO DESTE PROJETO:
-### É implementar um back end para uma universidade em que os alunos possam personalizar suas disciplinas para cada semestre.
+## 📌 Objetivo do Projeto  
+Este projeto tem como objetivo desenvolver um back-end para uma universidade, permitindo que os alunos personalizem suas disciplinas a cada semestre.
 
-### Pré-requisitos
+## ⚙️ Pré-requisitos  
+- ☕ **JRE v21**  
 
-#### JRE v21
+## 🚀 Como Executar o Projeto  
 
-## Steps run project
-````
- mvn install
-````
+```sh
+mvn install
+
