@@ -1,4 +1,4 @@
-package com.university.personalizedLessons.application.usecases.Account;
+package com.university.personalizedLessons.application.usecases.account;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.mock;
@@ -33,33 +32,40 @@ class CreateAccountTest {
 
         CryptAdapter cryptAdapter = new CryptAdapter();
 
-        String password = cryptAdapter.encrypt("senha123");
+        String password = "senha123";
+
+        String passwordCrypt = cryptAdapter.encrypt(password);
+
+        String firstName = "maikon";
+        String lastName = "muniz";
+        String cpf = "123456789";
+        String username = "maikon@maikon";
 
         Account account = new Account(
-                "maikon",
-                "muniz",
-                "123456789",
-                "maikon@maikon",
-                password
+                firstName,
+                lastName,
+                cpf,
+                username,
+                passwordCrypt
         );
 
         AccountModel savedAccountModel = new AccountModel();
-        savedAccountModel.setFirstName("maikon");
-        savedAccountModel.setLastName("muniz");
-        savedAccountModel.setCpf("123456789");
-        savedAccountModel.setUsername("maikon@maikon");
-        savedAccountModel.setPassword(password);
+        savedAccountModel.setFirstName(firstName);
+        savedAccountModel.setLastName(lastName);
+        savedAccountModel.setCpf(cpf);
+        savedAccountModel.setUsername(username);
+        savedAccountModel.setPassword(passwordCrypt);
 
         when(accountJPAMock.save(any(AccountModel.class))).thenReturn(savedAccountModel);
 
         Account savedAccount = accountRepo.save(account);
 
         assertNotNull(savedAccount);
-        assertEquals("maikon", savedAccount.getFirstName());
-        assertEquals("muniz", savedAccount.getLastName());
-        assertEquals("123456789", savedAccount.getCpf());
-        assertEquals("maikon@maikon", savedAccount.getUsername());
-        assertEquals(password, savedAccount.getPassword());
+        assertEquals(firstName, savedAccount.getFirstName());
+        assertEquals(lastName, savedAccount.getLastName());
+        assertEquals(cpf, savedAccount.getCpf());
+        assertEquals(username, savedAccount.getUsername());
+        assertEquals(passwordCrypt, savedAccount.getPassword());
 
     }
 }
