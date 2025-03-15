@@ -1,4 +1,4 @@
-package com.university.personalizedLessons.application.usecases.Account;
+package com.university.personalizedLessons.application.usecases.account;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
