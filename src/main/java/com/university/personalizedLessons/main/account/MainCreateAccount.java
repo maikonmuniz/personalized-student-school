@@ -3,6 +3,7 @@ package com.university.personalizedLessons.main.account;
 import com.university.personalizedLessons.application.usecases.Account.CreateAccount;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
+import com.university.personalizedLessons.infrastructure.springSecurityBcripty.CryptAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,8 +11,14 @@ import org.springframework.context.annotation.Configuration;
 public class MainCreateAccount {
 
     @Bean
-    CreateAccount createAccount (AccountRepo accountRepo) {
-        return new CreateAccount(accountRepo);
+    CreateAccount createAccount (
+            AccountRepo accountRepo,
+            CryptAdapter crypt
+    ) {
+        return new CreateAccount(
+                accountRepo,
+                crypt
+        );
     }
 
     @Bean
