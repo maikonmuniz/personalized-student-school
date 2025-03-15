@@ -7,6 +7,7 @@ import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
+import com.university.personalizedLessons.infrastructure.springSecurityBcripty.CryptAdapter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,12 +31,16 @@ class CreateAccountTest {
 
         AccountRepo accountRepo = new AccountRepo(accountJPAMock);
 
+        CryptAdapter cryptAdapter = new CryptAdapter();
+
+        String password = cryptAdapter.encrypt("senha123");
+
         Account account = new Account(
                 "maikon",
                 "muniz",
                 "123456789",
                 "maikon@maikon",
-                "senha123"
+                password
         );
 
         AccountModel savedAccountModel = new AccountModel();
@@ -43,7 +48,7 @@ class CreateAccountTest {
         savedAccountModel.setLastName("muniz");
         savedAccountModel.setCpf("123456789");
         savedAccountModel.setUsername("maikon@maikon");
-        savedAccountModel.setPassword("senha123");
+        savedAccountModel.setPassword(password);
 
         when(accountJPAMock.save(any(AccountModel.class))).thenReturn(savedAccountModel);
 
@@ -54,7 +59,7 @@ class CreateAccountTest {
         assertEquals("muniz", savedAccount.getLastName());
         assertEquals("123456789", savedAccount.getCpf());
         assertEquals("maikon@maikon", savedAccount.getUsername());
-        assertEquals("senha123", savedAccount.getPassword());
+        assertEquals(password, savedAccount.getPassword());
 
     }
 }

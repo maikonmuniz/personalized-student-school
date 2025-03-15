@@ -1,5 +1,5 @@
 package com.university.personalizedLessons.interfaceAdapters;
 
-public interface Crypt {
+public interface InterCrypt {
     String encrypt (String password);
 }
