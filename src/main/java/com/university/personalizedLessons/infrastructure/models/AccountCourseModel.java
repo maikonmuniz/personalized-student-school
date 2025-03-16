@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "account_course")
-public class AccountCourse {
+public class AccountCourseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

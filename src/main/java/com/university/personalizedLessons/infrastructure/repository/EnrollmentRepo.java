@@ -4,7 +4,7 @@ import com.university.personalizedLessons.application.repository.EnrollmentRepos
 import com.university.personalizedLessons.domain.domainServices.Enrollment;
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
-import com.university.personalizedLessons.infrastructure.models.AccountCourse;
+import com.university.personalizedLessons.infrastructure.models.AccountCourseModel;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.models.CourseModel;
 import com.university.personalizedLessons.infrastructure.models.TypeCourseModel;
@@ -37,7 +37,7 @@ public class EnrollmentRepo implements EnrollmentRepository {
 
         courseModel.setTypeCourse(typeCourseModel);
 
-        AccountCourse accountCourse = new AccountCourse();
+        AccountCourseModel accountCourse = new AccountCourseModel();
         accountCourse.setAccount(accountModel);
         accountCourse.setCourse(courseModel);
 

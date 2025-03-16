@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.main.account;
 
-import com.university.personalizedLessons.application.usecases.Account.CreateAccount;
+import com.university.personalizedLessons.application.usecases.account.CreateAccount;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.springSecurityBcripty.CryptAdapter;

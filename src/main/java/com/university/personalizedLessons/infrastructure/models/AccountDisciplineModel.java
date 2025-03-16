@@ -33,7 +33,7 @@ public class AccountDisciplineModel {
 
     @ManyToOne
     @JoinColumn(name = "id_account_course", nullable = false)
-    private AccountCourse accountCourse;
+    private AccountCourseModel accountCourse;
 
     public Long getId() {
         return id;
@@ -67,11 +67,11 @@ public class AccountDisciplineModel {
         this.typeNote = typeNote;
     }
 
-    public AccountCourse getAccountCourse() {
+    public AccountCourseModel getAccountCourse() {
         return accountCourse;
     }
 
-    public void setAccountCourse(AccountCourse accountCourse) {
+    public void setAccountCourse(AccountCourseModel accountCourse) {
         this.accountCourse = accountCourse;
     }
 }
