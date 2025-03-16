@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
+import com.university.personalizedLessons.infrastructure.models.TypeAccountModel;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.springSecurityBcripty.CryptAdapter;
@@ -40,13 +41,15 @@ class CreateAccountTest {
         String lastName = "muniz";
         String cpf = "123456789";
         String username = "maikon@maikon";
+        int idTypeAccount = 1;
 
         Account account = new Account(
                 firstName,
                 lastName,
                 cpf,
                 username,
-                passwordCrypt
+                passwordCrypt,
+                idTypeAccount
         );
 
         AccountModel savedAccountModel = new AccountModel();
@@ -55,6 +58,10 @@ class CreateAccountTest {
         savedAccountModel.setCpf(cpf);
         savedAccountModel.setUsername(username);
         savedAccountModel.setPassword(passwordCrypt);
+
+        TypeAccountModel typeAccountModel = new TypeAccountModel();
+        typeAccountModel.setId(1);
+        savedAccountModel.setTypeAccountModel(typeAccountModel);
 
         when(accountJPAMock.save(any(AccountModel.class))).thenReturn(savedAccountModel);
 
