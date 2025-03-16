@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.infrastructure.http;
 
-import com.university.personalizedLessons.application.usecases.Account.CreateAccount;
+import com.university.personalizedLessons.application.usecases.account.CreateAccount;
 import com.university.personalizedLessons.infrastructure.dto.RegisterAccountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +15,15 @@ public class AccountController {
 
     @PostMapping("register")
     public ResponseEntity registerAccount (@RequestBody RegisterAccountDTO data) {
+
         CreateAccount.Output output = this.createAccount.execute(
                 new CreateAccount.Input(
                         data.firstName(),
                         data.lastName(),
                         data.cpf(),
                         data.username(),
-                        data.password()
+                        data.password(),
+                        data.idTypeAccount()
                 )
         );
 
