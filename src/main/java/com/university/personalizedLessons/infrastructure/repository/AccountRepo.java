@@ -3,6 +3,7 @@ package com.university.personalizedLessons.infrastructure.repository;
 import com.university.personalizedLessons.application.repository.AccountRepository;
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
+import com.university.personalizedLessons.infrastructure.models.TypeAccountModel;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 
 import java.util.UUID;
@@ -26,6 +27,10 @@ public class AccountRepo implements AccountRepository {
         accountModel.setUsername(account.getUsername());
         accountModel.setPassword(account.getPassword());
 
+        TypeAccountModel typeAccountModel = new TypeAccountModel();
+        typeAccountModel.setId(1);
+        accountModel.setTypeAccountModel(typeAccountModel);
+
         AccountModel accountModelRegister = accountJPA.save(accountModel);
 
         return new Account (
@@ -35,7 +40,8 @@ public class AccountRepo implements AccountRepository {
                 accountModelRegister.getLastName(),
                 accountModelRegister.getCpf(),
                 accountModelRegister.getUsername(),
-                accountModelRegister.getPassword()
+                accountModelRegister.getPassword(),
+                accountModelRegister.getTypeAccountModel().getId()
         );
     }
 
@@ -51,7 +57,8 @@ public class AccountRepo implements AccountRepository {
                 accountModel.getLastName(),
                 accountModel.getCpf(),
                 accountModel.getUsername(),
-                accountModel.getPassword()
+                accountModel.getPassword(),
+                accountModel.getTypeAccountModel().getId()
         );
     }
 }
