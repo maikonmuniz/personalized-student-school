@@ -65,6 +65,8 @@ class RegisterAccountInCourseTest {
 
         UUID uuid = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
 
+        int idTypeAccount = 1;
+
         Account account = new Account(
                 uuid,
                 2L,
@@ -72,7 +74,8 @@ class RegisterAccountInCourseTest {
                 "muniz",
                 "423423423424",
                 username,
-                "senha@senha"
+                "senha@senha",
+                idTypeAccount
         );
 
         when(accountRepo.findAccount(username)).thenReturn(account);
@@ -118,6 +121,8 @@ class RegisterAccountInCourseTest {
 
         UUID uuid = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
 
+        int idTypeAccount = 1;
+
         Account account = new Account(
                 uuid,
                 2L,
@@ -125,7 +130,8 @@ class RegisterAccountInCourseTest {
                 "muniz",
                 "423423423424",
                 "maikon@muniz",
-                "senha@senha"
+                "senha@senha",
+                idTypeAccount
         );
 
         when(accountRepo.findAccount("maikon@muniz")).thenReturn(account);

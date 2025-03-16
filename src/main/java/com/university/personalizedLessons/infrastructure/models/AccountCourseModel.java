@@ -2,6 +2,8 @@ package com.university.personalizedLessons.infrastructure.models;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "account_course")
 public class AccountCourse {
@@ -9,6 +11,9 @@ public class AccountCourse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "id_account_course", length = 36)
+    private String idCourseDiscipline = UUID.randomUUID().toString();
 
     @ManyToOne
     @JoinColumn(name = "id_course", nullable = false)
@@ -24,6 +29,14 @@ public class AccountCourse {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setIdCourseDiscipline(UUID id) {
+        this.idCourseDiscipline = id.toString();
+    }
+
+    public String getIdCourseDiscipline(){
+        return this.idCourseDiscipline;
     }
 
     public CourseModel getCourse() {
