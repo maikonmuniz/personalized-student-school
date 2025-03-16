@@ -28,7 +28,8 @@ public class CreateAccount {
                 input.lastName,
                 input.cpf,
                 input.username,
-                password
+                password,
+                input.idTypeAccount
         );
 
         Account accountSave = this.accountRepo.save(account);
@@ -47,7 +48,8 @@ public class CreateAccount {
             String lastName,
             String cpf,
             String username,
-            String password
+            String password,
+            int idTypeAccount
     ) {}
 
     public static record Output (
