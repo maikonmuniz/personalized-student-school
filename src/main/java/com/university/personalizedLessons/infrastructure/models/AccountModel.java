@@ -34,6 +34,10 @@ public class AccountModel {
     @Column(name = "cpf", length = 11)
     private String cpf;
 
+    @ManyToOne
+    @JoinColumn(name = "id_type_account")
+    private TypeAccountModel typeAccountModel;
+
     public String getUsername() {
         return username;
     }
@@ -88,5 +92,13 @@ public class AccountModel {
 
     public UUID getIdAccount() {
         return UUID.fromString(this.idAccount);
+    }
+
+    public void setTypeAccountModel (TypeAccountModel typeAccountModel) {
+        this.typeAccountModel = typeAccountModel;
+    }
+
+    public TypeAccountModel getTypeAccountModel() {
+        return this.typeAccountModel;
     }
 }
