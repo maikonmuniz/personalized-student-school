@@ -11,13 +11,15 @@ public class Account {
     private final String cpf;
     private final String username;
     private final String password;
+    private final int idTypeAccount;
 
     public Account (
             String firstName,
             String lastName,
             String cpf,
             String username,
-            String password
+            String password,
+            int idTypeAccount
     ) {
         this.idAccount = UUID.randomUUID();
         this.firstName = firstName;
@@ -25,6 +27,7 @@ public class Account {
         this.cpf = cpf;
         this.username = username;
         this.password = password;
+        this.idTypeAccount = idTypeAccount;
     }
 
     public Account (
@@ -34,7 +37,8 @@ public class Account {
             String lastName,
             String cpf,
             String username,
-            String password
+            String password,
+            int idTypeAccount
     ) {
         this.idAccount = idAccount;
         this.id = id;
@@ -43,6 +47,7 @@ public class Account {
         this.cpf = cpf;
         this.username = username;
         this.password = password;
+        this.idTypeAccount = idTypeAccount;
     }
 
     public String getFirstName() {
@@ -75,5 +80,9 @@ public class Account {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public int getIdTypeAccount() {
+        return idTypeAccount;
     }
 }
