@@ -5,7 +5,10 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.university.personalizedLessons.domain.entities.account.Account;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -16,6 +19,7 @@ import java.time.ZoneOffset;
 public class TokenServices {
     @Value("${api.security.token.secret}")
     private String secret;
+
 
     public String generateToken(Account account){
         try {
@@ -48,4 +52,3 @@ public class TokenServices {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-06:00"));
     }
 }
-
