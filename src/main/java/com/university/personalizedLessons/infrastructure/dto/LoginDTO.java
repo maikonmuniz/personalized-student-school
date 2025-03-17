@@ -1,4 +1,6 @@
 package com.university.personalizedLessons.infrastructure.dto;
 
-public record LoginDTO() {
-}
+public record LoginDTO(
+        String username,
+        String password
+) { }
