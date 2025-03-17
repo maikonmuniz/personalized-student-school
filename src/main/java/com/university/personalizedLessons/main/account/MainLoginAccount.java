@@ -1,4 +1,22 @@
 package com.university.personalizedLessons.main.account;
 
-public class MainLogin {
+import com.university.personalizedLessons.application.usecases.account.LoginAccount;
+import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
+import com.university.personalizedLessons.infrastructure.security.TokenAdapter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class MainLoginAccount {
+
+    @Bean
+    public LoginAccount createLonginAccount(
+            TokenAdapter tokenAdapter,
+            AccountRepo accountRepo
+            ) {
+        return new LoginAccount(
+                tokenAdapter,
+                accountRepo
+        );
+    }
 }
