@@ -27,6 +27,7 @@ public class SecurityConfigurations {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/account/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/account/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
@@ -43,4 +44,3 @@ public class SecurityConfigurations {
         return new BCryptPasswordEncoder();
     }
 }
-
