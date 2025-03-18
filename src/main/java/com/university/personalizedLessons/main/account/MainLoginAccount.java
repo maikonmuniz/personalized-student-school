@@ -1,6 +1,7 @@
 package com.university.personalizedLessons.main.account;
 
 import com.university.personalizedLessons.application.usecases.account.LoginAccount;
+import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.security.TokenAdapter;
 import org.springframework.context.annotation.Bean;
@@ -12,11 +13,13 @@ public class MainLoginAccount {
     @Bean
     public LoginAccount createLonginAccount(
             TokenAdapter tokenAdapter,
-            AccountRepo accountRepo
-            ) {
+            AccountRepo accountRepo,
+            ExceptionAdapter exceptionAdpter
+    ) {
         return new LoginAccount(
                 tokenAdapter,
-                accountRepo
+                accountRepo,
+                exceptionAdpter
         );
     }
 }
