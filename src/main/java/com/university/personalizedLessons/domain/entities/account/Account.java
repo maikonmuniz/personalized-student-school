@@ -1,5 +1,6 @@
 package com.university.personalizedLessons.domain.entities.account;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Account {
@@ -48,6 +49,15 @@ public class Account {
         this.username = username;
         this.password = password;
         this.idTypeAccount = idTypeAccount;
+    }
+
+    public boolean authenticate (
+            String username,
+            String password
+    ) {
+        return (
+                Objects.equals(this.getUsername(), username)
+                        && Objects.equals(this.getPassword(), password));
     }
 
     public String getFirstName() {
