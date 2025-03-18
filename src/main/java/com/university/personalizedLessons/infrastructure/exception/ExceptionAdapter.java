@@ -3,11 +3,11 @@ package com.university.personalizedLessons.infrastructure.exception;
 import com.university.personalizedLessons.infrastructure.exception.implementation.OperationStatusCode;
 import com.university.personalizedLessons.interfaceAdapters.ExceptionInter;
 
-public class ExceptionAdpter implements ExceptionInter {
+public class ExceptionAdapter implements ExceptionInter {
 
     OperationStatusCode operationStatusCode;
 
-    public ExceptionAdpter(
+    public ExceptionAdapter(
             OperationStatusCode operationStatusCode
     ) {
         this.operationStatusCode = operationStatusCode;
@@ -20,6 +20,6 @@ public class ExceptionAdpter implements ExceptionInter {
 
     @Override
     public RuntimeException internalServe(String mess) {
-        return null;
+        return this.operationStatusCode.InternalServeError(mess);
     }
 }
