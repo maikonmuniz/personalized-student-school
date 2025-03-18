@@ -2,8 +2,8 @@ package com.university.personalizedLessons.infrastructure.http;
 
 import com.university.personalizedLessons.application.usecases.account.CreateAccount;
 import com.university.personalizedLessons.application.usecases.account.LoginAccount;
-import com.university.personalizedLessons.infrastructure.dto.LoginDTO;
-import com.university.personalizedLessons.infrastructure.dto.RegisterAccountDTO;
+import com.university.personalizedLessons.dto.LoginDTO;
+import com.university.personalizedLessons.dto.RegisterAccountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
