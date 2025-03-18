@@ -1,6 +1,7 @@
 package com.university.personalizedLessons.application.usecases.account;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
+import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.security.TokenAdapter;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class LoginAccountTest {
@@ -26,6 +28,9 @@ class LoginAccountTest {
 
     @Mock
     private AccountRepo accountRepo;
+
+    @Mock
+    ExceptionAdapter exceptionAdpter;
 
     @Test
     @DisplayName("Should generate token")
@@ -70,4 +75,42 @@ class LoginAccountTest {
 
     }
 
+
+    @Test
+    @DisplayName("Should test an exeption the BadRequest for test username is empty!")
+    public void exeptionTestBadRequestUsername () {
+
+        String username = "";
+        String password = "maikon@maikon";
+
+        when(exceptionAdpter.badRequest("Field username is empty!"))
+                .thenThrow(new RuntimeException("Field username is empty!"));
+
+        assertThrows(RuntimeException.class, () -> this.loginAccount.execute(
+                new LoginAccount.Input(
+                        username,
+                        password
+                )));
+
+        verify(exceptionAdpter, times(1)).badRequest("Field username is empty!");
+    }
+
+    @Test
+    @DisplayName("Should test an exeption the BadRequest for test password is empty!")
+    public void exeptionTestBadRequestPassword () {
+
+        String username = "maikon@muniz";
+        String password = "";
+
+        when(exceptionAdpter.badRequest("Field password is empty!"))
+                .thenThrow(new RuntimeException("Field password is empty!"));
+
+        assertThrows(RuntimeException.class, () -> this.loginAccount.execute(
+                new LoginAccount.Input(
+                        username,
+                        password
+                )));
+
+        verify(exceptionAdpter, times(1)).badRequest("Field password is empty!");
+    }
 }
