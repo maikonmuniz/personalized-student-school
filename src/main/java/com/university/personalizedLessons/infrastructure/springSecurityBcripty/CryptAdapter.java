@@ -9,4 +9,9 @@ public class CryptAdapter implements InterCrypt {
     public String encrypt(String password) {
         return new BCryptPasswordEncoder().encode(password);
     }
+
+    @Override
+    public boolean verifyPassword (String password, String passwordCrypt) {
+        return new BCryptPasswordEncoder().matches(password, passwordCrypt);
+    }
 }

@@ -4,6 +4,7 @@ import com.university.personalizedLessons.application.usecases.account.LoginAcco
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.security.TokenAdapter;
+import com.university.personalizedLessons.infrastructure.springSecurityBcripty.CryptAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,12 +15,14 @@ public class MainLoginAccount {
     public LoginAccount createLonginAccount(
             TokenAdapter tokenAdapter,
             AccountRepo accountRepo,
-            ExceptionAdapter exceptionAdpter
+            ExceptionAdapter exceptionAdpter,
+            CryptAdapter cryptAdapter
     ) {
         return new LoginAccount(
                 tokenAdapter,
                 accountRepo,
-                exceptionAdpter
+                exceptionAdpter,
+                cryptAdapter
         );
     }
 }
