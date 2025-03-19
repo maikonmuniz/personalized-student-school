@@ -113,4 +113,23 @@ class LoginAccountTest {
 
         verify(exceptionAdpter, times(1)).badRequest("Field password is empty!");
     }
+
+    @Test
+    @DisplayName("Should test an exeption the BadRequest for test if exist account!")
+    public void exeptionTestBadRequestNoExistAccount () {
+
+        String username = "maikon@muniz";
+        String password = "maikon@muniz123";
+
+        when(exceptionAdpter.badRequest("No exist account!"))
+                .thenThrow(new RuntimeException("No exist account!"));
+
+        assertThrows(RuntimeException.class, () -> this.loginAccount.execute(
+                new LoginAccount.Input(
+                        username,
+                        password
+                )));
+
+        verify(exceptionAdpter, times(1)).badRequest("No exist account!");
+    }
 }
