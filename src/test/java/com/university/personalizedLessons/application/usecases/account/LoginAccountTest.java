@@ -4,6 +4,7 @@ import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.security.TokenAdapter;
+import com.university.personalizedLessons.infrastructure.springSecurityBcripty.CryptAdapter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,6 +32,9 @@ class LoginAccountTest {
 
     @Mock
     ExceptionAdapter exceptionAdpter;
+
+    @Mock
+    CryptAdapter cryptAdapter;
 
     @Test
     @DisplayName("Should generate token")
@@ -74,7 +78,6 @@ class LoginAccountTest {
         assertEquals(output.token(), tokenJWTTest);
 
     }
-
 
     @Test
     @DisplayName("Should test an exeption the BadRequest for test username is empty!")
@@ -124,6 +127,8 @@ class LoginAccountTest {
         when(exceptionAdpter.badRequest("No exist account!"))
                 .thenThrow(new RuntimeException("No exist account!"));
 
+        when(accountRepo.findAccount(username)).thenReturn(null);
+
         assertThrows(RuntimeException.class, () -> this.loginAccount.execute(
                 new LoginAccount.Input(
                         username,
@@ -131,5 +136,41 @@ class LoginAccountTest {
                 )));
 
         verify(exceptionAdpter, times(1)).badRequest("No exist account!");
+    }
+
+    @Test
+    @DisplayName("Should test an exeption if password resquest is equals password database!")
+    public void exeptionTest () {
+
+        String username = "maikon@muniz";
+        String password = "maikon@muniz123";
+        String passwordCrypt = "maikon@muniz12";
+
+        UUID uuid = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
+
+        int idTypeAccount = 1;
+
+        Account account = new Account(
+                uuid,
+                2L,
+                "maikon",
+                "muniz",
+                "423423423424",
+                username,
+                passwordCrypt,
+                idTypeAccount
+        );
+
+        when(accountRepo.findAccount(username)).thenReturn(account);
+
+        when(cryptAdapter.verifyPassword(password, passwordCrypt)).thenReturn(false);
+
+        assertThrows(RuntimeException.class, () -> this.loginAccount.execute(
+                new LoginAccount.Input(
+                        username,
+                        password
+                )));
+
+        verify(exceptionAdpter, times(1)).badRequest("No password is registered!");
     }
 }
