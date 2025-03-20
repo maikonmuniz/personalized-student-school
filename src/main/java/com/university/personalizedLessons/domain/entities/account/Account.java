@@ -41,23 +41,15 @@ public class Account {
             String password,
             int idTypeAccount
     ) {
-        this.idAccount = idAccount;
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.cpf = cpf;
-        this.username = username;
-        this.password = password;
-        this.idTypeAccount = idTypeAccount;
-    }
 
-    public boolean authenticate (
-            String username,
-            String password
-    ) {
-        return (
-                Objects.equals(this.getUsername(), username)
-                        && Objects.equals(this.getPassword(), password));
+            this.idAccount = idAccount;
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.cpf = cpf;
+            this.username = username;
+            this.password = password;
+            this.idTypeAccount = idTypeAccount;
     }
 
     public String getFirstName() {
