@@ -28,7 +28,7 @@ public class AccountRepo implements AccountRepository {
         accountModel.setPassword(account.getPassword());
 
         TypeAccountModel typeAccountModel = new TypeAccountModel();
-        typeAccountModel.setId(1);
+        typeAccountModel.setId(account.getIdTypeAccount());
         accountModel.setTypeAccountModel(typeAccountModel);
 
         AccountModel accountModelRegister = accountJPA.save(accountModel);
