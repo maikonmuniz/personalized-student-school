@@ -1,6 +1,7 @@
 package com.university.personalizedLessons.main.account;
 
 import com.university.personalizedLessons.application.usecases.account.CreateAccount;
+import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.springSecurityBcripty.CryptAdapter;
@@ -13,11 +14,13 @@ public class MainCreateAccount {
     @Bean
     CreateAccount createAccount (
             AccountRepo accountRepo,
-            CryptAdapter crypt
+            CryptAdapter crypt,
+            ExceptionAdapter exceptionAdapter
     ) {
         return new CreateAccount(
                 accountRepo,
-                crypt
+                crypt,
+                exceptionAdapter
         );
     }
 
