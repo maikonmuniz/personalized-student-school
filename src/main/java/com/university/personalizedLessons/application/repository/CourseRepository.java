@@ -1,7 +1,8 @@
 package com.university.personalizedLessons.application.repository;
 
-import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.entities.course.Course;
 
 public interface CourseRepository {
-    CourseAggregate findCourse(int id);
+    Course register (Course course);
+    Course findCourse(int id);
 }
