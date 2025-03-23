@@ -2,6 +2,7 @@ package com.university.personalizedLessons.infrastructure.repository;
 
 import com.university.personalizedLessons.application.repository.AccountRepository;
 import com.university.personalizedLessons.domain.entities.account.Account;
+import com.university.personalizedLessons.domain.valueObject.*;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.models.TypeAccountModel;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
@@ -36,11 +37,11 @@ public class AccountRepo implements AccountRepository {
         return new Account (
                 account.getIdAccount(),
                 account.getId(),
-                accountModelRegister.getFirstName(),
-                accountModelRegister.getLastName(),
-                accountModelRegister.getCpf(),
-                accountModelRegister.getUsername(),
-                accountModelRegister.getPassword(),
+                FirstName.create(accountModelRegister.getFirstName()),
+                LastName.create(accountModelRegister.getLastName()),
+                Cpf.create(accountModelRegister.getCpf()),
+                Username.create(accountModelRegister.getUsername()),
+                Password.create(accountModelRegister.getPassword()),
                 accountModelRegister.getTypeAccountModel().getId()
         );
     }
@@ -53,11 +54,11 @@ public class AccountRepo implements AccountRepository {
         return new Account(
                 accountModel.getIdAccount(),
                 accountModel.getId(),
-                accountModel.getFirstName(),
-                accountModel.getLastName(),
-                accountModel.getCpf(),
-                accountModel.getUsername(),
-                accountModel.getPassword(),
+                FirstName.create(accountModel.getFirstName()),
+                LastName.create(accountModel.getLastName()),
+                Cpf.create(accountModel.getCpf()),
+                Username.create(accountModel.getUsername()),
+                Password.create(accountModel.getPassword()),
                 accountModel.getTypeAccountModel().getId()
         );
     }
