@@ -1,6 +1,7 @@
 package com.university.personalizedLessons.application.usecases.account;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
+import com.university.personalizedLessons.domain.valueObject.*;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.security.TokenAdapter;
@@ -48,21 +49,23 @@ class LoginAccountTest {
 
         String firstName = "maikon";
         String lastName = "muniz";
-        String cpf = "423423423424";
-        String password = "senha@senha";
+        String cpf = "36188295157";
+        String password = "maikon12ee3";
 
         Account account = new Account(
                 uuid,
                 2L,
-                firstName,
-                lastName,
-                cpf,
-                username,
-                password,
+                FirstName.create(firstName),
+                LastName.create(lastName),
+                Cpf.create(cpf),
+                Username.create(username),
+                Password.create(password),
                 idTypeAccount
         );
 
         when(accountRepo.findAccount(username)).thenReturn(account);
+
+        when(cryptAdapter.verifyPassword(anyString(), anyString())).thenReturn(true);
 
         String tokenJWTTest = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJUZXN0VXNlciIsImlhdCI6MTcxMDY1NTIwMSwiZXhwIjoxNzEwNjU4ODAwfQ.ei3OuP5c2kl8XhyqZa0NH5sPH6ztm9j4U-dF38aA6a8";
 
@@ -75,6 +78,7 @@ class LoginAccountTest {
                 )
         );
 
+        assertEquals(output.username(), username);
         assertEquals(output.token(), tokenJWTTest);
 
     }
@@ -142,33 +146,37 @@ class LoginAccountTest {
     @DisplayName("Should test an exeption if password resquest is equals password database!")
     public void exeptionTest () {
 
-        String username = "maikon@muniz";
-        String password = "maikon@muniz123";
-        String passwordCrypt = "maikon@muniz12";
+        Username username = Username.create("maikon@muniz");
+        Password password = Password.create("maikon@Muniz123");
+        Password passwordCrypt = Password.create("maikon@muniz12");
 
         UUID uuid = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
 
         int idTypeAccount = 1;
 
+        FirstName firstName = FirstName.create("maikon");
+        LastName lastName = LastName.create("muniz");
+        Cpf cpf = Cpf.create("36188295157");
+
         Account account = new Account(
                 uuid,
                 2L,
-                "maikon",
-                "muniz",
-                "423423423424",
+                firstName,
+                lastName,
+                cpf,
                 username,
                 passwordCrypt,
                 idTypeAccount
         );
 
-        when(accountRepo.findAccount(username)).thenReturn(account);
+        when(accountRepo.findAccount(username.getValue())).thenReturn(account);
 
-        when(cryptAdapter.verifyPassword(password, passwordCrypt)).thenReturn(false);
+        when(cryptAdapter.verifyPassword(password.getValue(), passwordCrypt.getValue())).thenReturn(false);
 
         assertThrows(RuntimeException.class, () -> this.loginAccount.execute(
                 new LoginAccount.Input(
-                        username,
-                        password
+                        username.getValue(),
+                        password.getValue()
                 )));
 
         verify(exceptionAdpter, times(1)).badRequest("No password is registered!");
