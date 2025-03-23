@@ -1,13 +1,13 @@
 package com.university.personalizedLessons.domain.entities.course;
 
-public class CourseAggregate {
+public class Course {
 
     private final int id;
     private final String name;
     private final int typeCourseId;
     private final String description;
 
-    public CourseAggregate(
+    public Course(
             int id,
             String name,
             String description,
