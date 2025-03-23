@@ -19,7 +19,7 @@ public class AccountController {
     LoginAccount loginAccount;
 
     @PostMapping("register")
-    public ResponseEntity registerAccount (@RequestBody RegisterAccountDTO data) {
+    public ResponseEntity registerAccount (@RequestBody RegisterAccountDTO data) throws Exception {
 
         CreateAccount.Output output = this.createAccount.execute(
                 new CreateAccount.Input(
