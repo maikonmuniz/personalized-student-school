@@ -1,8 +1,9 @@
 package com.university.personalizedLessons.infrastructure.repository;
 
 import com.university.personalizedLessons.application.repository.CourseRepository;
-import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.entities.course.Course;
 import com.university.personalizedLessons.infrastructure.models.CourseModel;
+import com.university.personalizedLessons.infrastructure.models.TypeCourseModel;
 import com.university.personalizedLessons.infrastructure.operationORM.CourseJpa;
 
 import java.util.Optional;
@@ -18,10 +19,20 @@ public class CourseRepo implements CourseRepository {
     }
 
     @Override
-    public CourseAggregate findCourse(int id) {
+    public Course register(Course course) {
+        CourseModel courseModel = new CourseModel();
+        courseModel.setDescription(course.getDescription());
+        TypeCourseModel typeCourse = new TypeCourseModel();
+        typeCourse.setId(course.getId());
+        courseModel.setTypeCourse(typeCourse);
+        return course;
+    }
+
+    @Override
+    public Course findCourse(int id) {
         Optional<CourseModel> courseModel = this.courseJpa.findById(id);
 
-        return courseModel.map(model -> new CourseAggregate(
+        return courseModel.map(model -> new Course(
                 model.getId(),
                 model.getName(),
                 model.getDescription(),
