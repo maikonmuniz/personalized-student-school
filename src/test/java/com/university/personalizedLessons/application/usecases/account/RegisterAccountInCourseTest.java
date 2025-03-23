@@ -4,6 +4,7 @@ import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 
 import com.university.personalizedLessons.domain.domainServices.Enrollment;
+import com.university.personalizedLessons.domain.valueObject.*;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 import com.university.personalizedLessons.infrastructure.repository.EnrollmentRepo;
@@ -70,11 +71,11 @@ class RegisterAccountInCourseTest {
         Account account = new Account(
                 uuid,
                 2L,
-                "maikon",
-                "muniz",
-                "423423423424",
-                username,
-                "senha@senha",
+                FirstName.create("maikon"),
+                LastName.create("muniz"),
+                Cpf.create("423423423424"),
+                Username.create(username),
+                Password.create("senha@senha"),
                 idTypeAccount
         );
 
@@ -126,11 +127,11 @@ class RegisterAccountInCourseTest {
         Account account = new Account(
                 uuid,
                 2L,
-                "maikon",
-                "muniz",
-                "423423423424",
-                "maikon@muniz",
-                "senha@senha",
+                 FirstName.create("maikon"),
+                LastName.create("muniz"),
+                Cpf.create("423423423424"),
+                Username.create("maikon@muniz"),
+                Password.create("senha@senha"),
                 idTypeAccount
         );
 
