@@ -5,10 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.university.personalizedLessons.domain.entities.account.Account;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -20,14 +17,12 @@ public class TokenServices {
     @Value("${api.security.token.secret}")
     private String secret;
 
-
     public String generateToken(Account account){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
-
             return JWT.create()
                     .withIssuer("auth-api")
-                    .withSubject(account.getPassword())
+                    .withSubject(account.getUsername())
                     .withExpiresAt(genExpirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException exception) {
