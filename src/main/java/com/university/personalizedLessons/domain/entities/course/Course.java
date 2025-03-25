@@ -2,10 +2,20 @@ package com.university.personalizedLessons.domain.entities.course;
 
 public class Course {
 
-    private final int id;
+    private int id;
     private final String name;
     private final int typeCourseId;
     private final String description;
+
+    public Course(
+            String name,
+            String description,
+            int typeCourseId
+    ){
+        this.name = name;
+        this.description = description;
+        this.typeCourseId = typeCourseId;
+    }
 
     public Course(
             int id,
