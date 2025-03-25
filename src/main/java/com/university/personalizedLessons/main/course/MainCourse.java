@@ -1,6 +1,7 @@
 package com.university.personalizedLessons.main.course;
 
-import com.university.personalizedLessons.infrastructure.operationORM.CourseJpa;
+import com.university.personalizedLessons.application.usecases.course.CreateCourse;
+import com.university.personalizedLessons.application.usecases.course.GetAllCourse;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,8 +10,12 @@ import org.springframework.context.annotation.Configuration;
 public class MainCourse {
 
     @Bean
-    CourseRepo createCourse (CourseJpa courseJpa) {
-        return new CourseRepo(courseJpa);
+    CreateCourse createUseCaseCourse (CourseRepo courseRepo) {
+        return new CreateCourse(courseRepo);
     }
 
+    @Bean
+    GetAllCourse createGetAllCourse (CourseRepo courseRepo) {
+        return new GetAllCourse(courseRepo);
+    }
 }
