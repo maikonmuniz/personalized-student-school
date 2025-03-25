@@ -1,7 +1,7 @@
 package com.university.personalizedLessons.application.usecases.account;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
-import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.entities.course.Course;
 
 import com.university.personalizedLessons.domain.domainServices.Enrollment;
 import com.university.personalizedLessons.domain.valueObject.*;
@@ -81,7 +81,7 @@ class RegisterAccountInCourseTest {
 
         when(accountRepo.findAccount(username)).thenReturn(account);
 
-        CourseAggregate course = new CourseAggregate (
+        Course course = new Course(
                 1,
                 "Logica de Programação",
                 "Matéria criada para logica de programação!",
