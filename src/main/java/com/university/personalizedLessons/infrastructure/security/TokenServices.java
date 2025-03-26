@@ -17,12 +17,15 @@ public class TokenServices {
     @Value("${api.security.token.secret}")
     private String secret;
 
-    public String generateToken(Account account){
+    public String generateToken(String username, String password){
+
+        String authenticate =  username + "-" + password;
+
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("auth-api")
-                    .withSubject(account.getUsername())
+                    .withSubject(authenticate)
                     .withExpiresAt(genExpirationDate())
                     .sign(algorithm);
         } catch (JWTCreationException exception) {

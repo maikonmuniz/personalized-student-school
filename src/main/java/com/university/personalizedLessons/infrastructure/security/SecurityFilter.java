@@ -1,8 +1,5 @@
 package com.university.personalizedLessons.infrastructure.security;
 
-import com.university.personalizedLessons.domain.entities.account.Account;
-import com.university.personalizedLessons.domain.valueObject.*;
-import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -34,21 +31,19 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         if(token != null){
 
-            String login = this.tokenService.validateToken(token);
-            AccountModel user = userRepository.findByUsername(login);
+            String usernamePassword = this.tokenService.validateToken(token);
+            var usernamePasswordArray = usernamePassword.split("-");
+            String username = usernamePasswordArray[0];
+            String password = usernamePasswordArray[1];
 
             try {
 
-                Account account = new Account(
-                        FirstName.create(user.getFirstName()),
-                        LastName.create(user.getLastName()),
-                        Cpf.create(user.getCpf()),
-                        Username.create(user.getUsername()),
-                        Password.create(user.getPassword()),
-                        user.getTypeAccountModel().getId()
+                var authentication = new UsernamePasswordAuthenticationToken(
+                        username,
+                        password,
+                        null
                 );
 
-                var authentication = new UsernamePasswordAuthenticationToken(login, account.getPassword(), null);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
             } catch (Exception e) {

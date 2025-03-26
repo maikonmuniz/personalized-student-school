@@ -7,7 +7,7 @@ public class ExceptionAdapter implements ExceptionInter {
 
     OperationStatusCode operationStatusCode;
 
-    public ExceptionAdapter(
+    public ExceptionAdapter (
             OperationStatusCode operationStatusCode
     ) {
         this.operationStatusCode = operationStatusCode;

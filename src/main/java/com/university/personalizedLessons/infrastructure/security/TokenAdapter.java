@@ -13,7 +13,7 @@ public class TokenAdapter implements InterToken {
 
     @Override
     public String generate(Account account) {
-        return this.tokenServices.generateToken(account);
+        return this.tokenServices.generateToken(account.getUsername(), account.getPassword());
     }
 
     @Override
