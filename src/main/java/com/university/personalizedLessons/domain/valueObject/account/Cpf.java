@@ -1,4 +1,4 @@
-package com.university.personalizedLessons.domain.valueObject;
+package com.university.personalizedLessons.domain.valueObject.account;
 
 import java.util.regex.Pattern;
 

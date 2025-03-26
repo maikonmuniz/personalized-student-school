@@ -1,4 +1,4 @@
-package com.university.personalizedLessons.domain.valueObject;
+package com.university.personalizedLessons.domain.valueObject.account;
 
 public class Username {
     private final String value;
