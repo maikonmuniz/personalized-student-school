@@ -1,7 +1,5 @@
 package com.university.personalizedLessons.domain.domainServices;
 
-import java.util.UUID;
-
 public class Enrollment {
 
     private final Long id;
