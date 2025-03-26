@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class CourseRepo implements CourseRepository {
 
-    private CourseJpa courseJpa;
+    private final CourseJpa courseJpa;
 
     public CourseRepo(
             CourseJpa courseJpa
