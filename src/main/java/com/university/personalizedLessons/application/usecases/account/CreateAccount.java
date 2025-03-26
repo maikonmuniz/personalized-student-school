@@ -1,7 +1,7 @@
 package com.university.personalizedLessons.application.usecases.account;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
-import com.university.personalizedLessons.domain.valueObject.*;
+import com.university.personalizedLessons.domain.valueObject.account.*;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.springSecurityBcripty.CryptAdapter;
