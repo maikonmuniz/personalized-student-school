@@ -2,12 +2,10 @@ package com.university.personalizedLessons.infrastructure.repository;
 
 import com.university.personalizedLessons.application.repository.AccountRepository;
 import com.university.personalizedLessons.domain.entities.account.Account;
-import com.university.personalizedLessons.domain.valueObject.*;
+import com.university.personalizedLessons.domain.valueObject.account.*;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.models.TypeAccountModel;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
-
-import java.util.UUID;
 
 public class AccountRepo implements AccountRepository {
 
