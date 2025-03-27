@@ -19,7 +19,7 @@ public class CreateCourse {
 
     public Output execute (Input input) {
 
-        if (input == null) throw this.exceptionAdapter.badRequest("Nenhum campo enviado!");
+        if (input == null) throw this.exceptionAdapter.badRequest("Fields is Empty!");
 
         Course course = new Course(
                 input.name,
