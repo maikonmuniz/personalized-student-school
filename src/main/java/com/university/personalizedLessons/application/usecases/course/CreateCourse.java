@@ -19,7 +19,8 @@ public class CreateCourse {
 
     public Output execute (Input input) {
 
-        if (input == null) throw this.exceptionAdapter.badRequest("Fields is Empty!");
+        if (input.name == null) throw this.exceptionAdapter.badRequest("Field name is Empty!");
+        if (input.description == null) throw this.exceptionAdapter.badRequest("Field description is Empty!");
 
         Course course = new Course(
                 input.name,
@@ -27,14 +28,16 @@ public class CreateCourse {
                 input.type_course_id
         );
 
-        Course CourseNew = this.courseRepo.register(course);
+        Course courseNew = this.courseRepo.register(course);
 
-        if (CourseNew == null) throw  this.exceptionAdapter.badRequest("No register course!");
+        if (courseNew == null){
+            throw this.exceptionAdapter.badRequest("No register course!");
+        }
 
         return new Output(
-                CourseNew.getName(),
-                CourseNew.getDescription(),
-                CourseNew.getTypeCourseId()
+                courseNew.getName(),
+                courseNew.getDescription(),
+                courseNew.getTypeCourseId()
         );
     }
 
