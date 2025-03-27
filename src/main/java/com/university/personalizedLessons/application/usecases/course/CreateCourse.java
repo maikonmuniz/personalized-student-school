@@ -27,22 +27,24 @@ public class CreateCourse {
                 input.type_course_id
         );
 
-        Course accountNew = this.courseRepo.register(course);
+        Course CourseNew = this.courseRepo.register(course);
+
+        if (CourseNew == null) throw  this.exceptionAdapter.badRequest("No register course!");
 
         return new Output(
-                accountNew.getName(),
-                accountNew.getDescription(),
-                accountNew.getTypeCourseId()
+                CourseNew.getName(),
+                CourseNew.getDescription(),
+                CourseNew.getTypeCourseId()
         );
     }
 
-    static record Input (
+    public static record Input (
             String name,
             String description,
             int type_course_id
     ) {}
 
-    static record Output (
+    public static record Output (
             String name,
             String description,
             int type_course_id
