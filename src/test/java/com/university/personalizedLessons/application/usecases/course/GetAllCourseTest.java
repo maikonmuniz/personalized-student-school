@@ -35,7 +35,7 @@ class GetAllCourseTest {
     @DisplayName("Should test start for filter in use case")
     public void validationFieldStart() {
         assertThrows(RuntimeException.class, () -> this.getAllCourse.execute(new GetAllCourse.Input(0, 4)));
-//        verify(exceptionAdapter, times(1)).badRequest("Inicio para filtro com numero invalido!");
+        verify(exceptionAdapter, times(1)).badRequest("Inicio para filtro com numero invalido!");
     }
 
     @Test
