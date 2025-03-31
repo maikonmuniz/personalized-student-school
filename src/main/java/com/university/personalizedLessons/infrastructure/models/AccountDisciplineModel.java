@@ -20,16 +20,9 @@ public class AccountDisciplineModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, precision = 2, scale = 2)
-    private BigDecimal notes;
-
     @ManyToOne
     @JoinColumn(name = "id_discipline", nullable = false)
     private DisciplineModel discipline;
-
-    @ManyToOne
-    @JoinColumn(name = "id_type_note", nullable = false)
-    private TypeNoteModel typeNote;
 
     @ManyToOne
     @JoinColumn(name = "id_account_course", nullable = false)
@@ -43,28 +36,12 @@ public class AccountDisciplineModel {
         this.id = id;
     }
 
-    public BigDecimal getNotes() {
-        return notes;
-    }
-
-    public void setNotes(BigDecimal notes) {
-        this.notes = notes;
-    }
-
     public DisciplineModel getDiscipline() {
         return discipline;
     }
 
     public void setDiscipline(DisciplineModel discipline) {
         this.discipline = discipline;
-    }
-
-    public TypeNoteModel getTypeNote() {
-        return typeNote;
-    }
-
-    public void setTypeNote(TypeNoteModel typeNote) {
-        this.typeNote = typeNote;
     }
 
     public AccountCourseModel getAccountCourse() {
@@ -75,4 +52,3 @@ public class AccountDisciplineModel {
         this.accountCourse = accountCourse;
     }
 }
-
