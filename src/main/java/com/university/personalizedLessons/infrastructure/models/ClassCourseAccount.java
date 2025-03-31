@@ -1,6 +1,5 @@
 package com.university.personalizedLessons.infrastructure.models;
 
-import com.university.personalizedLessons.domain.entities.classCourse.ClassCourse;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

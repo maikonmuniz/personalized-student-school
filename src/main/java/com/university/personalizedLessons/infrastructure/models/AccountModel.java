@@ -9,7 +9,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Table(name = "account")
-@Entity
+@Entity(name = "account")
 public class AccountModel {
 
     @Id

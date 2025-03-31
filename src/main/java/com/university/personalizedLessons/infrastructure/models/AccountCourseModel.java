@@ -1,10 +1,14 @@
 package com.university.personalizedLessons.infrastructure.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity(name = "account_course")
 @Table(name = "account_course")
 public class AccountCourseModel {
 

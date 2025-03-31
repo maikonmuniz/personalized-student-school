@@ -8,11 +8,9 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Setter
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "account_discipline")
 @Table(name = "account_discipline")
 public class AccountDisciplineModel {
 

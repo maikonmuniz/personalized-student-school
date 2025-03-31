@@ -14,7 +14,6 @@ public class Account {
     private final Username username;
     private final Password password;
     private final int idTypeAccount;
-    private final String typeAccount;
 
     public Account (
             FirstName firstName,
@@ -22,10 +21,8 @@ public class Account {
             Cpf cpf,
             Username username,
             Password password,
-            int idTypeAccount,
-            String typeAccount
+            int idTypeAccount
     ) throws Exception {
-        this.typeAccount = typeAccount;
         this.idAccount = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,8 +40,7 @@ public class Account {
             Cpf cpf,
             Username username,
             Password password,
-            int idTypeAccount,
-            String typeAccount
+            int idTypeAccount
     ) {
         this.idAccount = idAccount;
         this.id = id;
@@ -54,7 +50,6 @@ public class Account {
         this.username = username;
         this.password = password;
         this.idTypeAccount = idTypeAccount;
-        this.typeAccount = typeAccount;
     }
 
     public static String validateFields(Type field) {
