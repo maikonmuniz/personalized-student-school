@@ -1,17 +1,13 @@
 package com.university.personalizedLessons.domain.entities.course;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class CourseAgraggate {
+public class CourseAggregate {
 
     private int id;
     private final String name;
     private final int typeCourseId;
     private final String description;
-    private List<Discipline> listDiscipline;
 
-    public CourseAgraggate(
+    public CourseAggregate(
             int id,
             String name,
             String description,
@@ -39,11 +35,4 @@ public class CourseAgraggate {
         return id;
     }
 
-    public List<Discipline> getListDiscipline() {
-        return listDiscipline;
-    }
-
-    public void setListDiscipline(List<Discipline> listDiscipline) {
-        this.listDiscipline = listDiscipline;
-    }
 }
