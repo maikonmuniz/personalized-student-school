@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CourseJpa extends JpaRepository<CourseModel, Integer> {
-    @Query(value = "SELECT * FROM course c ORDER BY c.id LIMIT :size OFFSET :start", nativeQuery = true)
+    @Query(value = "SELECT * FROM course c LIMIT :start OFFSET :size", nativeQuery = true)
     List<CourseModel> findAllCourseModel(@Param("start") int start, @Param("size") int size);
 }

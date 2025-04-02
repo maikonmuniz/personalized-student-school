@@ -1,7 +1,9 @@
 package com.university.personalizedLessons.infrastructure.repository;
 
 import com.university.personalizedLessons.application.repository.CourseRepository;
-import com.university.personalizedLessons.domain.entities.course.Course;
+import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.models.CourseModel;
 import com.university.personalizedLessons.infrastructure.models.TypeCourseModel;
 import com.university.personalizedLessons.infrastructure.operationORM.CourseJpa;
@@ -21,7 +23,7 @@ public class CourseRepo implements CourseRepository {
     }
 
     @Override
-    public Course register(Course course) {
+    public CourseAggregate register(CourseAggregate course) {
         CourseModel courseModel = new CourseModel();
         courseModel.setDescription(course.getDescription());
         TypeCourseModel typeCourse = new TypeCourseModel();
@@ -31,29 +33,28 @@ public class CourseRepo implements CourseRepository {
     }
 
     @Override
-    public Course findCourse(int id) {
+    public CourseAggregate findCourse(int id) {
         Optional<CourseModel> courseModel = this.courseJpa.findById(id);
 
-        return courseModel.map(model -> new Course(
+        return courseModel.map(model -> new CourseAggregate(
                 model.getId(),
-                model.getName(),
-                model.getDescription(),
+                new Name(model.getName()),
+                new Description(model.getDescription()),
                 model.getTypeCourse().getId()
         )).orElse(null);
     }
 
     @Override
-    public List<Course> findCourseAll(int start, int size) {
+    public List<CourseAggregate> findCourseAll(int start, int size) {
         List<CourseModel> courseModels = this.courseJpa.findAllCourseModel(start, size);
-
-        ArrayList<Course> courses = new ArrayList<>();
+        ArrayList<CourseAggregate> courses = new ArrayList<CourseAggregate>();
 
         for (CourseModel courseModel : courseModels) {
             courses.add(
-                    new Course(courseModel.getId(),
-                            courseModel.getName(),
-                            courseModel.getDescription(),
-                            courseModel.getTypeCourse().getId())
+                    new CourseAggregate(courseModel.getId(),
+                    new Name(courseModel.getName()),
+                    new Description(courseModel.getDescription()),
+                    courseModel.getTypeCourse().getId())
             );
         }
 

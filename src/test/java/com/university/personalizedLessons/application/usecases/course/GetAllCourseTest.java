@@ -1,6 +1,8 @@
 package com.university.personalizedLessons.application.usecases.course;
 
-import com.university.personalizedLessons.domain.entities.course.Course;
+import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.models.CourseModel;
 import com.university.personalizedLessons.infrastructure.models.TypeCourseModel;
@@ -12,7 +14,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -52,10 +53,10 @@ class GetAllCourseTest {
         int limit = 3;
         int offSet = 3;
 
-        List<Course> mockCourses = Arrays.asList(
-                new Course(1, "teste", "teste", 2),
-                new Course(2, "teste1", "teste1", 2),
-                new Course(3, "teste2", "teste2", 2)
+        List<CourseAggregate> mockCourses = Arrays.asList(
+                new CourseAggregate(1, new Name("teste"), new Description("teste"), 2),
+                new CourseAggregate(2, new Name("teste1"), new Description("teste1") , 2),
+                new CourseAggregate(3, new Name("teste2"), new Description("teste2"), 2)
         );
 
         when(courseRepo.findCourseAll(limit, offSet)).thenReturn(mockCourses);
