@@ -2,6 +2,9 @@ package com.university.personalizedLessons.domain.valueObjectGlobal;
 
 import java.util.UUID;
 
+/**
+ *  generate Crypto id in object value
+ */
 public class CryptoID {
 
     private UUID value;

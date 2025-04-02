@@ -18,7 +18,7 @@ public class Name {
         return this.value.isEmpty() || this.value == "";
     }
 
-    public String getName () {
+    public String getValue() {
         return value;
     }
 
