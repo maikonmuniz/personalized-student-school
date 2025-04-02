@@ -1,6 +1,8 @@
 package com.university.personalizedLessons.application.usecases.course;
 
-import com.university.personalizedLessons.domain.entities.course.Course;
+import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 
@@ -22,13 +24,13 @@ public class CreateCourse {
         if (input.name == null) throw this.exceptionAdapter.badRequest("Field name is Empty!");
         if (input.description == null) throw this.exceptionAdapter.badRequest("Field description is Empty!");
 
-        Course course = new Course(
-                input.name,
-                input.description,
+        CourseAggregate course = new CourseAggregate(
+                new Name(input.name),
+                new Description(input.description),
                 input.type_course_id
         );
 
-        Course courseNew = this.courseRepo.register(course);
+        CourseAggregate courseNew = this.courseRepo.register(course);
 
         if (courseNew == null){
             throw this.exceptionAdapter.badRequest("No register course!");

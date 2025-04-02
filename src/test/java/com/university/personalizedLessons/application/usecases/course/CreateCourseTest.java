@@ -1,7 +1,6 @@
 package com.university.personalizedLessons.application.usecases.course;
 
-import com.university.personalizedLessons.application.usecases.account.LoginAccount;
-import com.university.personalizedLessons.domain.entities.course.Course;
+import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 import org.junit.jupiter.api.DisplayName;
@@ -87,7 +86,7 @@ class CreateCourseTest {
                 type_course
         );
 
-        when(this.courseRepo.register(any(Course.class))).thenReturn(null);
+        when(this.courseRepo.register(any(CourseAggregate.class))).thenReturn(null);
 
         assertThrows(RuntimeException.class, () -> this.createCourse.execute(input));
 
