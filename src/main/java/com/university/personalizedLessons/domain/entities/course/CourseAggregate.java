@@ -1,16 +1,29 @@
 package com.university.personalizedLessons.domain.entities.course;
 
+import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
+
 public class CourseAggregate {
 
     private int id;
-    private final String name;
-    private final int typeCourseId;
-    private final String description;
+    private Name name;
+    private int typeCourseId;
+    private Description description;
+
+    public CourseAggregate(
+            Name name,
+            Description description,
+            int typeCourseId
+    ){
+        this.name = name;
+        this.description = description;
+        this.typeCourseId = typeCourseId;
+    }
 
     public CourseAggregate(
             int id,
-            String name,
-            String description,
+            Name name,
+            Description description,
             int typeCourseId
     ){
         this.id = id;
@@ -20,7 +33,7 @@ public class CourseAggregate {
     }
 
     public String getName() {
-        return this.name;
+        return this.name.getValue();
     }
 
     public int getTypeCourseId() {
@@ -28,7 +41,7 @@ public class CourseAggregate {
     }
 
     public String getDescription() {
-        return description;
+        return description.getValue();
     }
 
     public int getId() {

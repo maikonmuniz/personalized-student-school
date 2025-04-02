@@ -1,11 +1,11 @@
 package com.university.personalizedLessons.application.repository;
 
-import com.university.personalizedLessons.domain.entities.course.Course;
+import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 
 import java.util.List;
 
 public interface CourseRepository {
-    Course register (Course course);
-    Course findCourse(int id);
-    List<Course> findCourseAll(int start, int size);
+    CourseAggregate register (CourseAggregate course);
+    CourseAggregate findCourse(int id);
+    List<CourseAggregate> findCourseAll(int start, int size);
 }
