@@ -1,19 +1,20 @@
 package com.university.personalizedLessons.domain.entities.discipline;
 
-import java.util.UUID;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 
 public class DisciplineAggregate {
 
-    private UUID id;
-    private String name;
-    private String description;
-    private UUID courseID;
+    private int id;
+    private Name name;
+    private Description description;
+    private int courseID;
 
-    public DisciplineAggregate(
-            UUID id,
-            String name,
-            String description,
-            UUID courseID
+    public DisciplineAggregate (
+            int id,
+            Name name,
+            Description description,
+            int courseID
     ) {
         this.id = id;
         this.name = name;
@@ -21,35 +22,35 @@ public class DisciplineAggregate {
         this.courseID = courseID;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     public String getName() {
-        return name;
+        return name.getValue();
     }
 
-    public void setName(String name) {
+    public void setName(Name name) {
         this.name = name;
     }
 
     public String getDescription() {
-        return description;
+        return description.getValue();
     }
 
-    public void setDescription(String description) {
+    public void setDescription(Description description) {
         this.description = description;
     }
 
-    public UUID getCourseID() {
+    public int getCourseID() {
         return courseID;
     }
 
-    public void setCourseID(UUID courseID) {
+    public void setCourseID(int courseID) {
         this.courseID = courseID;
     }
 }
