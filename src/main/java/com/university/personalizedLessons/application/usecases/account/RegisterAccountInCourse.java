@@ -1,7 +1,7 @@
 package com.university.personalizedLessons.application.usecases.account;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
-import com.university.personalizedLessons.domain.entities.course.Course;
+import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 import com.university.personalizedLessons.domain.domainServices.Enrollment;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
@@ -26,7 +26,7 @@ public class RegisterAccountInCourse {
     public Output execute (Input input) {
         Account account = this.accountRepo.findAccount(input.username);
         if (account == null) throw new IllegalArgumentException("There is no account!");
-        Course course = this.courseRepo.findCourse(input.idCourse);
+        CourseAggregate course = this.courseRepo.findCourse(input.idCourse);
         if (course == null) throw new IllegalArgumentException("There is no course!");
         Enrollment enrollmentRepoRegister = this.enrollmentRepo.save (
                 account,

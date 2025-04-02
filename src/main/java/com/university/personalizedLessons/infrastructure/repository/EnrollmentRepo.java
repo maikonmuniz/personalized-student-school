@@ -3,7 +3,7 @@ package com.university.personalizedLessons.infrastructure.repository;
 import com.university.personalizedLessons.application.repository.EnrollmentRepository;
 import com.university.personalizedLessons.domain.domainServices.Enrollment;
 import com.university.personalizedLessons.domain.entities.account.Account;
-import com.university.personalizedLessons.domain.entities.course.Course;
+import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 import com.university.personalizedLessons.infrastructure.models.AccountCourseModel;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.models.CourseModel;
@@ -19,7 +19,7 @@ public class EnrollmentRepo implements EnrollmentRepository {
     }
 
     @Override
-    public Enrollment save(Account account, Course courseAggregate) {
+    public Enrollment save(Account account, CourseAggregate courseAggregate) {
 
         AccountModel accountModel = new AccountModel();
         accountModel.setFirstName(account.getFirstName());
