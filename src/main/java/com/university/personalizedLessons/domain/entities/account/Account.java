@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.domain.entities.account;
 
-import com.university.personalizedLessons.domain.valueObject.account.*;
+import com.university.personalizedLessons.domain.entities.account.vo.*;
 
 import java.util.UUID;
 
