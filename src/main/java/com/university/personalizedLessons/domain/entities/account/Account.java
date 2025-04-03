@@ -80,7 +80,8 @@ public class Account {
             String password) { }
 
     public boolean validationAccountAdm (String adm) {
-        return (adm == "adm");
+        var typeAccountIdAdmin = 7;
+        return (this.idTypeAccount == typeAccountIdAdmin);
     }
 
     public String getFirstName() {
