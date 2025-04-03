@@ -24,6 +24,10 @@ public class CourseModel {
     @JoinColumn(name = "type_course_id")
     private TypeCourseModel typeCourse;
 
+    @ManyToOne
+    @JoinColumn(name = "id_account")
+    private AccountModel accountModel;
+
     public Integer getId() {
         return id;
     }
@@ -54,5 +58,13 @@ public class CourseModel {
 
     public void setTypeCourse(TypeCourseModel typeCourse) {
         this.typeCourse = typeCourse;
+    }
+
+    public AccountModel getAccountModel() {
+        return accountModel;
+    }
+
+    public void setAccountModel(AccountModel accountModel) {
+        this.accountModel = accountModel;
     }
 }
