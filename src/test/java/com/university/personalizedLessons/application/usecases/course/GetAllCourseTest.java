@@ -54,9 +54,25 @@ class GetAllCourseTest {
         int offSet = 3;
 
         List<CourseAggregate> mockCourses = Arrays.asList(
-                new CourseAggregate(1, new Name("teste"), new Description("teste"), 2),
-                new CourseAggregate(2, new Name("teste1"), new Description("teste1") , 2),
-                new CourseAggregate(3, new Name("teste2"), new Description("teste2"), 2)
+                new CourseAggregate(1,
+                        new Name("teste"),
+                        new Description("teste"),
+                        2,
+                        "123e4567e89b12d3a456426614174000"),
+                new CourseAggregate(
+                        2,
+                        new Name("teste1"),
+                        new Description("teste1"),
+                        2,
+                        "987e6543a21b12d3a456426614174001"
+                ),
+                new CourseAggregate(
+                        3,
+                        new Name("teste2"),
+                        new Description("teste2"),
+                        2,
+                        "abc12345def67890a456426614174002"
+                )
         );
 
         when(courseRepo.findCourseAll(limit, offSet)).thenReturn(mockCourses);

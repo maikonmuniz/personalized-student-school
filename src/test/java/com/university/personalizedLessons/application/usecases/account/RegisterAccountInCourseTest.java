@@ -87,7 +87,8 @@ class RegisterAccountInCourseTest {
                 1,
                 new Name("Logica de Programação"),
                 new Description("Matéria criada para logica de programação!"),
-                2
+                2,
+                "987e6543a21b12d3a456426614174001"
         );
 
         when(courseRep.findCourse(1)).thenReturn(course);

@@ -32,6 +32,7 @@ class CreateCourseTest {
         String name = "Sistemas da Informação";
         String description = "Curso voltado pata àrea de técnologia da informação, com foco em desenvolvimento de software";
         int type_course = 1;
+        String accountId = "987e6543a21b12d3a456426614174001";
 
         when(this.exceptionAdapter.badRequest("Field name is Empty!"))
                 .thenThrow(new RuntimeException("Field name is Empty!"));
@@ -39,7 +40,8 @@ class CreateCourseTest {
         assertThrows(RuntimeException.class, () -> this.createCourse.execute(new CreateCourse.Input(
                 null,
                 description,
-                type_course
+                type_course,
+                accountId
         )));
 
         verify(exceptionAdapter, times(1)).badRequest("Field name is Empty!");
@@ -53,6 +55,7 @@ class CreateCourseTest {
         String name = "Sistemas da Informação";
         String description = null;
         int type_course = 1;
+        String accountId = "987e6543a21b12d3a456426614174001";
 
         when(this.exceptionAdapter.badRequest("Field description is Empty!"))
                 .thenThrow(new RuntimeException("Field description is Empty!"));
@@ -60,7 +63,8 @@ class CreateCourseTest {
         assertThrows(RuntimeException.class, () -> this.createCourse.execute(new CreateCourse.Input(
                 name,
                 description,
-                type_course
+                type_course,
+                accountId
         )));
 
         verify(exceptionAdapter, times(1)).badRequest("Field description is Empty!");
@@ -74,6 +78,7 @@ class CreateCourseTest {
         String name = "Sistemas da Informação";
         String description = "Curso voltado pata àrea de técnologia da informação, com foco em desenvolvimento de software";
         int type_course = 1;
+        String accountId = "987e6543a21b12d3a456426614174001";
 
         String message = "No register course!";
 
@@ -83,7 +88,8 @@ class CreateCourseTest {
         CreateCourse.Input input = new CreateCourse.Input(
                 name,
                 description,
-                type_course
+                type_course,
+                accountId
         );
 
         when(this.courseRepo.register(any(CourseAggregate.class))).thenReturn(null);

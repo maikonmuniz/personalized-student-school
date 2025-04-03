@@ -40,7 +40,8 @@ public class CourseRepo implements CourseRepository {
                 model.getId(),
                 new Name(model.getName()),
                 new Description(model.getDescription()),
-                model.getTypeCourse().getId()
+                model.getTypeCourse().getId(),
+                model.getAccountModel().getIdAccount().toString()
         )).orElse(null);
     }
 
@@ -54,8 +55,9 @@ public class CourseRepo implements CourseRepository {
                     new CourseAggregate(courseModel.getId(),
                     new Name(courseModel.getName()),
                     new Description(courseModel.getDescription()),
-                    courseModel.getTypeCourse().getId())
-            );
+                    courseModel.getTypeCourse().getId(),
+                    courseModel.getAccountModel().getIdAccount().toString()
+            ));
         }
 
         return courses;

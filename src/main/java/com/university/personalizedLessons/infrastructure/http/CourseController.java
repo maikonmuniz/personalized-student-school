@@ -22,7 +22,8 @@ public class CourseController {
         CreateCourse.Output response = this.createCourse.execute(new CreateCourse.Input(
                 createCourseDTO.name(),
                 createCourseDTO.description(),
-                createCourseDTO.type_course_id()
+                createCourseDTO.type_course_id(),
+                createCourseDTO.accountId()
         ));
         return ResponseEntity.ok(response);
     }
