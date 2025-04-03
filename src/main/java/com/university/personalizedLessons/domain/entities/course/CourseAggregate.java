@@ -9,27 +9,32 @@ public class CourseAggregate {
     private Name name;
     private int typeCourseId;
     private Description description;
+    private int accountId;
 
     public CourseAggregate(
             Name name,
             Description description,
-            int typeCourseId
+            int typeCourseId,
+            int accountId
     ){
         this.name = name;
         this.description = description;
         this.typeCourseId = typeCourseId;
+        this.accountId = accountId;
     }
 
     public CourseAggregate(
             int id,
             Name name,
             Description description,
-            int typeCourseId
+            int typeCourseId,
+            int accountId
     ){
         this.id = id;
         this.name = name;
         this.description = description;
         this.typeCourseId = typeCourseId;
+        this.accountId = accountId;
     }
 
     public String getName() {
@@ -48,4 +53,7 @@ public class CourseAggregate {
         return id;
     }
 
+    public int getAccountId () {
+        return accountId;
+    }
 }
