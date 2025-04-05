@@ -4,8 +4,10 @@ import com.university.personalizedLessons.application.repository.CourseRepositor
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
+import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.models.CourseModel;
 import com.university.personalizedLessons.infrastructure.models.TypeCourseModel;
+import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 import com.university.personalizedLessons.infrastructure.operationORM.CourseJpa;
 
 import java.util.ArrayList;
@@ -15,21 +17,43 @@ import java.util.Optional;
 public class CourseRepo implements CourseRepository {
 
     private final CourseJpa courseJpa;
+    private final AccountJPA accountJPA;
 
     public CourseRepo(
-            CourseJpa courseJpa
+            CourseJpa courseJpa,
+            AccountJPA accountJPA
     ) {
         this.courseJpa = courseJpa;
+        this.accountJPA = accountJPA;
     }
 
     @Override
     public CourseAggregate register(CourseAggregate course) {
+
         CourseModel courseModel = new CourseModel();
+        courseModel.setName(course.getName());
         courseModel.setDescription(course.getDescription());
+
         TypeCourseModel typeCourse = new TypeCourseModel();
         typeCourse.setId(course.getTypeCourseId());
         courseModel.setTypeCourse(typeCourse);
-        return course;
+
+        AccountModel accountModel = this.accountJPA.findByUsername(course.getUsernameID());
+        accountModel.setUsername(course.getUsernameID());
+
+        courseModel.setAccountModel(accountModel);
+
+        courseModel = this.courseJpa.save(courseModel);
+
+        CourseAggregate courseNew = new CourseAggregate(
+                courseModel.getId(),
+                new Name(courseModel.getName()),
+                new Description(courseModel.getDescription()),
+                courseModel.getTypeCourse().getId(),
+                courseModel.getAccountModel().getUsername()
+        );
+
+        return courseNew;
     }
 
     @Override

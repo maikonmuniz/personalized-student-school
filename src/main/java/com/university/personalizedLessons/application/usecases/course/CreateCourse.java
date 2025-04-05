@@ -1,24 +1,27 @@
 package com.university.personalizedLessons.application.usecases.course;
 
+import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
+import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
-
-import java.util.UUID;
 
 public class CreateCourse {
 
     private CourseRepo courseRepo;
+    private AccountRepo accountRepo;
     private ExceptionAdapter exceptionAdapter;
 
     public CreateCourse(
             CourseRepo courseRepo,
+            AccountRepo accountRepo,
             ExceptionAdapter exceptionAdapter
     ) {
         this.courseRepo = courseRepo;
         this.exceptionAdapter = exceptionAdapter;
+        this.accountRepo = accountRepo;
     }
 
     public Output execute (Input input) {
@@ -26,11 +29,15 @@ public class CreateCourse {
         if (input.name == null) throw this.exceptionAdapter.badRequest("Field name is Empty!");
         if (input.description == null) throw this.exceptionAdapter.badRequest("Field description is Empty!");
 
+        Account account = this.accountRepo.findAccount(input.username);
+
+        if (!account.validationAccountAdm()) throw this.exceptionAdapter.badRequest("Account not is admin");
+
         CourseAggregate course = new CourseAggregate(
                 new Name(input.name),
                 new Description(input.description),
                 input.type_course_id,
-                input.accountId
+                account.getUsername()
         );
 
         CourseAggregate courseNew = this.courseRepo.register(course);
@@ -41,7 +48,7 @@ public class CreateCourse {
                 courseNew.getName(),
                 courseNew.getDescription(),
                 courseNew.getTypeCourseId(),
-                courseNew.getAccountId()
+                courseNew.getUsernameID()
         );
     }
 
@@ -49,13 +56,13 @@ public class CreateCourse {
             String name,
             String description,
             int type_course_id,
-            String accountId
+            String username
     ) {}
 
     public static record Output (
             String name,
             String description,
             int type_course_id,
-            UUID accountId
+            String username
     ) {}
 }
