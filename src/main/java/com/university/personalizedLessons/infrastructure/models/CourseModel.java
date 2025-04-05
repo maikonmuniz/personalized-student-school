@@ -25,7 +25,7 @@ public class CourseModel {
     private TypeCourseModel typeCourse;
 
     @ManyToOne
-    @JoinColumn(name = "id_account")
+    @JoinColumn(name = "username_fk", referencedColumnName = "username")
     private AccountModel accountModel;
 
     public Integer getId() {

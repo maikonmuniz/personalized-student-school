@@ -7,6 +7,8 @@ import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.models.TypeAccountModel;
 import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 
+import java.util.UUID;
+
 public class AccountRepo implements AccountRepository {
 
     private final AccountJPA accountJPA;
@@ -19,7 +21,7 @@ public class AccountRepo implements AccountRepository {
     public Account save(Account account) {
 
         AccountModel accountModel = new AccountModel();
-        accountModel.setIdAccount(account.getIdAccount());
+        accountModel.setIdAccount(account.getIdAccount().toString());
         accountModel.setFirstName(account.getFirstName());
         accountModel.setLastName(account.getLastName());
         accountModel.setCpf(account.getCpf());
@@ -50,7 +52,7 @@ public class AccountRepo implements AccountRepository {
         AccountModel accountModel = accountJPA.findByUsername(username);
 
         return new Account(
-                accountModel.getIdAccount(),
+                UUID.fromString(accountModel.getIdAccount()),
                 accountModel.getId(),
                 FirstName.create(accountModel.getFirstName()),
                 LastName.create(accountModel.getLastName()),
@@ -59,5 +61,24 @@ public class AccountRepo implements AccountRepository {
                 Password.create(accountModel.getPassword()),
                 accountModel.getTypeAccountModel().getId()
         );
+    }
+
+    @Override
+    public Account findOneId(String id) {
+
+        AccountModel accountModel = accountJPA.consultaBrasil(id);
+
+        Account account = new Account(
+                UUID.fromString(accountModel.getIdAccount()),
+                accountModel.getId(),
+                FirstName.create(accountModel.getFirstName()),
+                LastName.create(accountModel.getLastName()),
+                Cpf.create(accountModel.getCpf()),
+                Username.create(accountModel.getUsername()),
+                Password.create(accountModel.getPassword()),
+                accountModel.getTypeAccountModel().getId()
+        );
+
+        return account;
     }
 }

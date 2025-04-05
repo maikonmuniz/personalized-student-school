@@ -3,11 +3,8 @@ package com.university.personalizedLessons.infrastructure.models;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.UUID;
-
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Table(name = "account")
 @Entity(name = "account")
 public class AccountModel {
@@ -16,10 +13,10 @@ public class AccountModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "id_account", length = 36)
+    @Column(name = "id_account", length = 36, unique = true, columnDefinition = "VARCHAR(36)")
     private String idAccount;
 
-    @Column(name = "username", length = 100)
+    @Column(name = "username", length = 100, unique = true)
     private String username;
 
     @Column(name = "password", length = 100)
@@ -86,12 +83,12 @@ public class AccountModel {
         this.id = id;
     }
 
-    public void setIdAccount(UUID idAccount) {
-        this.idAccount = idAccount.toString();
+    public void setIdAccount(String idAccount) {
+        this.idAccount = idAccount;
     }
 
-    public UUID getIdAccount() {
-        return UUID.fromString(this.idAccount);
+    public String getIdAccount() {
+        return this.idAccount;
     }
 
     public void setTypeAccountModel (TypeAccountModel typeAccountModel) {
