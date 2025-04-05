@@ -79,9 +79,9 @@ public class Account {
             String username,
             String password) { }
 
-    public boolean validationAccountAdm (String adm) {
+    public boolean validationAccountAdm () {
         var typeAccountIdAdmin = 7;
-        return (this.idTypeAccount == typeAccountIdAdmin);
+        return (this.idTypeAccount != typeAccountIdAdmin);
     }
 
     public String getFirstName() {
