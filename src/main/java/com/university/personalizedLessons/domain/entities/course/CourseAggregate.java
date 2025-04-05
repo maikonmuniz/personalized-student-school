@@ -3,26 +3,24 @@ package com.university.personalizedLessons.domain.entities.course;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 
-import java.util.UUID;
-
 public class CourseAggregate {
 
     private int id;
     private Name name;
     private int typeCourseId;
     private Description description;
-    private String accountId;
+    private String usernameID;
 
     public CourseAggregate(
             Name name,
             Description description,
             int typeCourseId,
-            String accountId
+            String usernameID
     ){
         this.name = name;
         this.description = description;
         this.typeCourseId = typeCourseId;
-        this.accountId = accountId;
+        this.usernameID = usernameID;
     }
 
     public CourseAggregate(
@@ -30,13 +28,13 @@ public class CourseAggregate {
             Name name,
             Description description,
             int typeCourseId,
-            String accountId
+            String usernameID
     ){
         this.id = id;
         this.name = name;
         this.description = description;
         this.typeCourseId = typeCourseId;
-        this.accountId = accountId;
+        this.usernameID = usernameID;
     }
 
     public String getName() {
@@ -55,7 +53,7 @@ public class CourseAggregate {
         return id;
     }
 
-    public UUID getAccountId () {
-        return UUID.fromString(accountId);
+    public String getUsernameID() {
+        return usernameID;
     }
 }
