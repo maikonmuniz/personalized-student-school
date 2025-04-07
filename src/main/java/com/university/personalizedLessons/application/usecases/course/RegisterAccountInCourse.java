@@ -2,7 +2,7 @@ package com.university.personalizedLessons.application.usecases.account;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
-import com.university.personalizedLessons.domain.domainServices.Enrollment;
+import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 import com.university.personalizedLessons.infrastructure.repository.EnrollmentRepo;
@@ -12,22 +12,25 @@ public class RegisterAccountInCourse {
     private final AccountRepo accountRepo;
     private final CourseRepo courseRepo;
     private final EnrollmentRepo enrollmentRepo;
+    private final ExceptionAdapter exceptionAdapter;
 
     public RegisterAccountInCourse (
             AccountRepo accountRepo,
             CourseRepo courseRepo,
-            EnrollmentRepo enrollmentRepo
+            EnrollmentRepo enrollmentRepo,
+            ExceptionAdapter exceptionAdapter
     ) {
         this.accountRepo = accountRepo;
         this.courseRepo = courseRepo;
         this.enrollmentRepo = enrollmentRepo;
+        this.exceptionAdapter = exceptionAdapter;
     }
 
     public Output execute (Input input) {
         Account account = this.accountRepo.findAccount(input.username);
-        if (account == null) throw new IllegalArgumentException("There is no account!");
+        if (account == null) throw this.exceptionAdapter.badRequest("There is no account!");
         CourseAggregate course = this.courseRepo.findCourse(input.idCourse);
-        if (course == null) throw new IllegalArgumentException("There is no course!");
+        if (course == null) throw this.exceptionAdapter.badRequest("There is no course!");
         Enrollment enrollmentRepoRegister = this.enrollmentRepo.save (
                 account,
                 course

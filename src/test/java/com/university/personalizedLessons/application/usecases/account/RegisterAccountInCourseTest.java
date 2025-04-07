@@ -1,10 +1,10 @@
 package com.university.personalizedLessons.application.usecases.account;
 
+import com.university.personalizedLessons.application.usecases.course.RegisterAccountInCourse;
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.account.vo.*;
 import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
 
-import com.university.personalizedLessons.domain.domainServices.Enrollment;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
