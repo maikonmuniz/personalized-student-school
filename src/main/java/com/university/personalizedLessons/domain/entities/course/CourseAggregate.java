@@ -3,38 +3,44 @@ package com.university.personalizedLessons.domain.entities.course;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 
+import java.util.UUID;
+
 public class CourseAggregate {
 
+    private UUID courseID;
     private int id;
     private Name name;
     private int typeCourseId;
     private Description description;
-    private String usernameID;
+    private String accountId;
 
     public CourseAggregate(
             Name name,
             Description description,
             int typeCourseId,
-            String usernameID
+            String accountId
     ){
+        this.courseID = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.typeCourseId = typeCourseId;
-        this.usernameID = usernameID;
+        this.accountId = accountId;
     }
 
     public CourseAggregate(
+            UUID courseID,
             int id,
             Name name,
             Description description,
             int typeCourseId,
-            String usernameID
+            String accountId
     ){
+        this.courseID = courseID;
         this.id = id;
         this.name = name;
         this.description = description;
         this.typeCourseId = typeCourseId;
-        this.usernameID = usernameID;
+        this.accountId = accountId;
     }
 
     public String getName() {
@@ -53,7 +59,11 @@ public class CourseAggregate {
         return id;
     }
 
-    public String getUsernameID() {
-        return usernameID;
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public UUID getCourseID() {
+        return courseID;
     }
 }
