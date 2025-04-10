@@ -52,7 +52,7 @@ public class CreateAccount {
 
         Account accountSave = this.accountRepo.save(account);
 
-        return new Output(
+        return new Output (
                 accountSave.getFirstName(),
                 accountSave.getLastName(),
                 accountSave.getCpf(),
