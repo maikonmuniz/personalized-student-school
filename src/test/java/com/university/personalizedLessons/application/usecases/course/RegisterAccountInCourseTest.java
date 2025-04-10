@@ -92,4 +92,17 @@ class RegisterAccountInCourseTest {
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> useCase.execute(input));
         assertEquals(message, thrown.getMessage());
     }
+
+    @Test
+    @DisplayName("Should test if accountID is Empty!")
+    void shouldThrowExceptionWhenCourseIDIsEmpty() {
+        String message = "There is no course!";
+        RuntimeException exception = new RuntimeException(message);
+        when(exceptionAdapter.badRequest(message)).thenReturn(exception);
+
+        RegisterAccountInCourse.Input input = new RegisterAccountInCourse.Input("987f6543-a21c-34b2-c678-123456789abc", "");
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> useCase.execute(input));
+        assertEquals(message, thrown.getMessage());
+    }
 }
