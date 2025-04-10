@@ -30,7 +30,7 @@ public class RegisterAccountInCourse {
     public Output execute (Input input) {
 
         if (input.accountID == null || input.accountID == "") throw this.exceptionAdapter.badRequest("There is no account!");
-        if (input.courseID == null) throw this.exceptionAdapter.badRequest("There is no course!");
+        if (input.courseID == null || input.courseID == "") throw this.exceptionAdapter.badRequest("There is no course!");
 
         Enrollment enrollment = new Enrollment(
                 input.accountID,
