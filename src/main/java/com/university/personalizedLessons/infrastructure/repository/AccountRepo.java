@@ -47,9 +47,9 @@ public class AccountRepo implements AccountRepository {
     }
 
     @Override
-    public Account findAccount(String username) {
+    public Account findAccount(String accountID) {
 
-        AccountModel accountModel = accountJPA.findByUsername(username);
+        AccountModel accountModel = accountJPA.consultAccountId(accountID);
 
         return new Account(
                 UUID.fromString(accountModel.getIdAccount()),
@@ -66,7 +66,7 @@ public class AccountRepo implements AccountRepository {
     @Override
     public Account findOneId(String id) {
 
-        AccountModel accountModel = accountJPA.consultaBrasil(id);
+        AccountModel accountModel = accountJPA.consultAccountId(id);
 
         Account account = new Account(
                 UUID.fromString(accountModel.getIdAccount()),
