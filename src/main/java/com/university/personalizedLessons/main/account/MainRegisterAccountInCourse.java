@@ -1,6 +1,7 @@
 package com.university.personalizedLessons.main.account;
 
-import com.university.personalizedLessons.application.usecases.account.RegisterAccountInCourse;
+import com.university.personalizedLessons.application.usecases.course.RegisterAccountInCourse;
+import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 import com.university.personalizedLessons.infrastructure.repository.EnrollmentRepo;
@@ -14,12 +15,14 @@ public class MainRegisterAccountInCourse {
     RegisterAccountInCourse instanceRegisterAccountInCourse(
             AccountRepo accountRepo,
             CourseRepo courseRepo,
-            EnrollmentRepo enrollmentRepo
+            EnrollmentRepo enrollmentRepo,
+            ExceptionAdapter exceptionAdapter
     ) {
         return new RegisterAccountInCourse(
                 accountRepo,
                 courseRepo,
-                enrollmentRepo
+                enrollmentRepo,
+                exceptionAdapter
         );
     }
 }
