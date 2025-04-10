@@ -1,52 +1,46 @@
 package com.university.personalizedLessons.infrastructure.repository;
 
 import com.university.personalizedLessons.application.repository.EnrollmentRepository;
-import com.university.personalizedLessons.domain.domainServices.Enrollment;
-import com.university.personalizedLessons.domain.entities.account.Account;
-import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.entities.enrollment.Enrollment;
 import com.university.personalizedLessons.infrastructure.models.AccountCourseModel;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.models.CourseModel;
-import com.university.personalizedLessons.infrastructure.models.TypeCourseModel;
+import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
+import com.university.personalizedLessons.infrastructure.operationORM.CourseJpa;
 import com.university.personalizedLessons.infrastructure.operationORM.EnrollmentJpa;
 
 public class EnrollmentRepo implements EnrollmentRepository {
 
-    private final EnrollmentJpa enrollmentJpa;
+    private final EnrollmentJpa enrollmentJPA;
+    private final AccountJPA accountJPA;
+    private final CourseJpa courseJPA;
 
-    public EnrollmentRepo (EnrollmentJpa enrollmentJpa) {
-        this.enrollmentJpa = enrollmentJpa;
+    public EnrollmentRepo (
+            EnrollmentJpa enrollmentJPA,
+            AccountJPA accountJPA,
+            CourseJpa courseJPA
+    ) {
+        this.enrollmentJPA = enrollmentJPA;
+        this.accountJPA = accountJPA;
+        this.courseJPA = courseJPA;
     }
 
     @Override
-    public Enrollment save(Account account, CourseAggregate courseAggregate) {
+    public Enrollment save(Enrollment enrollment) {
 
-        AccountModel accountModel = new AccountModel();
-        accountModel.setFirstName(account.getFirstName());
-        accountModel.setLastName(account.getLastName());
-        accountModel.setCpf(account.getCpf());
-        accountModel.setUsername(account.getUsername());
-        accountModel.setPassword(account.getPassword());
+        String accountID = enrollment.getAccountID().toString();
+        AccountModel accountModel = this.accountJPA.consultAccountId(accountID);
 
-        CourseModel courseModel = new CourseModel();
-        courseModel.setName(courseAggregate.getName());
-        courseModel.setDescription(courseAggregate.getDescription());
-
-        TypeCourseModel typeCourseModel = new TypeCourseModel();
-        typeCourseModel.setId(courseAggregate.getTypeCourseId());
-
-        courseModel.setTypeCourse(typeCourseModel);
+        String courseID = enrollment.getCourseID().toString();
+        CourseModel courseModel = this.courseJPA.findByCourseID(courseID);
 
         AccountCourseModel accountCourse = new AccountCourseModel();
+        accountCourse.setIdCourseDiscipline(enrollment.getId());
         accountCourse.setAccount(accountModel);
         accountCourse.setCourse(courseModel);
 
-        accountCourse = this.enrollmentJpa.save(accountCourse);
+        this.enrollmentJPA.save(accountCourse);
 
-        return new Enrollment(
-                accountCourse.getId(),
-                accountCourse.getCourse().getId(),
-                accountCourse.getAccount().getId()
-        );
+        return enrollment;
     }
 }

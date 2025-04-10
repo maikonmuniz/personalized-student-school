@@ -1,11 +1,12 @@
-package com.university.personalizedLessons.application.usecases.account;
+package com.university.personalizedLessons.application.usecases.course;
 
-import com.university.personalizedLessons.domain.entities.account.Account;
-import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.entities.enrollment.Enrollment;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 import com.university.personalizedLessons.infrastructure.repository.EnrollmentRepo;
+
+import java.time.LocalDate;
 
 public class RegisterAccountInCourse {
 
@@ -27,27 +28,34 @@ public class RegisterAccountInCourse {
     }
 
     public Output execute (Input input) {
-        Account account = this.accountRepo.findAccount(input.username);
-        if (account == null) throw this.exceptionAdapter.badRequest("There is no account!");
-        CourseAggregate course = this.courseRepo.findCourse(input.idCourse);
-        if (course == null) throw this.exceptionAdapter.badRequest("There is no course!");
-        Enrollment enrollmentRepoRegister = this.enrollmentRepo.save (
-                account,
-                course
+
+        if (input.accountID == null || input.accountID == "") throw this.exceptionAdapter.badRequest("There is no account!");
+        if (input.courseID == null) throw this.exceptionAdapter.badRequest("There is no course!");
+
+        Enrollment enrollment = new Enrollment(
+                input.accountID,
+                input.courseID
         );
+
+        enrollment = this.enrollmentRepo.save(enrollment);
+
         return new Output(
-                enrollmentRepoRegister.getIdAccount(),
-                enrollmentRepoRegister.getIdCourse()
+                enrollment.getId().toString(),
+                enrollment.getAccountID().toString(),
+                enrollment.getCourseID().toString(),
+                enrollment.getDateCurrent()
         );
     }
 
     public static record Input (
-            String username,
-            int idCourse
+            String accountID,
+            String courseID
     ) {}
 
     public static record Output (
-            Long idAccount,
-            int idCourse
+            String id,
+            String accountID,
+            String courseID,
+            LocalDate dateCurrent
     ) {}
 }
