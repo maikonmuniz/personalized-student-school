@@ -13,6 +13,7 @@ import com.university.personalizedLessons.infrastructure.operationORM.CourseJpa;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class CourseRepo implements CourseRepository {
 
@@ -37,23 +38,39 @@ public class CourseRepo implements CourseRepository {
         TypeCourseModel typeCourse = new TypeCourseModel();
         typeCourse.setId(course.getTypeCourseId());
         courseModel.setTypeCourse(typeCourse);
+        courseModel.setCourseID(course.getCourseID().toString());
+        AccountModel accountModel = this.accountJPA.consultAccountId(course.getAccountId());
 
-        AccountModel accountModel = this.accountJPA.findByUsername(course.getUsernameID());
-        accountModel.setUsername(course.getUsernameID());
+        accountModel.setIdAccount(course.getAccountId());
 
         courseModel.setAccountModel(accountModel);
 
         courseModel = this.courseJpa.save(courseModel);
 
         CourseAggregate courseNew = new CourseAggregate(
+                UUID.fromString(courseModel.getCourseID()),
                 courseModel.getId(),
                 new Name(courseModel.getName()),
                 new Description(courseModel.getDescription()),
                 courseModel.getTypeCourse().getId(),
-                courseModel.getAccountModel().getUsername()
+                courseModel.getAccountModel().getIdAccount()
         );
 
         return courseNew;
+    }
+
+    @Override
+    public CourseAggregate findCourseId(String id) {
+        CourseModel courseModel = this.courseJpa.findByCourseID(id);
+
+        return new CourseAggregate(
+                UUID.fromString(courseModel.getCourseID()),
+                courseModel.getId(),
+                new Name(courseModel.getName()),
+                new Description(courseModel.getDescription()),
+                courseModel.getTypeCourse().getId(),
+                courseModel.getAccountModel().getIdAccount()
+        );
     }
 
     @Override
@@ -61,6 +78,7 @@ public class CourseRepo implements CourseRepository {
         Optional<CourseModel> courseModel = this.courseJpa.findById(id);
 
         return courseModel.map(model -> new CourseAggregate(
+                UUID.fromString(model.getCourseID()),
                 model.getId(),
                 new Name(model.getName()),
                 new Description(model.getDescription()),
@@ -76,11 +94,13 @@ public class CourseRepo implements CourseRepository {
 
         for (CourseModel courseModel : courseModels) {
             courses.add(
-                    new CourseAggregate(courseModel.getId(),
-                    new Name(courseModel.getName()),
-                    new Description(courseModel.getDescription()),
-                    courseModel.getTypeCourse().getId(),
-                    courseModel.getAccountModel().getIdAccount().toString()
+                    new CourseAggregate(
+                            UUID.fromString(courseModel.getCourseID()),
+                            courseModel.getId(),
+                            new Name(courseModel.getName()),
+                            new Description(courseModel.getDescription()),
+                            courseModel.getTypeCourse().getId(),
+                            courseModel.getAccountModel().getIdAccount().toString()
             ));
         }
 

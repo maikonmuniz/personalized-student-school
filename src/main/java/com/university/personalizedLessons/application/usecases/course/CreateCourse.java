@@ -8,6 +8,8 @@ import com.university.personalizedLessons.infrastructure.exception.ExceptionAdap
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 
+import java.util.UUID;
+
 public class CreateCourse {
 
     private CourseRepo courseRepo;
@@ -29,7 +31,9 @@ public class CreateCourse {
         if (input.name == null) throw this.exceptionAdapter.badRequest("Field name is Empty!");
         if (input.description == null) throw this.exceptionAdapter.badRequest("Field description is Empty!");
 
-        Account account = this.accountRepo.findAccount(input.username);
+        System.out.println(input.accountID);
+
+        Account account = this.accountRepo.findAccount(input.accountID);
 
         if (!account.validationAccountAdm()) throw this.exceptionAdapter.badRequest("Account not is admin");
 
@@ -37,18 +41,18 @@ public class CreateCourse {
                 new Name(input.name),
                 new Description(input.description),
                 input.type_course_id,
-                account.getUsername()
+                input.accountID
         );
 
-        CourseAggregate courseNew = this.courseRepo.register(course);
+        CourseAggregate courseNew = this.courseRepo.register (course);
 
-        if (courseNew == null) throw this.exceptionAdapter.badRequest("No register course!");
+        if (courseNew == null) throw this.exceptionAdapter.badRequest ("No register course!");
 
         return new Output(
                 courseNew.getName(),
                 courseNew.getDescription(),
                 courseNew.getTypeCourseId(),
-                courseNew.getUsernameID()
+                courseNew.getAccountId()
         );
     }
 
@@ -56,7 +60,7 @@ public class CreateCourse {
             String name,
             String description,
             int type_course_id,
-            String username
+            String accountID
     ) {}
 
     public static record Output (

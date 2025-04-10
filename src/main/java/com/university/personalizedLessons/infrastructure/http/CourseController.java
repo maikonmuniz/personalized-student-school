@@ -23,7 +23,7 @@ public class CourseController {
                 createCourseDTO.name(),
                 createCourseDTO.description(),
                 createCourseDTO.type_course_id(),
-                createCourseDTO.username()
+                createCourseDTO.accountID()
         ));
         return ResponseEntity.ok(response);
     }

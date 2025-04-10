@@ -14,6 +14,9 @@ public class CourseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "course_id", nullable = false, unique = true)
+    private String courseID;
+
     @Column(nullable = false, length = 150)
     private String name;
 
@@ -25,7 +28,7 @@ public class CourseModel {
     private TypeCourseModel typeCourse;
 
     @ManyToOne
-    @JoinColumn(name = "username_fk", referencedColumnName = "username")
+    @JoinColumn(name = "id_account_fk", referencedColumnName = "id_account")
     private AccountModel accountModel;
 
     public Integer getId() {
@@ -66,5 +69,13 @@ public class CourseModel {
 
     public void setAccountModel(AccountModel accountModel) {
         this.accountModel = accountModel;
+    }
+
+    public String getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(String courseID) {
+        this.courseID = courseID;
     }
 }
