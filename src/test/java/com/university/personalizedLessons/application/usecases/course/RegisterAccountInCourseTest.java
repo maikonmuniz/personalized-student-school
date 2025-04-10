@@ -15,7 +15,6 @@ import static org.mockito.Mockito.*;
 
 class RegisterAccountInCourseTest {
 
-
     private AccountRepo accountRepo;
     private CourseRepo courseRepo;
     private EnrollmentRepo enrollmentRepo;
