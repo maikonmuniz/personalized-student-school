@@ -6,9 +6,8 @@ import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
 import com.university.personalizedLessons.infrastructure.repository.EnrollmentRepo;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -34,6 +33,7 @@ class RegisterAccountInCourseTest {
     }
 
     @Test
+    @DisplayName("Should test save register account in course")
     void shouldRegisterAccountInCourseSuccessfully() {
 
         String accountId = "123e4567-e89b-12d3-a456-426614174000";
@@ -52,5 +52,44 @@ class RegisterAccountInCourseTest {
         assertEquals(enrollment.getDateCurrent(), output.dateCurrent());
 
         verify(enrollmentRepo, times(1)).save(any(Enrollment.class));
+    }
+
+    @Test
+    @DisplayName("Should test if accountID is Null")
+    void shouldThrowExceptionWhenAccountIDIsNull() {
+        String message = "There is no account!";
+        RuntimeException exception = new RuntimeException(message);
+        when(exceptionAdapter.badRequest(message)).thenReturn(exception);
+
+        RegisterAccountInCourse.Input input = new RegisterAccountInCourse.Input(null, "987f6543-a21c-34b2-c678-123456789abc");
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> useCase.execute(input));
+        assertEquals(message, thrown.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should test if accountID is Empty!")
+    void shouldThrowExceptionWhenAccountIDIsEmpty() {
+        String message = "There is no account!";
+        RuntimeException exception = new RuntimeException(message);
+        when(exceptionAdapter.badRequest(message)).thenReturn(exception);
+
+        RegisterAccountInCourse.Input input = new RegisterAccountInCourse.Input("", "987f6543-a21c-34b2-c678-123456789abc");
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> useCase.execute(input));
+        assertEquals(message, thrown.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should test if accountID is Null!")
+    void shouldThrowExceptionWhenCourseIDIsNull() {
+        String message = "There is no course!";
+        RuntimeException exception = new RuntimeException(message);
+        when(exceptionAdapter.badRequest(message)).thenReturn(exception);
+
+        RegisterAccountInCourse.Input input = new RegisterAccountInCourse.Input("987f6543-a21c-34b2-c678-123456789abc", null);
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> useCase.execute(input));
+        assertEquals(message, thrown.getMessage());
     }
 }
