@@ -9,5 +9,5 @@ public interface AccountJPA extends JpaRepository <AccountModel, Long> {
     AccountModel findByUsername(String username);
 
     @Query(value = "SELECT * FROM account c where c.id_account = :id;", nativeQuery = true)
-    AccountModel consultaBrasil(@Param("id") String id);
+    AccountModel consultAccountId(@Param("id") String id);
 }

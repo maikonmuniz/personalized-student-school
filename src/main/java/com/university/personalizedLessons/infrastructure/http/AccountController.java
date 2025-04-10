@@ -2,6 +2,8 @@ package com.university.personalizedLessons.infrastructure.http;
 
 import com.university.personalizedLessons.application.usecases.account.CreateAccount;
 import com.university.personalizedLessons.application.usecases.account.LoginAccount;
+import com.university.personalizedLessons.application.usecases.course.RegisterAccountInCourse;
+import com.university.personalizedLessons.dto.AccountCourseRegisterDTO;
 import com.university.personalizedLessons.dto.LoginDTO;
 import com.university.personalizedLessons.dto.RegisterAccountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class AccountController {
 
     @Autowired
     LoginAccount loginAccount;
+
+    @Autowired
+    RegisterAccountInCourse registerAccountInCourse;
 
     @PostMapping("register")
     public ResponseEntity registerAccount (@RequestBody RegisterAccountDTO data) throws Exception {
@@ -45,6 +50,17 @@ public class AccountController {
                         data.password()
                 )
         );
+
+        return ResponseEntity.ok(output);
+    }
+
+    @PostMapping("register-account-course")
+    public ResponseEntity accountCourse (@RequestBody AccountCourseRegisterDTO data) {
+
+        RegisterAccountInCourse.Output output = this.registerAccountInCourse.execute(new RegisterAccountInCourse.Input(
+                data.accountID(),
+                data.courseID()
+        ));
 
         return ResponseEntity.ok(output);
     }
