@@ -4,5 +4,5 @@ public record CreateCourseDTO(
         String name,
         String description,
         int type_course_id,
-        String username
+        String accountID
 ) { }

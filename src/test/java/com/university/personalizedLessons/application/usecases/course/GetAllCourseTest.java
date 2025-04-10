@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -54,12 +55,14 @@ class GetAllCourseTest {
         int offSet = 3;
 
         List<CourseAggregate> mockCourses = Arrays.asList(
-                new CourseAggregate(1,
+                new CourseAggregate(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"),
+                        1,
                         new Name("teste"),
                         new Description("teste"),
                         2,
                         "123e4567e89b12d3a456426614174000"),
                 new CourseAggregate(
+                        UUID.fromString("987f6543-a21c-34b2-c678-123456789abc"),
                         2,
                         new Name("teste1"),
                         new Description("teste1"),
@@ -67,6 +70,7 @@ class GetAllCourseTest {
                         "987e6543a21b12d3a456426614174001"
                 ),
                 new CourseAggregate(
+                        UUID.fromString("456a7890-bcde-1234-ef00-112233445566") ,
                         3,
                         new Name("teste2"),
                         new Description("teste2"),
