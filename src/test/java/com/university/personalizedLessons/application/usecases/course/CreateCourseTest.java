@@ -81,45 +81,27 @@ class CreateCourseTest {
 
     @Test
     @DisplayName("Should test if register course")
-    public void validationIfCourseRegister() throws Exception {
+    public void shouldThrowExceptionWhenCourseIsNotRegistered() throws Exception {
 
         String name = "Sistemas da Informação";
         String description = "Curso voltado para a área de tecnologia da informação, com foco em desenvolvimento de software";
-        int type_course = 1;
+        int typeCourseId = 1;
         String accountId = "e067aec8-c684-4510-b72b-15840fdf434f";
 
-        String message = "No register course!";
+        CreateCourse.Input input = new CreateCourse.Input(name, description, typeCourseId, accountId);
 
-        when(this.exceptionAdapter.badRequest(message))
-                .thenThrow(new RuntimeException(message));
+        Account adminAccount = mock(Account.class);
+        when(adminAccount.validationAccountAdm()).thenReturn(true);
+        when(accountRepo.findAccount(accountId)).thenReturn(adminAccount);
 
-        CreateCourse.Input input = new CreateCourse.Input(name, description, type_course, accountId);
+        when(courseRepo.register(any(CourseAggregate.class))).thenReturn(null);
 
-        FirstName firstName = FirstName.create("testeName");
-        LastName lastName = LastName.create("testeName");
-        Username username = Username.create("username@name");
-        Cpf cpf = Cpf.create("47299582848");
-        Password password = Password.create("passworD@123");
+        RuntimeException exception = new RuntimeException("No register course!");
+        when(exceptionAdapter.badRequest("No register course!")).thenThrow(exception);
 
-        int idTypeAccount = 7;
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> createCourse.execute(input));
+        assertEquals("No register course!", thrown.getMessage());
+        verify(exceptionAdapter).badRequest("No register course!");
 
-        Account account = new Account(
-                firstName,
-                lastName,
-                cpf,
-                username,
-                password,
-                idTypeAccount
-        );
-
-        when(this.accountRepo.findOneId(accountId)).thenReturn(account);
-
-        when(this.courseRepo.register(any(CourseAggregate.class))).thenReturn(null);
-
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> this.createCourse.execute(input));
-
-        verify(exceptionAdapter, times(1)).badRequest(message);
     }
-
-
 }
