@@ -1,7 +1,7 @@
 package com.university.personalizedLessons.infrastructure.repository;
 
 import com.university.personalizedLessons.application.repository.EnrollmentRepository;
-import com.university.personalizedLessons.domain.entities.enrollment.Enrollment;
+import com.university.personalizedLessons.domain.entities.enrollmentCourse.Enrollment;
 import com.university.personalizedLessons.infrastructure.models.AccountCourseModel;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
 import com.university.personalizedLessons.infrastructure.models.CourseModel;

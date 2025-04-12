@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.application.usecases.course;
 
-import com.university.personalizedLessons.domain.entities.enrollment.Enrollment;
+import com.university.personalizedLessons.domain.entities.enrollmentCourse.Enrollment;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
