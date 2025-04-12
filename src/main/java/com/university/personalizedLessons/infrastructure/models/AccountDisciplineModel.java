@@ -23,7 +23,7 @@ public class AccountDisciplineModel {
 
     @ManyToOne
     @JoinColumn(name = "account_id_fk", referencedColumnName = "id_account", nullable = false)
-    private AccountCourseModel accountCourse;
+    private AccountModel accountModel;
 
     public Long getId() {
         return id;
@@ -41,12 +41,12 @@ public class AccountDisciplineModel {
         this.discipline = discipline;
     }
 
-    public AccountCourseModel getAccountCourse() {
-        return accountCourse;
+    public AccountModel getAccountModel() {
+        return accountModel;
     }
 
-    public void setAccountCourse(AccountCourseModel accountCourse) {
-        this.accountCourse = accountCourse;
+    public void setAccountModel(AccountModel accountModel) {
+        this.accountModel = accountModel;
     }
 
     public String getAccountDisciplineId() {

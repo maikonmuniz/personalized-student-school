@@ -1,37 +1,47 @@
 package com.university.personalizedLessons.application.usecases.account;
 
+import com.university.personalizedLessons.domain.entities.enrollmentDiscipline.EnrollmentDiscipline;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
+import com.university.personalizedLessons.infrastructure.repository.EnrollmentDisciplineRepo;
 
 public class AccountAcceptDiscipline {
 
-    private final ExceptionAdapter exceptionAdapter;
+    private ExceptionAdapter exceptionAdapter;
+    private EnrollmentDisciplineRepo enrollmentDisciplineRepo;
 
     public AccountAcceptDiscipline (
-            ExceptionAdapter exceptionAdapter
-
+            ExceptionAdapter exceptionAdapter,
+            EnrollmentDisciplineRepo enrollmentDisciplineRepo
     ) {
         this.exceptionAdapter = exceptionAdapter;
+        this.enrollmentDisciplineRepo = enrollmentDisciplineRepo;
     }
 
     public Output execute (Input input) {
+
         if (input.accountID.isEmpty()) throw this.exceptionAdapter.badRequest("Field account id is empty!");
-        if (input.courseID.isEmpty()) throw this.exceptionAdapter.badRequest("Field course id is empty!");
-        if (input.disciplineID.isEmpty()) throw  this.exceptionAdapter.badRequest("Field discipline id is empty!");
+        if (input.disciplineID.isEmpty()) throw this.exceptionAdapter.badRequest("Field discipline id is empty!");
+
+        EnrollmentDiscipline enrollmentDiscipline = new EnrollmentDiscipline(
+                input.accountID,
+                input.disciplineID
+        );
+
+        EnrollmentDiscipline enrollmentDisciplineNew = this.enrollmentDisciplineRepo.save(enrollmentDiscipline);
 
         return new Output(
-                input.courseID,
-                input.accountID,
+                enrollmentDisciplineNew.getDisciplineID(),
+                enrollmentDisciplineNew.getAccountID(),
                 "Selection disciplines finish!");
     }
 
     public static record Input (
-            String courseID,
             String accountID,
             String disciplineID
             ) {}
 
     public static record Output (
-            String courseID,
+            String disciplineID,
             String accountID,
             String message
     ) {}
