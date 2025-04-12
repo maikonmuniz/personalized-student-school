@@ -37,7 +37,6 @@ class CreateCourseTest {
     @DisplayName("Should test if name is null!")
     public void validationNameCourse() {
 
-        String name = "Sistemas da Informação";
         String description = "Curso voltado pata àrea de técnologia da informação, com foco em desenvolvimento de software";
         int type_course = 1;
         String accountId = "987e6543a21b12d3a456426614174001";
@@ -68,12 +67,14 @@ class CreateCourseTest {
         when(this.exceptionAdapter.badRequest("Field description is Empty!"))
                 .thenThrow(new RuntimeException("Field description is Empty!"));
 
-        assertThrows(RuntimeException.class, () -> this.createCourse.execute(new CreateCourse.Input(
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> this.createCourse.execute(new CreateCourse.Input(
                 name,
                 description,
                 type_course,
                 accountId
         )));
+
+        assertEquals("Field description is Empty!", thrown.getMessage());
 
         verify(exceptionAdapter, times(1)).badRequest("Field description is Empty!");
 
