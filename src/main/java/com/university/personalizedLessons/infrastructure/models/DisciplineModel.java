@@ -14,6 +14,9 @@ public class DisciplineModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "discipline_id", length = 36, unique = true)
+    private String disciplineID;
+
     @Column(nullable = false, length = 150)
     private String name;
 
@@ -54,6 +57,14 @@ public class DisciplineModel {
 
     public void setCourse(CourseModel course) {
         this.course = course;
+    }
+
+    public String getDisciplineID() {
+        return disciplineID;
+    }
+
+    public void setDisciplineID(String disciplineID) {
+        this.disciplineID = disciplineID;
     }
 }
 
