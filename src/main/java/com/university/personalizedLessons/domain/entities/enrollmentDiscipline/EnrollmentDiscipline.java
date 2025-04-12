@@ -2,13 +2,13 @@ package com.university.personalizedLessons.domain.entities.enrollmentDiscipline;
 
 import java.util.UUID;
 
-public class Enrollment {
+public class EnrollmentDiscipline {
 
     private UUID id;
     private UUID accountID;
     private UUID disciplineID;
 
-    public Enrollment (
+    public EnrollmentDiscipline(
             String id,
             String accountID,
             String disciplineID
@@ -18,7 +18,7 @@ public class Enrollment {
         this.disciplineID = UUID.fromString(disciplineID);
     }
 
-    public Enrollment (
+    public EnrollmentDiscipline(
             String accountID,
             String disciplineID
     ) {
@@ -35,19 +35,19 @@ public class Enrollment {
         this.id = id;
     }
 
-    public UUID getAccountID() {
-        return accountID;
+    public String getAccountID() {
+        return accountID.toString();
     }
 
     public void setAccountID(UUID accountID) {
         this.accountID = accountID;
     }
 
-    public UUID getDisciplineID() {
-        return disciplineID;
+    public String getDisciplineID() {
+        return disciplineID.toString();
     }
 
-    public void setDisciplineID(UUID disciplineID) {
-        this.disciplineID = disciplineID;
+    public void setDisciplineID(String disciplineID) {
+        this.disciplineID = UUID.fromString(disciplineID);
     }
 }
