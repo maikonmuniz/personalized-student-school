@@ -14,12 +14,15 @@ public class AccountDisciplineModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "account_discipline_id", length = 36, unique = true)
+    private String accountDisciplineId;
+
     @ManyToOne
-    @JoinColumn(name = "id_discipline", nullable = false)
+    @JoinColumn(name = "discipline_id_fk", referencedColumnName = "discipline_id", nullable = false)
     private DisciplineModel discipline;
 
     @ManyToOne
-    @JoinColumn(name = "id_account_course", nullable = false)
+    @JoinColumn(name = "account_id_fk", referencedColumnName = "id_account", nullable = false)
     private AccountCourseModel accountCourse;
 
     public Long getId() {
@@ -44,5 +47,13 @@ public class AccountDisciplineModel {
 
     public void setAccountCourse(AccountCourseModel accountCourse) {
         this.accountCourse = accountCourse;
+    }
+
+    public String getAccountDisciplineId() {
+        return accountDisciplineId;
+    }
+
+    public void setAccountDisciplineId(String accountDisciplineId) {
+        this.accountDisciplineId = accountDisciplineId;
     }
 }
