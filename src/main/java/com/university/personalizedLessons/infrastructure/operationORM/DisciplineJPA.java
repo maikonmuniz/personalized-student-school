@@ -11,6 +11,6 @@ public interface DisciplineJPA extends Repository <DisciplineModel, Integer > {
     @Query(value = "SELECT * FROM discipline d where d.id_course = :courseId;", nativeQuery = true)
     List<DisciplineModel> findAll (@Param("courseId") int courseId);
 
-    @Query(value = "SELECT * FROM discipline d where d.account_discipline_id = :id;", nativeQuery = true)
+    @Query(value = "SELECT * FROM discipline d where d.discipline_id = :id;", nativeQuery = true)
     DisciplineModel consultDiscipline (@Param("id") String id);
 }
