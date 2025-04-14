@@ -1,30 +1,108 @@
 package com.university.personalizedLessons.domain.entities.classCourse;
 
-import java.util.Date;
-import java.util.UUID;
+import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
+
+import java.time.LocalDateTime;
 
 public class ClassCourse {
 
-    private int id;
-    private String name;
-    private Date dataClass;
-    private UUID courseID;
-    private UUID disciplineID;
-    private UUID teacherId;
+    private CryptoID id;
+    private Name name;
+    private Description description;
+    private LocalDateTime dataClass;
+    private CryptoID courseID;
+    private CryptoID disciplineID;
+    private CryptoID teacherId;
 
     public ClassCourse (
-            int id,
-            String name,
-            Date dataClass,
-            UUID courseID,
-            UUID disciplineID,
-            UUID teacherId
+            String id,
+            Name name,
+            Description description,
+            LocalDateTime dataClass,
+            CryptoID courseID,
+            CryptoID disciplineID,
+            CryptoID teacherId
     ) {
-        this.id = id;
+        this.id = new CryptoID(id);
         this.name = name;
+        this.description = description;
         this.dataClass = dataClass;
         this.courseID = courseID;
         this.disciplineID = disciplineID;
         this.teacherId = teacherId;
+    }
+
+    public ClassCourse (
+            Name name,
+            Description description,
+            CryptoID courseID,
+            CryptoID disciplineID,
+            CryptoID teacherId
+    ) {
+        this.id = new CryptoID("");
+        this.name = name;
+        this.description = description;
+        this.dataClass = LocalDateTime.now();
+        this.courseID = courseID;
+        this.disciplineID = disciplineID;
+        this.teacherId = teacherId;
+    }
+
+    public String getId() {
+        return id.toString();
+    }
+
+    public void setId(String id) {
+        this.id = new CryptoID(id);
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    public Description getDescription () {
+        return description;
+    }
+
+    public void setDescription (String value) {
+        this.description = new Description(value);
+    }
+
+    public LocalDateTime getDataClass() {
+        return dataClass;
+    }
+
+    public void setDataClass(LocalDateTime dataClass) {
+        this.dataClass = dataClass;
+    }
+
+    public String getCourseID() {
+        return courseID.toString();
+    }
+
+    public void setCourseID(String courseID) {
+        this.courseID = new CryptoID(courseID);
+    }
+
+    public String getDisciplineID() {
+        return disciplineID.toString();
+    }
+
+    public void setDisciplineID(String disciplineID) {
+        this.disciplineID = new CryptoID(disciplineID);
+    }
+
+    public String getTeacherId() {
+        return teacherId.toString();
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = new CryptoID(teacherId);
     }
 }
