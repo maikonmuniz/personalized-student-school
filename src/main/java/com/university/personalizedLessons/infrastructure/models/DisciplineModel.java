@@ -23,6 +23,9 @@ public class DisciplineModel {
     @Column(length = 250)
     private String description;
 
+    @Column(name = "active_discipline")
+    private boolean activeDiscipline;
+
     @ManyToOne
     @JoinColumn(name = "id_course", nullable = false)
     private CourseModel course;
@@ -65,6 +68,14 @@ public class DisciplineModel {
 
     public void setDisciplineID(String disciplineID) {
         this.disciplineID = disciplineID;
+    }
+
+    public boolean isActiveDiscipline() {
+        return activeDiscipline;
+    }
+
+    public void setActiveDiscipline(boolean activeDiscipline) {
+        this.activeDiscipline = activeDiscipline;
     }
 }
 
