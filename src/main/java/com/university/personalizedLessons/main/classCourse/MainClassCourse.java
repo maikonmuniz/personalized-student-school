@@ -6,11 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class classCourse {
+public class MainClassCourse {
 
     @Bean
     CreateClass createClassCourse (ExceptionAdapter exceptionAdapter) {
-        return classCourse(exceptionAdapter);
+        return new CreateClass(exceptionAdapter);
     }
-
 }
