@@ -1,8 +1,10 @@
 package com.university.personalizedLessons.infrastructure.http;
 
+import com.university.personalizedLessons.application.usecases.account.AccountAcceptDiscipline;
 import com.university.personalizedLessons.application.usecases.account.CreateAccount;
 import com.university.personalizedLessons.application.usecases.account.LoginAccount;
 import com.university.personalizedLessons.application.usecases.course.RegisterAccountInCourse;
+import com.university.personalizedLessons.dto.AcceptDisciplineDTO;
 import com.university.personalizedLessons.dto.AccountCourseRegisterDTO;
 import com.university.personalizedLessons.dto.LoginDTO;
 import com.university.personalizedLessons.dto.RegisterAccountDTO;
@@ -22,6 +24,9 @@ public class AccountController {
 
     @Autowired
     RegisterAccountInCourse registerAccountInCourse;
+
+    @Autowired
+    AccountAcceptDiscipline accountAcceptDiscipline;
 
     @PostMapping("register")
     public ResponseEntity registerAccount (@RequestBody RegisterAccountDTO data) throws Exception {
@@ -63,5 +68,19 @@ public class AccountController {
         ));
 
         return ResponseEntity.ok(output);
+    }
+
+    @PostMapping("register-accept-discipline")
+    public ResponseEntity accountDiscipline (@RequestBody AcceptDisciplineDTO data) {
+
+        AccountAcceptDiscipline.Input input = new AccountAcceptDiscipline.Input (
+                data.accountID(),
+                data.disciplineID()
+        );
+
+        AccountAcceptDiscipline.Output output = this.accountAcceptDiscipline.execute(input);
+
+        return ResponseEntity.ok(output);
+
     }
 }
