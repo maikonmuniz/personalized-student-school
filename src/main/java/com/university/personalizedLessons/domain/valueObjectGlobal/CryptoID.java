@@ -10,11 +10,10 @@ public class CryptoID {
     private UUID value;
 
     public CryptoID (String value) {
-        UUID newValue = convertStringToUUID(value);
-        this.value = value == "" ? UUID.randomUUID() : newValue;
+        this.value = value == "" ? UUID.randomUUID() : toUUID(value);
     }
 
-    private UUID convertStringToUUID (String value) {
+    private UUID toUUID (String value) {
         return UUID.fromString(value);
     }
 }
