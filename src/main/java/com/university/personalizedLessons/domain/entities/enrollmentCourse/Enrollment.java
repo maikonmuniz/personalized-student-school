@@ -1,4 +1,4 @@
-package com.university.personalizedLessons.domain.entities.enrollment;
+package com.university.personalizedLessons.domain.entities.enrollmentCourse;
 
 import java.time.LocalDate;
 import java.util.UUID;
