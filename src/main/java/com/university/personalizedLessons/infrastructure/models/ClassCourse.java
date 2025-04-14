@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "class_course")
@@ -19,6 +21,12 @@ public class ClassCourse {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "date_init")
+    private LocalDateTime localDateTimeInit;
+
+    @Column(name = "date_end")
+    private LocalDateTime localDateTimeEnd;
 
     @ManyToOne
     @JoinColumn(name = "id_account")
@@ -54,5 +62,21 @@ public class ClassCourse {
 
     public void setAccountModel(AccountModel accountModel) {
         this.accountModel = accountModel;
+    }
+
+    public LocalDateTime getLocalDateTimeInit() {
+        return localDateTimeInit;
+    }
+
+    public void setLocalDateTimeInit(LocalDateTime localDateTimeInit) {
+        this.localDateTimeInit = localDateTimeInit;
+    }
+
+    public LocalDateTime getLocalDateTimeEnd() {
+        return localDateTimeEnd;
+    }
+
+    public void setLocalDateTimeEnd(LocalDateTime localDateTimeEnd) {
+        this.localDateTimeEnd = localDateTimeEnd;
     }
 }
