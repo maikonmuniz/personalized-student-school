@@ -1,4 +1,4 @@
-package com.university.personalizedLessons.domain.entities.ClassCourse;
+package com.university.personalizedLessons.domain.entities.classCourse;
 
 import java.util.Date;
 import java.util.UUID;
