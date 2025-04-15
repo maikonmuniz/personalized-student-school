@@ -16,14 +16,14 @@ public class ClassCourse {
     private CryptoID teacherId;
 
     public ClassCourse (
-            String id,
+            CryptoID id,
             Name name,
             Description description,
             LocalDateTime dataClass,
             CryptoID disciplineID,
             CryptoID teacherId
     ) {
-        this.id = new CryptoID(id);
+        this.id = id;
         this.name = name;
         this.description = description;
         this.dataClass = dataClass;
@@ -46,7 +46,7 @@ public class ClassCourse {
     }
 
     public String getId() {
-        return id.toString();
+        return id.getValue().toString();
     }
 
     public void setId(String id) {
@@ -78,7 +78,7 @@ public class ClassCourse {
     }
 
     public String getDisciplineID() {
-        return disciplineID.toString();
+        return disciplineID.getValue().toString();
     }
 
     public void setDisciplineID(String disciplineID) {
@@ -86,7 +86,7 @@ public class ClassCourse {
     }
 
     public String getTeacherId() {
-        return teacherId.toString();
+        return teacherId.getValue().toString();
     }
 
     public void setTeacherId(String teacherId) {
