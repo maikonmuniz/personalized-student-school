@@ -29,7 +29,6 @@ public class CreateClass {
         Name name = new Name(input.name);
         Description description = new Description(input.description);
         CryptoID disciplineID = new CryptoID(input.disciplineID);
-        System.out.println(disciplineID.getValue());
         CryptoID teacherID = new CryptoID(input.teacherID);
 
         ClassCourse classCourse = new ClassCourse (
@@ -40,6 +39,8 @@ public class CreateClass {
         );
 
         ClassCourse classCourseSave = this.classCourseRepo.generate(classCourse);
+
+        if (classCourseSave == null) throw this.error.badRequest("No save data for open class!");
 
         return new Output (
                 classCourseSave.getName(),
