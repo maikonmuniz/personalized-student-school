@@ -2,6 +2,7 @@ package com.university.personalizedLessons.domain.entities.classCourse;
 
 import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
+import com.university.personalizedLessons.domain.valueObjectGlobal.IsActive;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class ClassCourse {
     private LocalDateTime dataClass;
     private CryptoID disciplineID;
     private CryptoID teacherId;
+    private IsActive isActive;
 
     public ClassCourse (
             CryptoID id,
@@ -21,7 +23,8 @@ public class ClassCourse {
             Description description,
             LocalDateTime dataClass,
             CryptoID disciplineID,
-            CryptoID teacherId
+            CryptoID teacherId,
+            IsActive isActive
     ) {
         this.id = id;
         this.name = name;
@@ -29,6 +32,7 @@ public class ClassCourse {
         this.dataClass = dataClass;
         this.disciplineID = disciplineID;
         this.teacherId = teacherId;
+        this.isActive = isActive;
     }
 
     public ClassCourse (
@@ -43,6 +47,7 @@ public class ClassCourse {
         this.dataClass = LocalDateTime.now();
         this.disciplineID = disciplineID;
         this.teacherId = teacherId;
+        this.isActive = new IsActive();
     }
 
     public String getId() {
@@ -91,5 +96,13 @@ public class ClassCourse {
 
     public void setTeacherId(String teacherId) {
         this.teacherId = new CryptoID(teacherId);
+    }
+
+    public boolean isActive() {
+        return isActive.getValue();
+    }
+
+    public void setActive(boolean active) {
+        isActive = new IsActive(active);
     }
 }

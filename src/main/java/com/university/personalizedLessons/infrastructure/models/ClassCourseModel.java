@@ -16,6 +16,9 @@ public class ClassCourseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "class_id", length = 36)
+    private String classID;
+
     @Column(name = "name", length = 200, nullable = false)
     private String name;
 
@@ -89,5 +92,13 @@ public class ClassCourseModel {
 
     public void setActiveDiscipline(boolean activeDiscipline) {
         this.activeDiscipline = activeDiscipline;
+    }
+
+    public String getClassID() {
+        return classID;
+    }
+
+    public void setClassID(String classID) {
+        this.classID = classID;
     }
 }
