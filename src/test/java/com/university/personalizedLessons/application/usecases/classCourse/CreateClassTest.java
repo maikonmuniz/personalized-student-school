@@ -1,6 +1,9 @@
 package com.university.personalizedLessons.application.usecases.classCourse;
 
+import com.university.personalizedLessons.application.repository.AccountRepository;
 import com.university.personalizedLessons.application.repository.ClassCourseRepository;
+import com.university.personalizedLessons.domain.entities.account.Account;
+import com.university.personalizedLessons.domain.entities.account.vo.*;
 import com.university.personalizedLessons.domain.entities.classCourse.ClassCourse;
 import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
@@ -8,6 +11,8 @@ import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -22,6 +27,7 @@ class CreateClassTest {
 
     private ExceptionAdapter error;
     private ClassCourseRepository classRepo;
+    private AccountRepository accountRepository;
     private CreateClass useCase;
 
     @BeforeEach
@@ -33,11 +39,13 @@ class CreateClassTest {
         DISCIPLINE_ID = "1e4fd7cf-6f0a-4e96-89d2-04031fc0f928";
 
         error = mock(ExceptionAdapter.class);
+        accountRepository = mock(AccountRepository.class);
         classRepo = mock(ClassCourseRepository.class);
 
         this.useCase = new CreateClass(
                 error,
-                classRepo
+                classRepo,
+                accountRepository
         );
     }
 
@@ -69,6 +77,49 @@ class CreateClassTest {
     }
 
     @Test
+    void shouldThrowExceptionWhenIfAccountNoPermission() {
+
+        CreateClass.Input input = new CreateClass.Input(
+                NAME,
+                TEACHER_ID,
+                DISCIPLINE_ID,
+                DESCRIPTION
+        );
+
+        UUID accountID = UUID.fromString("9b1aafdc-3fcb-4c85-84cc-4df310d2c2ae");
+        long id = 5L;
+        FirstName name = FirstName.create("testName");
+        LastName lastName = LastName.create("testLastName");
+        Cpf cpf = Cpf.create("27439856005");
+        Username username = Username.create("test@Test123");
+        Password password = Password.create("test#123Test");
+
+        Account account = new Account(
+                accountID,
+                id,
+                name,
+                lastName,
+                cpf,
+                username,
+                password,
+                10
+        );
+
+        when(accountRepository.findOneId(accountID.toString())).thenReturn(account);
+
+
+        RuntimeException exception = new RuntimeException("No permission account, for generate class!");
+        when(error.badRequest("No permission account, for generate class!")).thenThrow(exception);
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            useCase.execute(input);
+        });
+
+        assertEquals("No permission account, for generate class!", thrown.getMessage());
+        verify(error).badRequest("No permission account, for generate class!");
+    }
+
+    @Test
     void shouldThrowExceptionWhenNullPointer() {
 
         CreateClass.Input input = new CreateClass.Input(
@@ -77,6 +128,27 @@ class CreateClassTest {
                 DISCIPLINE_ID,
                 DESCRIPTION
         );
+
+        UUID accountID = UUID.fromString("9b1aafdc-3fcb-4c85-84cc-4df310d2c2ae");
+        long id = 5L;
+        FirstName name = FirstName.create("testName");
+        LastName lastName = LastName.create("testLastName");
+        Cpf cpf = Cpf.create("27439856005");
+        Username username = Username.create("test@Test123");
+        Password password = Password.create("test#123Test");
+
+        Account account = new Account(
+                accountID,
+                id,
+                name,
+                lastName,
+                cpf,
+                username,
+                password,
+                8
+        );
+
+        when(accountRepository.findOneId(accountID.toString())).thenReturn(account);
 
         when(classRepo.generate(any(ClassCourse.class))).thenReturn(null);
 
