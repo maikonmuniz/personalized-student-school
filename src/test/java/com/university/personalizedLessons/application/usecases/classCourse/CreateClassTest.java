@@ -69,6 +69,29 @@ class CreateClassTest {
     }
 
     @Test
+    void shouldThrowExceptionWhenNullPointer() {
+
+        CreateClass.Input input = new CreateClass.Input(
+                NAME,
+                TEACHER_ID,
+                DISCIPLINE_ID,
+                DESCRIPTION
+        );
+
+        when(classRepo.generate(any(ClassCourse.class))).thenReturn(null);
+
+        RuntimeException exception = new RuntimeException("No save data for open class!");
+        when(error.badRequest("No save data for open class!")).thenThrow(exception);
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            useCase.execute(input);
+        });
+
+        assertEquals("No save data for open class!", thrown.getMessage());
+        verify(error).badRequest("No save data for open class!");
+    }
+
+    @Test
     public void shouldThrowExceptionWhenIsNameEmpty ()  {
         CreateClass.Input input = new CreateClass.Input(
                 "",
