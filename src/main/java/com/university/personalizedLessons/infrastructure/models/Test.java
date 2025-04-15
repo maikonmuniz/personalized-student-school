@@ -20,7 +20,7 @@ public class Test {
 
     @ManyToOne
     @JoinColumn(name = "id_class_course_account")
-    private ClassCourseAccount classCourseAccount;
+    private ClassCourseAccountModel classCourseAccount;
 
     public long getId() {
         return id;
@@ -38,11 +38,11 @@ public class Test {
         this.typeNote = typeNote;
     }
 
-    public ClassCourseAccount getClassCourseAccount() {
+    public ClassCourseAccountModel getClassCourseAccount() {
         return classCourseAccount;
     }
 
-    public void setClassCourseAccount(ClassCourseAccount classCourseAccount) {
+    public void setClassCourseAccount(ClassCourseAccountModel classCourseAccount) {
         this.classCourseAccount = classCourseAccount;
     }
 }
