@@ -1,6 +1,8 @@
 package com.university.personalizedLessons.application.usecases.classCourse;
 
+import com.university.personalizedLessons.application.repository.AccountRepository;
 import com.university.personalizedLessons.application.repository.ClassCourseRepository;
+import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.classCourse.ClassCourse;
 import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
@@ -11,13 +13,16 @@ public class CreateClass {
 
     private ExceptionAdapter error;
     private ClassCourseRepository classCourseRepo;
+    private AccountRepository accountRepository;
 
     public CreateClass (
             ExceptionAdapter error,
-            ClassCourseRepository classCourseRepository
+            ClassCourseRepository classCourseRepository,
+            AccountRepository accountRepo
     ) {
         this.error = error;
         this.classCourseRepo = classCourseRepository;
+        this.accountRepository = accountRepo;
     }
 
     public Output execute (Input input) {
@@ -25,6 +30,11 @@ public class CreateClass {
         if (input.name.isEmpty()) throw this.error.badRequest("Field name is invalid");
         if (input.teacherID.isEmpty()) throw this.error.badRequest("Field teacher id is invalid");
         if (input.description.isEmpty()) throw this.error.badRequest("Field description is invalid");
+
+        Account account = this.accountRepository.findOneId(input.teacherID);
+
+        if (account == null || !account.validationTeacher() ||
+                !account.validationAccountAdm()) this.error.badRequest("No permission account, for generate class!");
 
         Name name = new Name(input.name);
         Description description = new Description(input.description);
