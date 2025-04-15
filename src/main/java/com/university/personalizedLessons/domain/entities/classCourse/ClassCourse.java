@@ -58,16 +58,16 @@ public class ClassCourse {
         this.id = new CryptoID(id);
     }
 
-    public Name getName() {
-        return name;
+    public String getName() {
+        return name.getValue();
     }
 
-    public void setName(Name name) {
-        this.name = name;
+    public void setName(String name) {
+        this.name = new Name(name);
     }
 
-    public Description getDescription () {
-        return description;
+    public String getDescription () {
+        return description.getValue();
     }
 
     public void setDescription (String value) {

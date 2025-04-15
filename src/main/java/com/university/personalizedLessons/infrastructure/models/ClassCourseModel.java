@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity(name = "class_course")
 @Table(name = "class_course")
-public class ClassCourse {
+public class ClassCourseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

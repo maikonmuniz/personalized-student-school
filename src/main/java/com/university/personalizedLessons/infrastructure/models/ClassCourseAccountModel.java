@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "class_course_account")
 @Entity(name = "class_course_account")
-public class ClassCourseAccount {
+public class ClassCourseAccountModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class ClassCourseAccount {
 
     @ManyToOne
     @JoinColumn(name = "id_class_course")
-    private ClassCourse classCourse;
+    private ClassCourseModel classCourse;
 
     public long getId() {
         return id;
@@ -49,11 +49,11 @@ public class ClassCourseAccount {
         this.accountModel = accountModel;
     }
 
-    public ClassCourse getClassCourse() {
+    public ClassCourseModel getClassCourse() {
         return classCourse;
     }
 
-    public void setClassCourse(ClassCourse classCourse) {
+    public void setClassCourse(ClassCourseModel classCourse) {
         this.classCourse = classCourse;
     }
 }

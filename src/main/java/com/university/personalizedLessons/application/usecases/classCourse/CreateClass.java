@@ -1,5 +1,6 @@
 package com.university.personalizedLessons.application.usecases.classCourse;
 
+import com.university.personalizedLessons.application.repository.ClassCourseRepository;
 import com.university.personalizedLessons.domain.entities.classCourse.ClassCourse;
 import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
@@ -9,9 +10,14 @@ import com.university.personalizedLessons.infrastructure.exception.ExceptionAdap
 public class CreateClass {
 
     private ExceptionAdapter error;
+    private ClassCourseRepository classCourseRepo;
 
-    public CreateClass (ExceptionAdapter error) {
+    public CreateClass (
+            ExceptionAdapter error,
+            ClassCourseRepository classCourseRepository
+    ) {
         this.error = error;
+        this.classCourseRepo = classCourseRepository;
     }
 
     public Output execute (Input input) {
@@ -34,8 +40,10 @@ public class CreateClass {
                 teacherID
         );
 
+        ClassCourse classCourseSave = this.classCourseRepo.generate(classCourse);
+
         return new Output (
-                input.name,
+                classCourseSave.getName(),
                 input.description
         );
     }
@@ -47,5 +55,9 @@ public class CreateClass {
             String disciplineID,
             String description
     ) {}
-    public static record Output (String name, String description) {}
+
+    public static record Output (
+            String name,
+            String description
+    ) {}
 }
