@@ -16,7 +16,7 @@ public class MainAcceptDiscipline {
     ) {
         return new AccountAcceptDiscipline(
                 exceptionAdapter,
-                 enrollmentDisciplineRepo
+                enrollmentDisciplineRepo
         );
     }
 }
