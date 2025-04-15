@@ -16,4 +16,8 @@ public class CryptoID {
     private UUID toUUID (String value) {
         return UUID.fromString(value);
     }
+
+    public UUID getValue () {
+        return value;
+    }
 }
