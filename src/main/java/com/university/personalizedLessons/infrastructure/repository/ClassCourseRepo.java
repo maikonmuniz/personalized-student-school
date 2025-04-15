@@ -55,7 +55,7 @@ public class ClassCourseRepo implements ClassCourseRepository {
         LocalDateTime date = classCourseModel.getLocalDateTimeInit();
         IsActive isActive = new IsActive();
 
-        return new ClassCourse(
+        return new ClassCourse (
                 id,
                 name,
                 description,
