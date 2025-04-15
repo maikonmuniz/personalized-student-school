@@ -22,6 +22,9 @@ public class ClassCourseModel {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "active_discipline")
+    private boolean activeDiscipline;
+
     @Column(name = "date_init")
     private LocalDateTime localDateTimeInit;
 
@@ -78,5 +81,13 @@ public class ClassCourseModel {
 
     public void setLocalDateTimeEnd(LocalDateTime localDateTimeEnd) {
         this.localDateTimeEnd = localDateTimeEnd;
+    }
+
+    public boolean isActiveDiscipline() {
+        return activeDiscipline;
+    }
+
+    public void setActiveDiscipline(boolean activeDiscipline) {
+        this.activeDiscipline = activeDiscipline;
     }
 }
