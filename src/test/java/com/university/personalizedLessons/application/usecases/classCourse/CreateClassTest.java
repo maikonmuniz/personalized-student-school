@@ -1,5 +1,10 @@
 package com.university.personalizedLessons.application.usecases.classCourse;
 
+import com.university.personalizedLessons.application.repository.ClassCourseRepository;
+import com.university.personalizedLessons.domain.entities.classCourse.ClassCourse;
+import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
+import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +22,7 @@ class CreateClassTest {
     String DISCIPLINE_ID;
 
     private ExceptionAdapter error;
+    private ClassCourseRepository classRepo;
     private CreateClass useCase;
 
     @BeforeEach
@@ -29,30 +35,41 @@ class CreateClassTest {
         DISCIPLINE_ID = "1e4fd7cf-6f0a-4e96-89d2-04031fc0f928";
 
         error = mock(ExceptionAdapter.class);
-        this.useCase = new CreateClass(error);
+        classRepo = mock(ClassCourseRepository.class);
+
+        this.useCase = new CreateClass(
+                error,
+                classRepo
+        );
     }
 
     @Test
-    public void shouldThrowExceptionWhenIsSuccess () {
-
-        String name = "Matemática Aplicada";
-        String teacherID = "4f8a8b00-4f1e-4e7e-a3b2-c02f2b6a84a1";
-        String courseID = "e6c81ad3-dacc-44dc-8d0f-6f8371c0f020";
-        String disciplineID = "1e4fd7cf-6f0a-4e96-89d2-04031fc0f928";
-        String description = "Turma para o segundo semestre";
+    void shouldRegisterClass() {
 
         CreateClass.Input input = new CreateClass.Input(
-                name,
-                teacherID,
-                courseID,
-                disciplineID,
-                description
+                NAME,
+                TEACHER_ID,
+                COURSE_ID,
+                DISCIPLINE_ID,
+                DESCRIPTION
         );
 
-        CreateClass.Output output = this.useCase.execute(input);
+        ClassCourse classCourse = new ClassCourse(
+                new Name(input.name()),
+                new Description(input.description()),
+                new CryptoID(input.courseID()),
+                new CryptoID(input.disciplineID()),
+                new CryptoID(input.teacherID())
+        );
 
-        assertEquals("Matemática Aplicada", output.name());
-        assertEquals("Turma para o segundo semestre", output.description());
+        when(classRepo.generate(any(ClassCourse.class))).thenReturn(classCourse);
+
+        CreateClass.Output output = useCase.execute(input);
+
+        assertEquals(NAME, output.name());
+        assertEquals(DESCRIPTION, output.description());
+
+        verify(classRepo).generate(any(ClassCourse.class));
     }
 
     @Test
