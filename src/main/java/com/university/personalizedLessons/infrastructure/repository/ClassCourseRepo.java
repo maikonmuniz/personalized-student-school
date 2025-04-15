@@ -44,13 +44,20 @@ public class ClassCourseRepo implements ClassCourseRepository {
 
         classCourseModel = this.classCourseJPA.save(classCourseModel);
 
-        ClassCourse classCourseSave = new ClassCourse(
-                new Name(classCourseModel.getName()),
-                new Description(classCourse.getDescription()),
-                new CryptoID(classCourse.getDisciplineID()),
-                new CryptoID(classCourse.getTeacherId())
-        );
+        CryptoID id = new CryptoID(classCourse.getId());
+        Name name = new Name(classCourse.getName());
+        Description description = new Description(classCourse.getDescription());
+        CryptoID teacherID = new CryptoID(classCourse.getTeacherId().toString());
+        CryptoID disciplineID = new CryptoID(classCourse.getDisciplineID());
+        LocalDateTime date = classCourseModel.getLocalDateTimeInit();
 
-        return classCourseSave;
+        return new ClassCourse(
+                id,
+                name,
+                description,
+                date,
+                teacherID,
+                disciplineID
+        );
     }
 }

@@ -3,11 +3,9 @@ package com.university.personalizedLessons.infrastructure.http;
 import com.university.personalizedLessons.application.usecases.account.AccountAcceptDiscipline;
 import com.university.personalizedLessons.application.usecases.account.CreateAccount;
 import com.university.personalizedLessons.application.usecases.account.LoginAccount;
+import com.university.personalizedLessons.application.usecases.classCourse.CreateClass;
 import com.university.personalizedLessons.application.usecases.course.RegisterAccountInCourse;
-import com.university.personalizedLessons.dto.AcceptDisciplineDTO;
-import com.university.personalizedLessons.dto.AccountCourseRegisterDTO;
-import com.university.personalizedLessons.dto.LoginDTO;
-import com.university.personalizedLessons.dto.RegisterAccountDTO;
+import com.university.personalizedLessons.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +25,9 @@ public class AccountController {
 
     @Autowired
     AccountAcceptDiscipline accountAcceptDiscipline;
+
+    @Autowired
+    CreateClass createClass;
 
     @PostMapping("register")
     public ResponseEntity registerAccount (@RequestBody RegisterAccountDTO data) throws Exception {
@@ -79,6 +80,22 @@ public class AccountController {
         );
 
         AccountAcceptDiscipline.Output output = this.accountAcceptDiscipline.execute(input);
+
+        return ResponseEntity.ok(output);
+
+    }
+
+    @PostMapping("register-class")
+    public ResponseEntity accountRegisterClass (@RequestBody CreateClassDTO data) {
+
+        CreateClass.Input input = new CreateClass.Input (
+                data.name(),
+                data.teacherID(),
+                data.disciplineID(),
+                data.description()
+        );
+
+        CreateClass.Output output = this.createClass.execute(input);
 
         return ResponseEntity.ok(output);
 
