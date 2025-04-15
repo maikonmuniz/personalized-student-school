@@ -18,7 +18,6 @@ class CreateClassTest {
     String NAME;
     String DESCRIPTION;
     String TEACHER_ID;
-    String COURSE_ID;
     String DISCIPLINE_ID;
 
     private ExceptionAdapter error;
@@ -31,7 +30,6 @@ class CreateClassTest {
         NAME = "Matemática Aplicada";
         DESCRIPTION = "Turma para o segundo semestre";
         TEACHER_ID = "4f8a8b00-4f1e-4e7e-a3b2-c02f2b6a84a1";
-        COURSE_ID = "e6c81ad3-dacc-44dc-8d0f-6f8371c0f020";
         DISCIPLINE_ID = "1e4fd7cf-6f0a-4e96-89d2-04031fc0f928";
 
         error = mock(ExceptionAdapter.class);
@@ -49,7 +47,6 @@ class CreateClassTest {
         CreateClass.Input input = new CreateClass.Input(
                 NAME,
                 TEACHER_ID,
-                COURSE_ID,
                 DISCIPLINE_ID,
                 DESCRIPTION
         );
@@ -57,7 +54,6 @@ class CreateClassTest {
         ClassCourse classCourse = new ClassCourse(
                 new Name(input.name()),
                 new Description(input.description()),
-                new CryptoID(input.courseID()),
                 new CryptoID(input.disciplineID()),
                 new CryptoID(input.teacherID())
         );
@@ -77,7 +73,6 @@ class CreateClassTest {
         CreateClass.Input input = new CreateClass.Input(
                 "",
                 TEACHER_ID,
-                COURSE_ID,
                 DISCIPLINE_ID,
                 DESCRIPTION
         );
@@ -98,7 +93,6 @@ class CreateClassTest {
         CreateClass.Input input = new CreateClass.Input(
                 NAME,
                 "",
-                COURSE_ID,
                 DISCIPLINE_ID,
                 DESCRIPTION
         );
@@ -119,7 +113,6 @@ class CreateClassTest {
         CreateClass.Input input = new CreateClass.Input(
                 NAME,
                 TEACHER_ID,
-                COURSE_ID,
                 DISCIPLINE_ID,
                 ""
         );

@@ -12,7 +12,6 @@ public class ClassCourse {
     private Name name;
     private Description description;
     private LocalDateTime dataClass;
-    private CryptoID courseID;
     private CryptoID disciplineID;
     private CryptoID teacherId;
 
@@ -21,7 +20,6 @@ public class ClassCourse {
             Name name,
             Description description,
             LocalDateTime dataClass,
-            CryptoID courseID,
             CryptoID disciplineID,
             CryptoID teacherId
     ) {
@@ -29,7 +27,6 @@ public class ClassCourse {
         this.name = name;
         this.description = description;
         this.dataClass = dataClass;
-        this.courseID = courseID;
         this.disciplineID = disciplineID;
         this.teacherId = teacherId;
     }
@@ -37,7 +34,6 @@ public class ClassCourse {
     public ClassCourse (
             Name name,
             Description description,
-            CryptoID courseID,
             CryptoID disciplineID,
             CryptoID teacherId
     ) {
@@ -45,7 +41,6 @@ public class ClassCourse {
         this.name = name;
         this.description = description;
         this.dataClass = LocalDateTime.now();
-        this.courseID = courseID;
         this.disciplineID = disciplineID;
         this.teacherId = teacherId;
     }
@@ -80,14 +75,6 @@ public class ClassCourse {
 
     public void setDataClass(LocalDateTime dataClass) {
         this.dataClass = dataClass;
-    }
-
-    public String getCourseID() {
-        return courseID.toString();
-    }
-
-    public void setCourseID(String courseID) {
-        this.courseID = new CryptoID(courseID);
     }
 
     public String getDisciplineID() {

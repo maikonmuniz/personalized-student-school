@@ -47,7 +47,6 @@ public class ClassCourseRepo implements ClassCourseRepository {
         ClassCourse classCourseSave = new ClassCourse(
                 new Name(classCourseModel.getName()),
                 new Description(classCourse.getDescription()),
-                new CryptoID(classCourse.getCourseID()),
                 new CryptoID(classCourse.getDisciplineID()),
                 new CryptoID(classCourse.getTeacherId())
         );

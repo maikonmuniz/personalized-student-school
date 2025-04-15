@@ -28,14 +28,12 @@ public class CreateClass {
 
         Name name = new Name(input.name);
         Description description = new Description(input.description);
-        CryptoID courseID = new CryptoID(input.courseID);
         CryptoID disciplineID = new CryptoID(input.disciplineID);
         CryptoID teacherID = new CryptoID(input.teacherID);
 
         ClassCourse classCourse = new ClassCourse (
                 name,
                 description,
-                courseID,
                 disciplineID,
                 teacherID
         );
@@ -51,7 +49,6 @@ public class CreateClass {
     public static record Input (
             String name,
             String teacherID,
-            String courseID,
             String disciplineID,
             String description
     ) {}
