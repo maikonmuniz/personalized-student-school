@@ -14,6 +14,9 @@ public class ClassCourseAccountModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "presence_id", length = 36)
+    private String presenceId;
+
     @Column(name = "presence")
     private boolean presence;
 
@@ -22,7 +25,7 @@ public class ClassCourseAccountModel {
     private AccountModel accountModel;
 
     @ManyToOne
-    @JoinColumn(name = "id_class_course")
+    @JoinColumn(name = "class_id_fk", referencedColumnName = "class_id")
     private ClassCourseModel classCourse;
 
     public long getId() {
@@ -55,5 +58,13 @@ public class ClassCourseAccountModel {
 
     public void setClassCourse(ClassCourseModel classCourse) {
         this.classCourse = classCourse;
+    }
+
+    public String getPresenceId() {
+        return presenceId;
+    }
+
+    public void setPresenceId(String presenceId) {
+        this.presenceId = presenceId;
     }
 }
