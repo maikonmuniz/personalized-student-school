@@ -1,4 +1,4 @@
-package com.university.personalizedLessons.domain.entities.classCourse;
+package com.university.personalizedLessons.application.usecases.classCourse;
 
 public class AcceptClass {
 
