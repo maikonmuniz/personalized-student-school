@@ -89,6 +89,12 @@ public class Account {
         return (this.idTypeAccount != typeAccountIdTeacher);
     }
 
+    public boolean validationStudent() {
+        var typeAccountIdStudent = 9;
+        return (this.idTypeAccount != typeAccountIdStudent);
+    }
+
+
     public String getFirstName() {
         return this.firstName.getValue();
     }
