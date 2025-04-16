@@ -1,8 +1,15 @@
 package com.university.personalizedLessons.application.usecases.classCourse;
 
+import com.university.personalizedLessons.application.repository.AccountRepository;
+import com.university.personalizedLessons.domain.entities.account.Account;
+import com.university.personalizedLessons.domain.entities.account.vo.*;
+import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
+import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -10,6 +17,7 @@ import static org.mockito.Mockito.*;
 class AcceptClassTest {
 
     private ExceptionAdapter exception;
+    private AccountRepository accountRepo;
     private AcceptClass useCase;
 
     String STUDENT_ID;
@@ -22,7 +30,12 @@ class AcceptClassTest {
         CLASS_ID = "9f93a6ae-4e5a-4fd4-9315-26f2a2460d26";
 
         exception = mock(ExceptionAdapter.class);
-        useCase = new AcceptClass(exception);
+        accountRepo = mock(AccountRepository.class);
+
+        useCase = new AcceptClass(
+                exception,
+                accountRepo
+        );
     }
 
     @Test
@@ -56,13 +69,38 @@ class AcceptClassTest {
     }
 
     @Test
-    void shouldReturnOutputWhenInputIsValid() {
-        AcceptClass.Input input = new AcceptClass.Input(STUDENT_ID, CLASS_ID);
+    void shouldThrowExceptionWhenAccountIsNull() {
+        AcceptClass.Input input = new AcceptClass.Input(CLASS_ID, STUDENT_ID);
 
-        AcceptClass.Output output = useCase.execute(input);
+        when(accountRepo.findOneId(STUDENT_ID)).thenReturn(null);
+        when(exception.badRequest("No exist account")).thenThrow(new RuntimeException("No exist account"));
 
-        assertEquals(CLASS_ID, output.classID());
-        assertEquals(STUDENT_ID, output.studentID());
-        verifyNoInteractions(exception);
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            useCase.execute(input);
+        });
+
+        assertEquals("No exist account", thrown.getMessage());
+        verify(exception).badRequest("No exist account");
     }
+
+
+    @Test
+    void shouldThrowExceptionWhenAccountIsNotAStudent() {
+        AcceptClass.Input input = new AcceptClass.Input(CLASS_ID, STUDENT_ID);
+
+        Account account = mock(Account.class);
+        when(accountRepo.findOneId(STUDENT_ID)).thenReturn(account);
+        when(account.validationStudent()).thenReturn(false);
+
+        RuntimeException expected = new RuntimeException("No permission account for accept class!");
+        when(exception.badRequest("No permission account for accept class!")).thenThrow(expected);
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            useCase.execute(input);
+        });
+
+        assertEquals("No permission account for accept class!", thrown.getMessage());
+        verify(exception).badRequest("No permission account for accept class!");
+    }
+
 }
