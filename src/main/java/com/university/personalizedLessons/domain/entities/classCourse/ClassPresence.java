@@ -46,8 +46,8 @@ public class ClassPresence {
         this.presence = presence;
     }
 
-    public CryptoID getStudentID() {
-        return studentID;
+    public String getStudentID() {
+        return studentID.getValue().toString();
     }
 
     public void setStudentID(CryptoID studentID) {
