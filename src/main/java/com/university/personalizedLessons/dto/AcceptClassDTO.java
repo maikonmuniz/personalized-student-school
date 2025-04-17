@@ -1,4 +1,6 @@
 package com.university.personalizedLessons.dto;
 
-public record AcceptClassDTO() {
-}
+public record AcceptClassDTO (
+        String classID,
+        String studentID
+) { }
