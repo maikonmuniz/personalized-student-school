@@ -1,8 +1,12 @@
 package com.university.personalizedLessons.application.usecases.classCourse;
 
 import com.university.personalizedLessons.application.repository.AccountRepository;
+import com.university.personalizedLessons.application.repository.ClassCourseAccountRepository;
+import com.university.personalizedLessons.application.usecases.account.LoginAccount;
 import com.university.personalizedLessons.domain.entities.account.Account;
 import com.university.personalizedLessons.domain.entities.account.vo.*;
+import com.university.personalizedLessons.domain.entities.classCourse.ClassPresence;
+import com.university.personalizedLessons.domain.entities.classCourse.vo.Presence;
 import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
@@ -18,6 +22,7 @@ class AcceptClassTest {
 
     private ExceptionAdapter exception;
     private AccountRepository accountRepo;
+    private ClassCourseAccountRepository classCourseAccountRepo;
     private AcceptClass useCase;
 
     String STUDENT_ID;
@@ -31,10 +36,12 @@ class AcceptClassTest {
 
         exception = mock(ExceptionAdapter.class);
         accountRepo = mock(AccountRepository.class);
+        classCourseAccountRepo = mock(ClassCourseAccountRepository.class);
 
         useCase = new AcceptClass(
                 exception,
-                accountRepo
+                accountRepo,
+                classCourseAccountRepo
         );
     }
 
@@ -83,12 +90,12 @@ class AcceptClassTest {
         verify(exception).badRequest("No exist account");
     }
 
-
     @Test
     void shouldThrowExceptionWhenAccountIsNotAStudent() {
         AcceptClass.Input input = new AcceptClass.Input(CLASS_ID, STUDENT_ID);
 
         Account account = mock(Account.class);
+
         when(accountRepo.findOneId(STUDENT_ID)).thenReturn(account);
         when(account.validationStudent()).thenReturn(false);
 
@@ -103,4 +110,55 @@ class AcceptClassTest {
         verify(exception).badRequest("No permission account for accept class!");
     }
 
+    @Test
+    void shouldThrowExceptionWhenNullPointer() {
+        AcceptClass.Input input = new AcceptClass.Input(CLASS_ID, STUDENT_ID);
+
+        Account account = mock(Account.class);
+
+        ClassPresence classPresence = mock(ClassPresence.class);
+
+        when(accountRepo.findOneId(STUDENT_ID)).thenReturn(account);
+        when(account.validationStudent()).thenReturn(true);
+        when(classCourseAccountRepo.save(classPresence)).thenReturn(null);
+
+        RuntimeException expected = new RuntimeException("No possible accept class");
+        when(exception.badRequest("No possible accept class")).thenThrow(expected);
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            useCase.execute(input);
+        });
+
+        assertEquals("No possible accept class", thrown.getMessage());
+        verify(exception).badRequest("No possible accept class");
+
+    }
+
+    @Test
+    void shouldThrowExceptionWhenAcceptClassIsSave() {
+        AcceptClass.Input input = new AcceptClass.Input(CLASS_ID, STUDENT_ID);
+
+        Account account = mock(Account.class);
+
+        String id = "3f27c9e0-8a9d-4e1b-b734-53ad5fef5292";
+
+        ClassPresence classPresence = new ClassPresence(
+                new CryptoID(id),
+                new CryptoID(CLASS_ID),
+                new CryptoID(STUDENT_ID),
+                new Presence(true)
+        );
+
+        when(accountRepo.findOneId(STUDENT_ID)).thenReturn(account);
+        when(account.validationStudent()).thenReturn(true);
+        when(classCourseAccountRepo.save(any())).thenReturn(classPresence);
+
+        AcceptClass.Output output = this.useCase.execute(
+                input
+        );
+
+        assertEquals(output.classID(), CLASS_ID);
+        assertEquals(output.studentID(), STUDENT_ID);
+
+    }
 }
