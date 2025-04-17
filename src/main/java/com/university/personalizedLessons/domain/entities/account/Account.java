@@ -91,7 +91,7 @@ public class Account {
 
     public boolean validationStudent() {
         var typeAccountIdStudent = 9;
-        return (this.idTypeAccount != typeAccountIdStudent);
+        return (this.idTypeAccount == typeAccountIdStudent);
     }
 
 
