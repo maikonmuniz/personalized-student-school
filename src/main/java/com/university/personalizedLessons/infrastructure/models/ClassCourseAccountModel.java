@@ -21,7 +21,7 @@ public class ClassCourseAccountModel {
     private boolean presence;
 
     @ManyToOne
-    @JoinColumn(name = "id_account")
+    @JoinColumn(name = "id_account", referencedColumnName = "id_account")
     private AccountModel accountModel;
 
     @ManyToOne

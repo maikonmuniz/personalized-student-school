@@ -33,7 +33,10 @@ public class ClassCourseAccountRepo implements ClassCourseAccountRepository {
         String classIDConsult = classPresence.getClassId();
 
         ClassCourseModel classTeacher = this.classCourseJPA.consultClassId(classIDConsult);
+        System.out.println(classPresence.getStudentID());
         AccountModel accountModel = this.accountJPA.consultAccountId(classPresence.getStudentID().toString());
+
+        System.out.println(accountModel.getUsername());
 
         ClassCourseAccountModel presenceClass = new ClassCourseAccountModel();
         presenceClass.setClassCourse(classTeacher);
