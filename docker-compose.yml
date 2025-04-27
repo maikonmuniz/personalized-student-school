@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PASSWORD_ROOT}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - minha-rede
+    ports:
+      - "3306:3306"
+    restart: always
+
+  app:
+    image: app-university-spring
+    container_name: app-container
+    build:
+      context: .
+    environment:
+      SPRING_DATASOURCE_URL: ${DB_URL}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASS}
+    volumes:
+      - app-logs:/app/logs
+      - ./logs:/app/logs
+
+    depends_on:
+      - mysql
+    networks:
+      - minha-rede
+    ports:
+      - "8080:8080"
+    restart: always
+
+networks:
+  minha-rede:
+    driver: bridge
+
+volumes:
+  mysql-data: {}
+  app-logs: {}

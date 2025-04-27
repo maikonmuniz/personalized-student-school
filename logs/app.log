@@ -1,0 +1,217 @@
+2025-04-27T05:16:40.583Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Starting PersonalizedLessonsApplication v0.0.1-SNAPSHOT using Java 21.0.7 with PID 1 (/app/personalizedLessons-0.0.1-SNAPSHOT.jar started by root in /app)
+2025-04-27T05:16:40.585Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-27T05:16:41.414Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-27T05:16:41.483Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 7 JPA repository interfaces.
+2025-04-27T05:16:42.264Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-27T05:16:42.294Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-27T05:16:42.295Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-04-27T05:16:42.367Z  INFO 1 --- [personalizedLessons] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-27T05:16:42.368Z  INFO 1 --- [personalizedLessons] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1703 ms
+2025-04-27T05:16:42.535Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-27T05:16:43.058Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@675b18ff
+2025-04-27T05:16:43.060Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-27T05:16:43.189Z  INFO 1 --- [personalizedLessons] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-27T05:16:43.381Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-04-27T05:16:43.490Z  INFO 1 --- [personalizedLessons] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-27T05:16:44.005Z  INFO 1 --- [personalizedLessons] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-27T05:16:44.195Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 9.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-27T05:16:45.004Z  INFO 1 --- [personalizedLessons] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-27T05:16:45.007Z  INFO 1 --- [personalizedLessons] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27T05:16:45.257Z  INFO 1 --- [personalizedLessons] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-27T05:16:45.612Z  WARN 1 --- [personalizedLessons] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-27T05:16:46.256Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-27T05:16:46.301Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Started PersonalizedLessonsApplication in 6.335 seconds (process running for 6.843)
+2025-04-27T05:16:55.032Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-27T05:16:55.032Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-27T05:16:55.034Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-04-27T05:17:01.800Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-27T05:17:01.803Z  INFO 1 --- [personalizedLessons] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-27T05:17:01.808Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27T05:17:01.809Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-27T05:17:01.821Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-27T05:17:08.985Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Starting PersonalizedLessonsApplication v0.0.1-SNAPSHOT using Java 21.0.7 with PID 1 (/app/personalizedLessons-0.0.1-SNAPSHOT.jar started by root in /app)
+2025-04-27T05:17:08.987Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-27T05:17:09.594Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-27T05:17:09.662Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55 ms. Found 7 JPA repository interfaces.
+2025-04-27T05:17:10.268Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-27T05:17:10.293Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-27T05:17:10.293Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-04-27T05:17:10.320Z  INFO 1 --- [personalizedLessons] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-27T05:17:10.321Z  INFO 1 --- [personalizedLessons] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1278 ms
+2025-04-27T05:17:10.433Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-27T05:17:10.837Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6d7ad0f5
+2025-04-27T05:17:10.840Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-27T05:17:10.922Z  INFO 1 --- [personalizedLessons] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-27T05:17:11.014Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-04-27T05:17:11.080Z  INFO 1 --- [personalizedLessons] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-27T05:17:11.375Z  INFO 1 --- [personalizedLessons] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-27T05:17:11.472Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 9.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-27T05:17:12.103Z  INFO 1 --- [personalizedLessons] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-27T05:17:12.105Z  INFO 1 --- [personalizedLessons] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27T05:17:12.294Z  INFO 1 --- [personalizedLessons] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-27T05:17:12.641Z  WARN 1 --- [personalizedLessons] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-27T05:17:13.282Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-27T05:17:13.306Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Started PersonalizedLessonsApplication in 4.83 seconds (process running for 5.351)
+2025-04-27T05:17:31.056Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-27T05:17:31.061Z  INFO 1 --- [personalizedLessons] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-27T05:17:31.067Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27T05:17:31.069Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-27T05:17:31.078Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-27T05:17:35.814Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Starting PersonalizedLessonsApplication v0.0.1-SNAPSHOT using Java 21.0.7 with PID 1 (/app/personalizedLessons-0.0.1-SNAPSHOT.jar started by root in /app)
+2025-04-27T05:17:35.817Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-27T05:17:36.557Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-27T05:17:36.638Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 7 JPA repository interfaces.
+2025-04-27T05:17:37.222Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-27T05:17:37.246Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-27T05:17:37.247Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-04-27T05:17:37.284Z  INFO 1 --- [personalizedLessons] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-27T05:17:37.284Z  INFO 1 --- [personalizedLessons] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1401 ms
+2025-04-27T05:17:37.399Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-27T05:17:37.752Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@11e9ac24
+2025-04-27T05:17:37.755Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-27T05:17:37.807Z  INFO 1 --- [personalizedLessons] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-27T05:17:37.858Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-04-27T05:17:37.908Z  INFO 1 --- [personalizedLessons] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-27T05:17:38.163Z  INFO 1 --- [personalizedLessons] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-27T05:17:38.288Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 9.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-27T05:17:39.112Z  INFO 1 --- [personalizedLessons] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-27T05:17:39.115Z  INFO 1 --- [personalizedLessons] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27T05:17:39.368Z  INFO 1 --- [personalizedLessons] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-27T05:17:39.732Z  WARN 1 --- [personalizedLessons] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-27T05:17:40.443Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-27T05:17:40.475Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Started PersonalizedLessonsApplication in 5.392 seconds (process running for 5.854)
+2025-04-27T05:17:53.120Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-27T05:17:53.120Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-27T05:17:53.122Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-04-27T05:21:46.625Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-27T05:21:46.629Z  INFO 1 --- [personalizedLessons] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-27T05:21:46.634Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27T05:21:46.636Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-27T05:21:46.646Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-27T05:21:53.126Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Starting PersonalizedLessonsApplication v0.0.1-SNAPSHOT using Java 21.0.7 with PID 1 (/app/personalizedLessons-0.0.1-SNAPSHOT.jar started by root in /app)
+2025-04-27T05:21:53.128Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-27T05:21:53.848Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-27T05:21:53.916Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 7 JPA repository interfaces.
+2025-04-27T05:21:54.423Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-27T05:21:54.438Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-27T05:21:54.439Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-04-27T05:21:54.470Z  INFO 1 --- [personalizedLessons] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-27T05:21:54.470Z  INFO 1 --- [personalizedLessons] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1273 ms
+2025-04-27T05:21:54.575Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-27T05:21:54.905Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@bbb6f0
+2025-04-27T05:21:54.909Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-27T05:21:54.973Z  INFO 1 --- [personalizedLessons] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-27T05:21:55.044Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-04-27T05:21:55.103Z  INFO 1 --- [personalizedLessons] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-27T05:21:55.344Z  INFO 1 --- [personalizedLessons] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-27T05:21:55.507Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 9.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-27T05:21:56.301Z  INFO 1 --- [personalizedLessons] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-27T05:21:56.304Z  INFO 1 --- [personalizedLessons] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27T05:21:56.520Z  INFO 1 --- [personalizedLessons] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-27T05:21:56.805Z  WARN 1 --- [personalizedLessons] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-27T05:21:57.253Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-27T05:21:57.274Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Started PersonalizedLessonsApplication in 4.737 seconds (process running for 5.207)
+2025-04-27T05:22:58.532Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-27T05:22:58.533Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-27T05:22:58.535Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-04-27T05:23:22.729Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-27T05:23:22.743Z  INFO 1 --- [personalizedLessons] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-27T05:23:22.759Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27T05:23:22.771Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-27T05:23:22.802Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-04-27T05:23:28.265Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Starting PersonalizedLessonsApplication v0.0.1-SNAPSHOT using Java 21.0.7 with PID 1 (/app/personalizedLessons-0.0.1-SNAPSHOT.jar started by root in /app)
+2025-04-27T05:23:28.268Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-27T05:23:28.961Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-27T05:23:29.028Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 7 JPA repository interfaces.
+2025-04-27T05:23:29.522Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-27T05:23:29.545Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-27T05:23:29.546Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-04-27T05:23:29.578Z  INFO 1 --- [personalizedLessons] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-27T05:23:29.579Z  INFO 1 --- [personalizedLessons] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1238 ms
+2025-04-27T05:23:29.686Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-27T05:23:30.089Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@bbb6f0
+2025-04-27T05:23:30.091Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-27T05:23:30.150Z  INFO 1 --- [personalizedLessons] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-27T05:23:30.207Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-04-27T05:23:30.252Z  INFO 1 --- [personalizedLessons] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-27T05:23:30.619Z  INFO 1 --- [personalizedLessons] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-27T05:23:30.793Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 9.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-27T05:23:31.662Z  INFO 1 --- [personalizedLessons] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-27T05:23:31.664Z  INFO 1 --- [personalizedLessons] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27T05:23:31.907Z  INFO 1 --- [personalizedLessons] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-27T05:23:32.251Z  WARN 1 --- [personalizedLessons] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-27T05:23:32.762Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-27T05:23:32.795Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Started PersonalizedLessonsApplication in 5.058 seconds (process running for 5.579)
+2025-04-27T05:23:37.109Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-27T05:23:37.110Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-04-27T05:23:37.112Z  INFO 1 --- [personalizedLessons] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-04-27T05:34:59.855Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Starting PersonalizedLessonsApplication v0.0.1-SNAPSHOT using Java 21.0.7 with PID 1 (/app/personalizedLessons-0.0.1-SNAPSHOT.jar started by root in /app)
+2025-04-27T05:34:59.862Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-04-27T05:35:01.083Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-27T05:35:01.143Z  INFO 1 --- [personalizedLessons] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 7 JPA repository interfaces.
+2025-04-27T05:35:01.915Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-04-27T05:35:01.926Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-04-27T05:35:01.927Z  INFO 1 --- [personalizedLessons] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-04-27T05:35:01.961Z  INFO 1 --- [personalizedLessons] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-04-27T05:35:01.962Z  INFO 1 --- [personalizedLessons] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2034 ms
+2025-04-27T05:35:02.135Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-27T05:35:02.647Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2bd8f7db
+2025-04-27T05:35:02.650Z  INFO 1 --- [personalizedLessons] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-27T05:35:02.739Z  INFO 1 --- [personalizedLessons] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-27T05:35:02.928Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-04-27T05:35:03.005Z  INFO 1 --- [personalizedLessons] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-04-27T05:35:03.527Z  INFO 1 --- [personalizedLessons] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-27T05:35:03.685Z  INFO 1 --- [personalizedLessons] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 9.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-27T05:35:04.485Z  INFO 1 --- [personalizedLessons] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-27T05:35:04.488Z  INFO 1 --- [personalizedLessons] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27T05:35:04.771Z  INFO 1 --- [personalizedLessons] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-27T05:35:05.083Z  WARN 1 --- [personalizedLessons] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-27T05:35:05.773Z  INFO 1 --- [personalizedLessons] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-04-27T05:35:05.806Z  INFO 1 --- [personalizedLessons] [main] c.u.p.PersonalizedLessonsApplication     : Started PersonalizedLessonsApplication in 6.471 seconds (process running for 6.977)
+2025-04-27T05:37:43.201Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-27T05:37:43.209Z  INFO 1 --- [personalizedLessons] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-04-27T05:37:43.219Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-27T05:37:43.222Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-04-27T05:37:43.263Z  INFO 1 --- [personalizedLessons] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
