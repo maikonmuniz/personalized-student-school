@@ -35,7 +35,7 @@ public class LoginAccount {
         String token = this.tokenAdapter.generate(account);
         boolean isAuthenticate = this.cryptAdapter.verifyPassword(input.password, account.getPassword());
         if (!isAuthenticate) throw this.exceptionAdpter.badRequest("No password is registered!");
-        return new Output(input.username, "token4332");
+        return new Output(input.username, token);
     }
 
     public static record Input (
