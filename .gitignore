@@ -1,9 +1,13 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# Logs e arquivos de ambiente
+.env
+logs/
+*.log
 
+# Diretórios de build
+target/
+build/
+
+# Ferramentas e IDEs
 ### STS ###
 .apt_generated
 .classpath
@@ -12,7 +16,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
-.env
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -25,9 +29,9 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
+
+# Wrapper
+!.mvn/wrapper/maven-wrapper.jar
