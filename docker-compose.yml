@@ -12,7 +12,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     networks:
-      - minha-rede
+      - database_network
     ports:
       - "3306:3306"
     restart: always
@@ -33,13 +33,13 @@ services:
     depends_on:
       - mysql
     networks:
-      - minha-rede
+      - database_network
     ports:
       - "8080:8080"
     restart: always
 
 networks:
-  minha-rede:
+  database_network:
     driver: bridge
 
 volumes:
