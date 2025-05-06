@@ -79,7 +79,7 @@ class AcceptClassTest {
     void shouldThrowExceptionWhenAccountIsNull() {
         AcceptClass.Input input = new AcceptClass.Input(CLASS_ID, STUDENT_ID);
 
-        when(accountRepo.findOneId(STUDENT_ID)).thenReturn(null);
+        when(accountRepo.findAccount(STUDENT_ID)).thenReturn(null);
         when(exception.badRequest("No exist account")).thenThrow(new RuntimeException("No exist account"));
 
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
@@ -96,7 +96,7 @@ class AcceptClassTest {
 
         Account account = mock(Account.class);
 
-        when(accountRepo.findOneId(STUDENT_ID)).thenReturn(account);
+        when(accountRepo.findAccount(STUDENT_ID)).thenReturn(account);
         when(account.validationStudent()).thenReturn(false);
 
         RuntimeException expected = new RuntimeException("No permission account for accept class!");
@@ -118,7 +118,7 @@ class AcceptClassTest {
 
         ClassPresence classPresence = mock(ClassPresence.class);
 
-        when(accountRepo.findOneId(STUDENT_ID)).thenReturn(account);
+        when(accountRepo.findAccount(STUDENT_ID)).thenReturn(account);
         when(account.validationStudent()).thenReturn(true);
         when(classCourseAccountRepo.save(classPresence)).thenReturn(null);
 
@@ -149,7 +149,7 @@ class AcceptClassTest {
                 new Presence(true)
         );
 
-        when(accountRepo.findOneId(STUDENT_ID)).thenReturn(account);
+        when(accountRepo.findAccount(STUDENT_ID)).thenReturn(account);
         when(account.validationStudent()).thenReturn(true);
         when(classCourseAccountRepo.save(any())).thenReturn(classPresence);
 

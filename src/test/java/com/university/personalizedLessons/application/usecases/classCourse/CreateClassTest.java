@@ -105,7 +105,7 @@ class CreateClassTest {
                 10
         );
 
-        when(accountRepository.findOneId(accountID.toString())).thenReturn(account);
+        when(accountRepository.findAccount(accountID.toString())).thenReturn(account);
 
 
         RuntimeException exception = new RuntimeException("No permission account, for generate class!");
@@ -148,7 +148,7 @@ class CreateClassTest {
                 8
         );
 
-        when(accountRepository.findOneId(accountID.toString())).thenReturn(account);
+        when(accountRepository.findAccount(accountID.toString())).thenReturn(account);
 
         when(classRepo.generate(any(ClassCourse.class))).thenReturn(null);
 

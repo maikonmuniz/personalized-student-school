@@ -64,11 +64,10 @@ public class AccountRepo implements AccountRepository {
     }
 
     @Override
-    public Account findOneId(String id) {
+    public Account findUsername(String username) {
+        AccountModel accountModel = accountJPA.findByUsername(username);
 
-        AccountModel accountModel = accountJPA.consultAccountId(id);
-
-        Account account = new Account(
+        return new Account(
                 UUID.fromString(accountModel.getIdAccount()),
                 accountModel.getId(),
                 FirstName.create(accountModel.getFirstName()),
@@ -78,7 +77,5 @@ public class AccountRepo implements AccountRepository {
                 Password.create(accountModel.getPassword()),
                 accountModel.getTypeAccountModel().getId()
         );
-
-        return account;
     }
 }

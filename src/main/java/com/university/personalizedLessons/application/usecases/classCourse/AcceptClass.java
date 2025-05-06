@@ -29,7 +29,7 @@ public class AcceptClass {
         if (input.studentID.isEmpty()) throw this.exception.badRequest("Field is empty!");
         if (input.classID.isEmpty()) throw this.exception.badRequest("Field is empty!");
 
-        Account account = this.accountRepo.findOneId(input.studentID);
+        Account account = this.accountRepo.findAccount(input.studentID);
 
         if (account == null) throw this.exception.badRequest("No exist account");
 

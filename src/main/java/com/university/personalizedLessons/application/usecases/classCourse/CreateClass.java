@@ -31,7 +31,7 @@ public class CreateClass {
         if (input.teacherID.isEmpty()) throw this.error.badRequest("Field teacher id is invalid");
         if (input.description.isEmpty()) throw this.error.badRequest("Field description is invalid");
 
-        Account account = this.accountRepository.findOneId(input.teacherID);
+        Account account = this.accountRepository.findAccount(input.teacherID);
 
         if (account == null || !account.validationTeacher() ||
                 !account.validationAccountAdm()) this.error.badRequest("No permission account, for generate class!");

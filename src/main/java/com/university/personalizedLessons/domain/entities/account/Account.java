@@ -80,7 +80,7 @@ public class Account {
             String password) { }
 
     public boolean validationAccountAdm () {
-        var typeAccountIdAdmin = 7;
+            var typeAccountIdAdmin = 7;
         return (this.idTypeAccount != typeAccountIdAdmin);
     }
 
@@ -93,7 +93,6 @@ public class Account {
         var typeAccountIdStudent = 9;
         return (this.idTypeAccount == typeAccountIdStudent);
     }
-
 
     public String getFirstName() {
         return this.firstName.getValue();

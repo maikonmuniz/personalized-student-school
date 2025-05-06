@@ -30,7 +30,7 @@ public class LoginAccount {
             throw this.exceptionAdpter.badRequest("Field username is empty!");
         if (input.password == null || input.password.isEmpty())
             throw this.exceptionAdpter.badRequest("Field password is empty!");
-        Account account = this.accountRepo.findAccount(input.username);
+        Account account = this.accountRepo.findUsername(input.username);
         if (account == null) throw this.exceptionAdpter.badRequest("No exist account!");
         String token = this.tokenAdapter.generate(account);
         boolean isAuthenticate = this.cryptAdapter.verifyPassword(input.password, account.getPassword());
