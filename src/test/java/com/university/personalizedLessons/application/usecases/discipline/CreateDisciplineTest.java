@@ -53,18 +53,18 @@ class CreateDisciplineTest {
 
     @Test
     @DisplayName("Should test register data in database!")
-    public void shouldRegisterDiscipline() {
+    public void shouldTestIfFieldDescriptionIsCorrect() {
 
         String message = "Field description no exist!";
         RuntimeException exception = new RuntimeException(message);
         when(exceptionAdapter.badRequest(message)).thenReturn(exception);
 
         String fieldName = "testedName";
-        String fieldDescrition = "";
+        String fieldDescription = "";
 
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
-                fieldDescrition
+                fieldDescription
         );
 
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
