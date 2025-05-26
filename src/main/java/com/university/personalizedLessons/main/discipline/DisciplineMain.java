@@ -1,5 +1,6 @@
 package com.university.personalizedLessons.main.discipline;
 
+import com.university.personalizedLessons.application.usecases.discipline.CreateDiscipline;
 import com.university.personalizedLessons.application.usecases.discipline.GetAllDiscipline;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.DisciplineRepo;
@@ -17,6 +18,17 @@ public class DisciplineMain {
         return new GetAllDiscipline(
                 disciplineRepo,
                 exceptionAdapter
+        );
+    }
+
+    @Bean
+    public CreateDiscipline createDisciplineUseCase (
+            ExceptionAdapter exceptionAdapter,
+            DisciplineRepo disciplineRepo
+    ) {
+        return new CreateDiscipline(
+                exceptionAdapter,
+                disciplineRepo
         );
     }
 }
