@@ -27,7 +27,6 @@ class RegisterAccountInCourseTest {
         courseRepo = mock(CourseRepo.class);
         enrollmentRepo = mock(EnrollmentRepo.class);
         exceptionAdapter = mock(ExceptionAdapter.class);
-
         useCase = new RegisterAccountInCourse(accountRepo, courseRepo, enrollmentRepo, exceptionAdapter);
     }
 
