@@ -25,7 +25,7 @@ public class CreateDiscipline {
     public Output execute (Input input) {
         if (Objects.equals(input.name, "")) throw this.exceptionAdapter.badRequest("Field name no exist!");
         if (Objects.equals(input.description, "")) throw this.exceptionAdapter.badRequest("Field description no exist!");
-        if (input.courseID > 0) throw this.exceptionAdapter.badRequest("Field course id is empty!");
+        if (input.courseID <= 0) throw this.exceptionAdapter.badRequest("Field course id is empty!");
         DisciplineAggregate discipline = new DisciplineAggregate(
                 new Name(input.name),
                 new Description(input.description),

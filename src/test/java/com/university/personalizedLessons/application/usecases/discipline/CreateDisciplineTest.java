@@ -1,6 +1,8 @@
 package com.university.personalizedLessons.application.usecases.discipline;
 
+import com.university.personalizedLessons.application.usecases.course.RegisterAccountInCourse;
 import com.university.personalizedLessons.domain.entities.discipline.DisciplineAggregate;
+import com.university.personalizedLessons.domain.entities.enrollmentCourse.Enrollment;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
@@ -9,8 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -80,5 +80,60 @@ class CreateDisciplineTest {
         });
 
         assertEquals(message, thrown.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should test if data is register!")
+    public void  shouldTestDataIfSaveIsNullPointer () {
+
+        String fieldName = "testName";
+        String fieldDescription = "testDescription";
+        int courseID = 2;
+
+        when(disciplineRepo.save(any(DisciplineAggregate.class))).thenReturn(null);
+
+        CreateDiscipline.Input input = new CreateDiscipline.Input(
+                fieldName,
+                fieldDescription,
+                courseID
+        );
+
+        String message = "No possible register data the discipline!";
+        RuntimeException exception = new RuntimeException(message);
+        when(exceptionAdapter.badRequest(message)).thenReturn(exception);
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            useCase.execute(input);
+        });
+
+        assertEquals(message, thrown.getMessage());
+
+    }
+
+    @Test
+    @DisplayName("Should test if data is register!")
+    public void  shouldTestDataIsRegister () {
+
+        String fieldName = "testName";
+        String fieldDescription = "testDescription";
+        int courseID = 1;
+
+        DisciplineAggregate expectationDiscipline = new DisciplineAggregate(
+                new Name(fieldName),
+                new Description(fieldDescription),
+                courseID
+        );
+
+        when(disciplineRepo.save(any(DisciplineAggregate.class))).thenReturn(expectationDiscipline);
+
+        CreateDiscipline.Input input = new CreateDiscipline.Input(
+                fieldName,
+                fieldDescription,
+                courseID
+        );
+        CreateDiscipline.Output output = useCase.execute(input);
+
+        verify(disciplineRepo, times(1)).save(any(DisciplineAggregate.class));
+
     }
 }
