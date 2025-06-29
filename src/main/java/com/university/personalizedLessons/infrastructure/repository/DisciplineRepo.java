@@ -47,7 +47,11 @@ public class DisciplineRepo implements DisciplineRepository {
     public DisciplineAggregate save(DisciplineAggregate discipline) {
 
         DisciplineModel disciplineModel = new DisciplineModel();
-        disciplineModel.setDisciplineID(discipline.getDisciplineID());
+
+        var disciplineID = discipline.getDisciplineID();
+
+        disciplineModel.setDisciplineID(disciplineID);
+
         String courseID = String.valueOf(discipline.getCourseID());
         CourseModel courseModel = this.operationCourseJPA.findByCourseID(courseID);
         disciplineModel.setCourse(courseModel);

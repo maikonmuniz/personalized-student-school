@@ -16,7 +16,6 @@ public class CreateDiscipline {
     public CreateDiscipline (
             ExceptionAdapter exceptionAdapter,
             DisciplineRepo disciplineRepo
-
     ) {
         this.exceptionAdapter = exceptionAdapter;
         this.disciplineRepo = disciplineRepo;
