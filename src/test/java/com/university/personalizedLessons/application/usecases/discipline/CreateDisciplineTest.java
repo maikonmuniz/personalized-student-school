@@ -89,7 +89,7 @@ class CreateDisciplineTest {
     @Test
     @DisplayName("Should test if data is register!")
     public void  shouldTestIfFieldAccountIdIsEmpty () {
-        String message = "Field account id no existe!";
+        String message = "Field account id no exist!";
         RuntimeException exception = new RuntimeException(message);
         when(exceptionAdapter.badRequest(message)).thenReturn(exception);
 
