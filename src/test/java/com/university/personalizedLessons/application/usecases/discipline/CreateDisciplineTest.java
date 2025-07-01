@@ -1,8 +1,6 @@
 package com.university.personalizedLessons.application.usecases.discipline;
 
-import com.university.personalizedLessons.application.usecases.course.RegisterAccountInCourse;
 import com.university.personalizedLessons.domain.entities.discipline.DisciplineAggregate;
-import com.university.personalizedLessons.domain.entities.enrollmentCourse.Enrollment;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
@@ -20,12 +18,16 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class CreateDisciplineTest {
 
+    String ACCOUNT_ID = "9b1e8d3c-b5b1-4c6a-9f4b-7c2f09c0d0fd";
+
     CreateDiscipline useCase;
     ExceptionAdapter exceptionAdapter;
     DisciplineRepo disciplineRepo;
 
     @BeforeEach
     public void setup() {
+
+
         exceptionAdapter = mock(ExceptionAdapter.class);
         disciplineRepo = mock(DisciplineRepo.class);
         useCase = new CreateDiscipline(
@@ -48,7 +50,8 @@ class CreateDisciplineTest {
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
                 fieldDescription,
-                1
+                1,
+                ACCOUNT_ID
         );
 
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
@@ -72,7 +75,32 @@ class CreateDisciplineTest {
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
                 fieldDescription,
-                1
+                1,
+                ACCOUNT_ID
+        );
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            useCase.execute(input);
+        });
+
+        assertEquals(message, thrown.getMessage());
+    }
+
+    @Test
+    @DisplayName("Should test if data is register!")
+    public void  shouldTestIfFieldAccountIdIsEmpty () {
+        String message = "Field account id no existe!";
+        RuntimeException exception = new RuntimeException(message);
+        when(exceptionAdapter.badRequest(message)).thenReturn(exception);
+
+        String fieldName = "fieldName";
+        String fieldDescription = "description";
+
+        CreateDiscipline.Input input = new CreateDiscipline.Input(
+                fieldName,
+                fieldDescription,
+                1,
+                ""
         );
 
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
@@ -95,7 +123,8 @@ class CreateDisciplineTest {
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
                 fieldDescription,
-                courseID
+                courseID,
+                ACCOUNT_ID
         );
 
         String message = "No possible register data the discipline!";
@@ -129,7 +158,8 @@ class CreateDisciplineTest {
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
                 fieldDescription,
-                courseID
+                courseID,
+                ACCOUNT_ID
         );
         CreateDiscipline.Output output = useCase.execute(input);
 
