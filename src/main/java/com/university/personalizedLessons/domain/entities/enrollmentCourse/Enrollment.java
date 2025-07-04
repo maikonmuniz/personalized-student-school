@@ -36,6 +36,6 @@ public class Enrollment {
     }
 
     public String getCourseID() {
-        return  courseID.toString();
+        return  courseID.getValue().toString();
     }
 }
