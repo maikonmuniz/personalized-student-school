@@ -1,5 +1,6 @@
 package com.university.personalizedLessons.domain.entities.discipline;
 
+import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 
@@ -11,16 +12,19 @@ public class DisciplineAggregate {
     private String disciplineID;
     private Name name;
     private Description description;
+    private CryptoID accountID;
     private int courseID;
 
     public DisciplineAggregate (
             Name name,
             Description description,
+            String accountID,
             int courseID
     ) {
         this.disciplineID = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
+        this.accountID = new CryptoID(accountID);
         this.courseID = courseID;
     }
 
@@ -29,12 +33,14 @@ public class DisciplineAggregate {
             String disciplineID,
             Name name,
             Description description,
+            String accountID,
             int courseID
     ) {
         this.id = id;
         this.disciplineID = disciplineID;
         this.name = name;
         this.description = description;
+        this.accountID = new CryptoID(accountID);
         this.courseID = courseID;
     }
 
@@ -72,5 +78,13 @@ public class DisciplineAggregate {
 
     public String getDisciplineID() {
         return disciplineID;
+    }
+
+    public String getAccountID() {
+        return accountID.getValue().toString();
+    }
+
+    public void setAccountID(String accountID) {
+        this.accountID = new CryptoID(accountID);
     }
 }

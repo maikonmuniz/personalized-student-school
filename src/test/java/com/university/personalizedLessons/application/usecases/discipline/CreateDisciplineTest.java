@@ -27,7 +27,6 @@ class CreateDisciplineTest {
     @BeforeEach
     public void setup() {
 
-
         exceptionAdapter = mock(ExceptionAdapter.class);
         disciplineRepo = mock(DisciplineRepo.class);
         useCase = new CreateDiscipline(
@@ -145,11 +144,13 @@ class CreateDisciplineTest {
 
         String fieldName = "testName";
         String fieldDescription = "testDescription";
+        String accountID = "2f7e9a4e-bb47-4b94-ae99-13c0f8a52c1f";
         int courseID = 1;
 
         DisciplineAggregate expectationDiscipline = new DisciplineAggregate(
                 new Name(fieldName),
                 new Description(fieldDescription),
+                accountID,
                 courseID
         );
 

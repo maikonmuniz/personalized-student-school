@@ -1,5 +1,6 @@
 package com.university.personalizedLessons.main.repository;
 
+import com.university.personalizedLessons.infrastructure.operationORM.AccountJPA;
 import com.university.personalizedLessons.infrastructure.operationORM.CourseJpa;
 import com.university.personalizedLessons.infrastructure.operationORM.DisciplineJPA;
 import com.university.personalizedLessons.infrastructure.repository.DisciplineRepo;
@@ -12,11 +13,13 @@ public class MainDiscipline {
     @Bean
     DisciplineRepo createDisciplineRepo (
             DisciplineJPA disciplineJPA,
-            CourseJpa operationCourseJPA
+            CourseJpa operationCourseJPA,
+            AccountJPA operationAccountJPA
     ) {
         return new DisciplineRepo(
                 disciplineJPA,
-                operationCourseJPA
+                operationCourseJPA,
+                operationAccountJPA
         );
     }
 }

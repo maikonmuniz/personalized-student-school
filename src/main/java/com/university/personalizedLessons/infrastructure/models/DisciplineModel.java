@@ -30,6 +30,10 @@ public class DisciplineModel {
     @JoinColumn(name = "id_course", nullable = false)
     private CourseModel course;
 
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id_account", nullable = false)
+    private AccountModel accountModel;
+
     public int getId() {
         return id;
     }
@@ -76,6 +80,14 @@ public class DisciplineModel {
 
     public void setActiveDiscipline(boolean activeDiscipline) {
         this.activeDiscipline = activeDiscipline;
+    }
+
+    public AccountModel getAccountModel() {
+        return accountModel;
+    }
+
+    public void setAccountModel(AccountModel accountModel) {
+        this.accountModel = accountModel;
     }
 }
 

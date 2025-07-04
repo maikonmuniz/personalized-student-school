@@ -29,6 +29,7 @@ public class CreateDiscipline {
         DisciplineAggregate discipline = new DisciplineAggregate(
                 new Name(input.name),
                 new Description(input.description),
+                input.accountID,
                 input.courseID
         );
         discipline = disciplineRepo.save(discipline);

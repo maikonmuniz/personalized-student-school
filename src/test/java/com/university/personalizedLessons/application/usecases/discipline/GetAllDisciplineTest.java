@@ -48,9 +48,9 @@ class GetAllDisciplineTest {
         int courseId = 14;
 
         List<DisciplineAggregate> mockCourses = Arrays.asList(
-                new DisciplineAggregate(2, "f47ac10b-58cc-4372-a567-0e02b2c3d479", new Name("teste1"), new Description("teste12"), courseId),
-                new DisciplineAggregate(3, "f47ac10b-58cc-4372-a567-0e02b2c3d479",new Name("teste1"), new Description("teste12"), courseId),
-                new DisciplineAggregate(4, "f47ac10b-58cc-4372-a567-0e02b2c3d479",new Name("teste1"), new Description("teste12"), courseId)
+                new DisciplineAggregate(2, "f47ac10b-58cc-4372-a567-0e02b2c3d479", new Name("teste1"), new Description("teste12"), "f47ac10b-58cc-4372-a567-0e02b2c3d479", courseId),
+                new DisciplineAggregate(3, "f47ac10b-58cc-4372-a567-0e02b2c3d479",new Name("teste1"), new Description("teste12"), "f47ac10b-58cc-4372-a567-0e02b2c3d479", courseId),
+                new DisciplineAggregate(4, "f47ac10b-58cc-4372-a567-0e02b2c3d479",new Name("teste1"), new Description("teste12"), "f47ac10b-58cc-4372-a567-0e02b2c3d479", courseId)
         );
 
         when(this.disciplineRepo.getAllDiscipline(courseId)).thenReturn(mockCourses);
