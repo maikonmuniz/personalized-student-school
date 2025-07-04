@@ -1,50 +1,41 @@
 package com.university.personalizedLessons.domain.entities.enrollmentCourse;
 
-import java.time.LocalDate;
-import java.util.UUID;
+import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 
 public class Enrollment {
 
-    private UUID id;
-    private LocalDate dateCurrent;
-    private UUID accountID;
-    private UUID courseID;
+    private CryptoID id;
+    private CryptoID accountID;
+    private CryptoID courseID;
 
     public Enrollment (
             String accountID,
             String courseID
     ) {
-        this.id = UUID.randomUUID();
-        this.dateCurrent = LocalDate.now();
-        this.accountID = UUID.fromString(accountID);
-        this.courseID = UUID.fromString(courseID);
+        this.id = new CryptoID("");
+        this.accountID = new CryptoID(accountID);
+        this.courseID = new CryptoID(courseID);
     }
 
     public Enrollment (
             String id,
-            LocalDate dateCurrent,
             String accountID,
             String courseID
     ) {
-        this.id = UUID.fromString(id);
-        this.dateCurrent = dateCurrent;
-        this.accountID = UUID.fromString(accountID);
-        this.courseID = UUID.fromString(courseID);
+        this.id = new CryptoID(id);
+        this.accountID = new CryptoID(accountID);
+        this.courseID = new CryptoID(courseID);
     }
 
-    public UUID getId() {
-        return id;
+    public String getId() {
+        return id.getValue().toString();
     }
 
-    public LocalDate getDateCurrent() {
-        return dateCurrent;
+    public String getAccountID() {
+        return accountID.getValue().toString();
     }
 
-    public UUID getAccountID() {
-        return accountID;
-    }
-
-    public UUID getCourseID() {
-        return courseID;
+    public String getCourseID() {
+        return  courseID.toString();
     }
 }
