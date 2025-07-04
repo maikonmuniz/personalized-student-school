@@ -48,7 +48,7 @@ public class CreateDiscipline {
     public static record Input (
             String name,
             String description,
-            int courseID,
-            String accountID
+            String accountID,
+            int courseID
     ) {}
 }

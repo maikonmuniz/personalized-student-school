@@ -1,10 +1,8 @@
 package com.university.personalizedLessons.infrastructure.http;
 
-import com.university.personalizedLessons.application.usecases.account.AccountAcceptDiscipline;
 import com.university.personalizedLessons.application.usecases.account.CreateAccount;
 import com.university.personalizedLessons.application.usecases.account.LoginAccount;
 import com.university.personalizedLessons.application.usecases.classCourse.CreateClass;
-import com.university.personalizedLessons.application.usecases.course.RegisterAccountInCourse;
 import com.university.personalizedLessons.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +17,6 @@ public class AccountController {
 
     @Autowired
     LoginAccount loginAccount;
-
-    @Autowired
-    RegisterAccountInCourse registerAccountInCourse;
-
-    @Autowired
-    AccountAcceptDiscipline accountAcceptDiscipline;
 
     @Autowired
     CreateClass createClass;
@@ -58,31 +50,6 @@ public class AccountController {
         );
 
         return ResponseEntity.ok(output);
-    }
-
-    @PostMapping("register-account-course")
-    public ResponseEntity accountCourse (@RequestBody AccountCourseRegisterDTO data) {
-
-        RegisterAccountInCourse.Output output = this.registerAccountInCourse.execute(new RegisterAccountInCourse.Input(
-                data.accountID(),
-                data.courseID()
-        ));
-
-        return ResponseEntity.ok(output);
-    }
-
-    @PostMapping("register-accept-discipline")
-    public ResponseEntity accountDiscipline (@RequestBody AcceptDisciplineDTO data) {
-
-        AccountAcceptDiscipline.Input input = new AccountAcceptDiscipline.Input (
-                data.accountID(),
-                data.disciplineID()
-        );
-
-        AccountAcceptDiscipline.Output output = this.accountAcceptDiscipline.execute(input);
-
-        return ResponseEntity.ok(output);
-
     }
 
     @PostMapping("register-class")

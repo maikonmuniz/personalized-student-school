@@ -21,6 +21,7 @@ public class GetAllDiscipline {
 
     public Output execute (Input input) {
         List<DisciplineAggregate> listDisciplineAggregate = this.disciplineRepo.getAllDiscipline(input.courseId);
+        System.out.println(listDisciplineAggregate.size());
         if (listDisciplineAggregate.isEmpty()) throw this.exceptionAdapter.badRequest("List discipline is Empty!");
         return new Output(
                 listDisciplineAggregate

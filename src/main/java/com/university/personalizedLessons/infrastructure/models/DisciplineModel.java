@@ -31,7 +31,7 @@ public class DisciplineModel {
     private CourseModel course;
 
     @ManyToOne
-    @JoinColumn(name = "account_id", referencedColumnName = "id_account", nullable = false)
+    @JoinColumn(name = "account_id", referencedColumnName = "id_account")
     private AccountModel accountModel;
 
     public int getId() {

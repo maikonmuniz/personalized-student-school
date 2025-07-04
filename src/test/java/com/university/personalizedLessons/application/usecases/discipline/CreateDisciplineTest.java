@@ -49,8 +49,8 @@ class CreateDisciplineTest {
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
                 fieldDescription,
-                1,
-                ACCOUNT_ID
+                ACCOUNT_ID,
+                1
         );
 
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
@@ -74,8 +74,8 @@ class CreateDisciplineTest {
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
                 fieldDescription,
-                1,
-                ACCOUNT_ID
+                ACCOUNT_ID,
+                1
         );
 
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
@@ -98,8 +98,8 @@ class CreateDisciplineTest {
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
                 fieldDescription,
-                1,
-                ""
+                "",
+                1
         );
 
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
@@ -122,8 +122,8 @@ class CreateDisciplineTest {
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
                 fieldDescription,
-                courseID,
-                ACCOUNT_ID
+                ACCOUNT_ID,
+                courseID
         );
 
         String message = "No possible register data the discipline!";
@@ -159,8 +159,8 @@ class CreateDisciplineTest {
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
                 fieldDescription,
-                courseID,
-                ACCOUNT_ID
+                ACCOUNT_ID,
+                courseID
         );
         CreateDiscipline.Output output = useCase.execute(input);
 

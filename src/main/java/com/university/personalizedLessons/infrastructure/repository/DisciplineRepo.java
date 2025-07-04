@@ -13,6 +13,7 @@ import com.university.personalizedLessons.infrastructure.operationORM.Discipline
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class DisciplineRepo implements DisciplineRepository {
 
@@ -58,14 +59,31 @@ public class DisciplineRepo implements DisciplineRepository {
 
         disciplineModel.setDisciplineID(disciplineID);
 
-        String courseID = String.valueOf(discipline.getCourseID());
+        int courseID = discipline.getCourseID();
 
-        CourseModel courseModel = this.operationCourseJPA.findByCourseID(courseID);
-        disciplineModel.setCourse(courseModel);
+        Optional<CourseModel> courseModel = this.operationCourseJPA.findById(courseID);
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222");
+        System.out.println(courseModel.get().getId());
+        disciplineModel.setCourse(courseModel.orElse(null));
 
         String accountID = discipline.getAccountID();
         AccountModel accountModel = this.operationAccountJPA.consultAccountId(accountID);
+
         disciplineModel.setAccountModel(accountModel);
+
+        disciplineModel.setName(discipline.getName());
 
         String description = discipline.getDescription();
         disciplineModel.setDescription(description);
@@ -77,7 +95,7 @@ public class DisciplineRepo implements DisciplineRepository {
                 new Name(disciplineModel.getName()),
                 new Description(disciplineModel.getDescription()),
                 disciplineModel.getAccountModel().getIdAccount(),
-                courseModel.getId()
+                courseModel.get().getId()
         );
 
         return disciplineEntity;
