@@ -29,6 +29,6 @@ public class CourseRegistration {
         return new Output(enrollment.getCourseID(), enrollment.getAccountID());
     }
 
-    record Output (String courseID, String accountID) {}
-    record Input (String courseID, String accountID) {}
+    public static record Output (String courseID, String accountID) {}
+    public static record Input (String courseID, String accountID) {}
 }

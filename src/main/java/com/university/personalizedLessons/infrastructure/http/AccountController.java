@@ -1,5 +1,6 @@
 package com.university.personalizedLessons.infrastructure.http;
 
+import com.university.personalizedLessons.application.usecases.account.CourseRegistration;
 import com.university.personalizedLessons.application.usecases.account.CreateAccount;
 import com.university.personalizedLessons.application.usecases.account.LoginAccount;
 import com.university.personalizedLessons.application.usecases.classCourse.CreateClass;
@@ -13,13 +14,16 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
 
     @Autowired
-    CreateAccount createAccount;
+    private CreateAccount createAccount;
 
     @Autowired
-    LoginAccount loginAccount;
+    private LoginAccount loginAccount;
 
     @Autowired
-    CreateClass createClass;
+    private CreateClass createClass;
+
+    @Autowired
+    private CourseRegistration courseRegistration;
 
     @PostMapping("register")
     public ResponseEntity registerAccount (@RequestBody RegisterAccountDTO data) throws Exception {
@@ -66,5 +70,18 @@ public class AccountController {
 
         return ResponseEntity.ok(output);
 
+    }
+
+    @PostMapping("register-enrollment")
+    public ResponseEntity registerEnrollment (@RequestBody RegisterEnrollmentDTO enrollmentDTO) {
+
+        CourseRegistration.Input input = new CourseRegistration.Input(
+                enrollmentDTO.courseID(),
+                enrollmentDTO.courseID()
+        );
+
+        CourseRegistration.Output output = this.courseRegistration.execute(input);
+
+        return ResponseEntity.ok(output);
     }
 }
