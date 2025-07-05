@@ -33,8 +33,7 @@ public class CreateClass {
 
         Account account = this.accountRepository.findAccount(input.teacherID);
 
-        if (account == null || !account.validationTeacher() ||
-                !account.validationAccountAdm()) this.error.badRequest("No permission account, for generate class!");
+        if (account.validationTeacher()) this.error.badRequest("No permission account, for generate class!");
 
         Name name = new Name(input.name);
         Description description = new Description(input.description);
