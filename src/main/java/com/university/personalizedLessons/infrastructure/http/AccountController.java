@@ -77,7 +77,7 @@ public class AccountController {
 
         CourseRegistration.Input input = new CourseRegistration.Input(
                 enrollmentDTO.courseID(),
-                enrollmentDTO.courseID()
+                enrollmentDTO.accountID()
         );
 
         CourseRegistration.Output output = this.courseRegistration.execute(input);

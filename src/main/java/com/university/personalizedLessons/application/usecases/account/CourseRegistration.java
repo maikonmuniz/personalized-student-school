@@ -21,8 +21,8 @@ public class CourseRegistration {
         if (input.accountID.equals("")) throw this.error.badRequest("No field account id!");
         if (input.courseID.equals("")) throw this.error.badRequest("No field course id!");
         Enrollment enrollment = new Enrollment(
-                input.courseID,
-                input.accountID
+                input.accountID,
+                input.courseID
         );
         enrollment = this.enrollmentRepo.save(enrollment);
         if (enrollment == null) throw this.error.badRequest("No save data!");

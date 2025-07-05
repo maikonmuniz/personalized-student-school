@@ -29,19 +29,17 @@ public class EnrollmentRepository implements EnrollmentCourse {
     @Override
     public Enrollment save(Enrollment enrollment) {
 
+        AccountCourseModel accountCourseModel = new AccountCourseModel();
+
         String courseID = enrollment.getCourseID();
-        CourseModel courseModel = courseJpa.findByCourseID(courseID);
+        CourseModel courseModel = this.courseJpa.findByCourseID(courseID);
+        accountCourseModel.setCourse(courseModel);
 
         String accountID = enrollment.getAccountID();
         AccountModel accountModel = this.accountJPA.consultAccountId(accountID);
-
-        AccountCourseModel accountCourseModel = new AccountCourseModel();
-
-        accountCourseModel.setCourse(courseModel);
         accountCourseModel.setAccount(accountModel);
 
         accountCourseModel.setIdCourseDiscipline(UUID.fromString(enrollment.getId()));
-
         accountCourseModel = enrollmentJpa.save(accountCourseModel);
 
         String enrollmentID = accountCourseModel.getIdCourseDiscipline();
