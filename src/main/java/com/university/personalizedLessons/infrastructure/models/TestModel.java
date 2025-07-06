@@ -8,11 +8,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name = "test")
 @Table(name = "test")
-public class Test {
+public class TestModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "note")
+    private float note;
 
     @ManyToOne
     @JoinColumn(name = "id_type_note")
@@ -44,5 +47,13 @@ public class Test {
 
     public void setClassCourseAccount(ClassCourseAccountModel classCourseAccount) {
         this.classCourseAccount = classCourseAccount;
+    }
+
+    public float getNote() {
+        return note;
+    }
+
+    public void setNote(float note) {
+        this.note = note;
     }
 }
