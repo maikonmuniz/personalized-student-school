@@ -1,4 +1,4 @@
-package com.university.personalizedLessons.domain.entities.test.vo;
+package com.university.personalizedLessons.domain.valueObjectGlobal;
 
 public class TypeNote {
 

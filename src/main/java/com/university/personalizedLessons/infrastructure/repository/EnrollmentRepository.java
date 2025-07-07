@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.infrastructure.repository;
 
-import com.university.personalizedLessons.application.repository.EnrollmentCourse;
+import com.university.personalizedLessons.application.repository.EnrollmentCourseRepository;
 import com.university.personalizedLessons.domain.entities.enrollmentCourse.Enrollment;
 import com.university.personalizedLessons.infrastructure.models.AccountCourseModel;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
@@ -11,7 +11,7 @@ import com.university.personalizedLessons.infrastructure.operationORM.Enrollment
 
 import java.util.UUID;
 
-public class EnrollmentRepository implements EnrollmentCourse {
+public class EnrollmentRepository implements EnrollmentCourseRepository {
 
     private final EnrollmentJpa enrollmentJpa;
     private final CourseJpa courseJpa;

@@ -2,7 +2,7 @@ package com.university.personalizedLessons.domain.entities.test;
 
 import com.university.personalizedLessons.domain.entities.test.vo.ClassCourseAccount;
 import com.university.personalizedLessons.domain.entities.test.vo.Note;
-import com.university.personalizedLessons.domain.entities.test.vo.TypeNote;
+import com.university.personalizedLessons.domain.valueObjectGlobal.TypeNote;
 import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 
 import java.math.BigDecimal;
