@@ -5,6 +5,8 @@ import com.university.personalizedLessons.domain.entities.test.vo.Note;
 import com.university.personalizedLessons.domain.entities.test.vo.TypeNote;
 import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 
+import java.math.BigDecimal;
+
 public class TestClass {
 
     private ClassCourseAccount classCourseID;
@@ -13,7 +15,7 @@ public class TestClass {
     private TypeNote typeNote;
 
     public TestClass(
-            float note,
+            BigDecimal note,
             int typeNote,
             long classCourseID
     ) {
@@ -31,11 +33,11 @@ public class TestClass {
         this.id = new CryptoID(value);
     }
 
-    public float getNote() {
+    public BigDecimal getNote() {
         return note.getValue();
     }
 
-    public void setNote(float value) {
+    public void setNote(BigDecimal value) {
         this.note = new Note(value);
     }
 

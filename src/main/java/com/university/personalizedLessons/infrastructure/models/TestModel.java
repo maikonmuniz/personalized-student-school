@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "test")
@@ -14,8 +16,8 @@ public class TestModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "note")
-    private float note;
+    @Column(name = "note", precision = 4, scale = 2)
+    private BigDecimal note;
 
     @ManyToOne
     @JoinColumn(name = "id_type_note")
@@ -49,11 +51,11 @@ public class TestModel {
         this.classCourseAccount = classCourseAccount;
     }
 
-    public float getNote() {
+    public BigDecimal getNote() {
         return note;
     }
 
-    public void setNote(float note) {
+    public void setNote(BigDecimal note) {
         this.note = note;
     }
 }

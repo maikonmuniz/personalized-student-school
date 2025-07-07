@@ -1,14 +1,16 @@
 package com.university.personalizedLessons.domain.entities.test.vo;
 
+import java.math.BigDecimal;
+
 public class Note {
 
-    private float value;
+    private BigDecimal value;
 
-    public Note (float value) {
+    public Note (BigDecimal value) {
         this.value = value;
     }
 
-    public float getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 }

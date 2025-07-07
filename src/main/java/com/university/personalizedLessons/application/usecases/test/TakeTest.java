@@ -4,6 +4,8 @@ import com.university.personalizedLessons.domain.entities.test.TestClass;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.TestRepo;
 
+import java.math.BigDecimal;
+
 public class TakeTest {
 
     private final ExceptionAdapter error;
@@ -18,7 +20,7 @@ public class TakeTest {
     }
 
     public Output execute (Input input) {
-        if (input.note < 1.00F) throw this.error.badRequest("Non valid value note!");
+        if (input.note.compareTo(new BigDecimal("1.00")) < 1) throw this.error.badRequest("Non valid value note!");
         if (input.typeNote < 1) throw this.error.badRequest("Non valid value type note!");
         if (input.classAccountID <= 0L) throw this.error.badRequest("Non valid class account id!");
 
@@ -39,6 +41,6 @@ public class TakeTest {
         );
     }
 
-    public static record Output (float note, int typeNote) {}
-    public static record Input (float note, int typeNote, long classAccountID) {}
+    public static record Output (BigDecimal note, int typeNote) {}
+    public static record Input (BigDecimal note, int typeNote, long classAccountID) {}
 }

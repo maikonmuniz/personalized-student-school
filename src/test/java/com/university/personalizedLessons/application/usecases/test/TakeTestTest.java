@@ -7,6 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -15,7 +18,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class TakeTestTest {
 
-    float NOTE = 10.00F;
+    BigDecimal NOTE = BigDecimal.valueOf(10.00);
     int TYPE_NOTE = 1;
     long CLASS_ACCOUNT_ID = 12L;
 
@@ -41,7 +44,7 @@ class TakeTestTest {
         when(error.badRequest(message)).thenReturn(exception);
 
         TakeTest.Input input = new TakeTest.Input(
-                0.00F,
+                new BigDecimal("0.00"),
                 TYPE_NOTE,
                 CLASS_ACCOUNT_ID
         );

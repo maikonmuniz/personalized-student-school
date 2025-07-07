@@ -25,7 +25,6 @@ public class TestRepo implements TaskRepository {
 
     @Override
     public TestClass save(TestClass test) {
-
         TypeNote typeNote = new TypeNote();
         int typeNoteValue = test.getTypeNote();
         typeNote.setId(typeNoteValue);
@@ -35,6 +34,8 @@ public class TestRepo implements TaskRepository {
         if (classCourseAccount.isEmpty()) return null;
 
         TestModel testModel = new TestModel();
+
+        testModel.setNote(test.getNote());
         testModel.setTypeNote(typeNote);
         testModel.setClassCourseAccount(classCourseAccount.orElse(null));
 
