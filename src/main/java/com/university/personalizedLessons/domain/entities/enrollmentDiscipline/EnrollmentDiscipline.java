@@ -1,46 +1,48 @@
 package com.university.personalizedLessons.domain.entities.enrollmentDiscipline;
 
+import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
+
 import java.util.UUID;
 
 public class EnrollmentDiscipline {
 
-    private UUID id;
-    private UUID accountID;
-    private UUID disciplineID;
+    private CryptoID id;
+    private CryptoID accountID;
+    private CryptoID disciplineID;
 
     public EnrollmentDiscipline(
             String id,
             String accountID,
             String disciplineID
     ) {
-        this.id = UUID.fromString(id);
-        this.accountID = UUID.fromString(accountID);
-        this.disciplineID = UUID.fromString(disciplineID);
+        this.id = new CryptoID(id);
+        this.accountID = new CryptoID(accountID);
+        this.disciplineID = new CryptoID(disciplineID);
     }
 
     public EnrollmentDiscipline(
             String accountID,
             String disciplineID
     ) {
-        this.id = UUID.randomUUID();
-        this.accountID = UUID.fromString(accountID);
-        this.disciplineID = UUID.fromString(disciplineID);
+        this.id = new CryptoID("");
+        this.accountID = new CryptoID(accountID);
+        this.disciplineID = new CryptoID(disciplineID);
     }
 
-    public UUID getId() {
-        return id;
+    public String getId() {
+        return id.getValue().toString();
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = new CryptoID(id);
     }
 
     public String getAccountID() {
-        return accountID.toString();
+        return accountID.getValue().toString();
     }
 
-    public void setAccountID(UUID accountID) {
-        this.accountID = accountID;
+    public void setAccountID(String accountID) {
+        this.accountID = new CryptoID(accountID);
     }
 
     public String getDisciplineID() {
@@ -48,6 +50,6 @@ public class EnrollmentDiscipline {
     }
 
     public void setDisciplineID(String disciplineID) {
-        this.disciplineID = UUID.fromString(disciplineID);
+        this.disciplineID = new CryptoID(disciplineID);
     }
 }
