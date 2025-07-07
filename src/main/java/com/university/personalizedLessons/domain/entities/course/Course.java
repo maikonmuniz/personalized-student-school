@@ -5,7 +5,7 @@ import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 
 import java.util.UUID;
 
-public class CourseAggregate {
+public class Course {
 
     private UUID courseID;
     private int id;
@@ -14,7 +14,7 @@ public class CourseAggregate {
     private Description description;
     private String accountId;
 
-    public CourseAggregate(
+    public Course(
             Name name,
             Description description,
             int typeCourseId,
@@ -27,7 +27,7 @@ public class CourseAggregate {
         this.accountId = accountId;
     }
 
-    public CourseAggregate(
+    public Course(
             UUID courseID,
             int id,
             Name name,

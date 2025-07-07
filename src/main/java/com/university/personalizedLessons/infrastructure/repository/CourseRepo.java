@@ -1,7 +1,7 @@
 package com.university.personalizedLessons.infrastructure.repository;
 
 import com.university.personalizedLessons.application.repository.CourseRepository;
-import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.entities.course.Course;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
@@ -29,7 +29,7 @@ public class CourseRepo implements CourseRepository {
     }
 
     @Override
-    public CourseAggregate register(CourseAggregate course) {
+    public Course register(Course course) {
 
         CourseModel courseModel = new CourseModel();
         courseModel.setName(course.getName());
@@ -47,7 +47,7 @@ public class CourseRepo implements CourseRepository {
 
         courseModel = this.courseJpa.save(courseModel);
 
-        CourseAggregate courseNew = new CourseAggregate(
+        Course courseNew = new Course(
                 UUID.fromString(courseModel.getCourseID()),
                 courseModel.getId(),
                 new Name(courseModel.getName()),
@@ -60,10 +60,10 @@ public class CourseRepo implements CourseRepository {
     }
 
     @Override
-    public CourseAggregate findCourseId(String id) {
+    public Course findCourseId(String id) {
         CourseModel courseModel = this.courseJpa.findByCourseID(id);
 
-        return new CourseAggregate(
+        return new Course(
                 UUID.fromString(courseModel.getCourseID()),
                 courseModel.getId(),
                 new Name(courseModel.getName()),
@@ -74,10 +74,10 @@ public class CourseRepo implements CourseRepository {
     }
 
     @Override
-    public CourseAggregate findCourse(int id) {
+    public Course findCourse(int id) {
         Optional<CourseModel> courseModel = this.courseJpa.findById(id);
 
-        return courseModel.map(model -> new CourseAggregate(
+        return courseModel.map(model -> new Course(
                 UUID.fromString(model.getCourseID()),
                 model.getId(),
                 new Name(model.getName()),
@@ -88,13 +88,13 @@ public class CourseRepo implements CourseRepository {
     }
 
     @Override
-    public List<CourseAggregate> findCourseAll(int start, int size) {
+    public List<Course> findCourseAll(int start, int size) {
         List<CourseModel> courseModels = this.courseJpa.findAllCourseModel(start, size);
-        ArrayList<CourseAggregate> courses = new ArrayList<CourseAggregate>();
+        ArrayList<Course> courses = new ArrayList<Course>();
 
         for (CourseModel courseModel : courseModels) {
             courses.add(
-                    new CourseAggregate(
+                    new Course(
                             UUID.fromString(courseModel.getCourseID()),
                             courseModel.getId(),
                             new Name(courseModel.getName()),

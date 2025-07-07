@@ -1,14 +1,12 @@
 package com.university.personalizedLessons.application.usecases.course;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
-import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.entities.course.Course;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
-
-import java.util.UUID;
 
 public class CreateCourse {
 
@@ -37,14 +35,14 @@ public class CreateCourse {
 
         if (!account.validationAccountAdm()) throw this.exceptionAdapter.badRequest("Account not is admin");
 
-        CourseAggregate course = new CourseAggregate(
+        Course course = new Course(
                 new Name(input.name),
                 new Description(input.description),
                 input.type_course_id,
                 input.accountID
         );
 
-        CourseAggregate courseNew = this.courseRepo.register (course);
+        Course courseNew = this.courseRepo.register (course);
 
         if (courseNew == null) throw this.exceptionAdapter.badRequest ("No register course!");
 

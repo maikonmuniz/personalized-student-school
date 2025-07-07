@@ -1,8 +1,7 @@
 package com.university.personalizedLessons.application.usecases.course;
 
 import com.university.personalizedLessons.domain.entities.account.Account;
-import com.university.personalizedLessons.domain.entities.account.vo.*;
-import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.entities.course.Course;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.AccountRepo;
 import com.university.personalizedLessons.infrastructure.repository.CourseRepo;
@@ -12,8 +11,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -95,7 +92,7 @@ class CreateCourseTest {
         when(adminAccount.validationAccountAdm()).thenReturn(true);
         when(accountRepo.findAccount(accountId)).thenReturn(adminAccount);
 
-        when(courseRepo.register(any(CourseAggregate.class))).thenReturn(null);
+        when(courseRepo.register(any(Course.class))).thenReturn(null);
 
         RuntimeException exception = new RuntimeException("No register course!");
         when(exceptionAdapter.badRequest("No register course!")).thenThrow(exception);

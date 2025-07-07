@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.application.usecases.course;
 
-import com.university.personalizedLessons.domain.entities.course.CourseAggregate;
+import com.university.personalizedLessons.domain.entities.course.Course;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
@@ -54,14 +54,14 @@ class GetAllCourseTest {
         int limit = 3;
         int offSet = 3;
 
-        List<CourseAggregate> mockCourses = Arrays.asList(
-                new CourseAggregate(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"),
+        List<Course> mockCourses = Arrays.asList(
+                new Course(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"),
                         1,
                         new Name("teste"),
                         new Description("teste"),
                         2,
                         "123e4567e89b12d3a456426614174000"),
-                new CourseAggregate(
+                new Course(
                         UUID.fromString("987f6543-a21c-34b2-c678-123456789abc"),
                         2,
                         new Name("teste1"),
@@ -69,7 +69,7 @@ class GetAllCourseTest {
                         2,
                         "987e6543a21b12d3a456426614174001"
                 ),
-                new CourseAggregate(
+                new Course(
                         UUID.fromString("456a7890-bcde-1234-ef00-112233445566") ,
                         3,
                         new Name("teste2"),
