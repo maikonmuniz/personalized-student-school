@@ -37,7 +37,7 @@ Este projeto tem como objetivo desenvolver um back-end para uma universidade, pe
 
 ##  Banco de Dados
 
-![Banco](doc/logo.png)
+![Banco](doc/database.png)
 
 
 ## ⚙️ Pré-requisitos  
