@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.application.usecases.discipline;
 
-import com.university.personalizedLessons.domain.entities.discipline.DisciplineAggregate;
+import com.university.personalizedLessons.domain.entities.discipline.Discipline;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
@@ -47,10 +47,10 @@ class GetAllDisciplineTest {
 
         int courseId = 14;
 
-        List<DisciplineAggregate> mockCourses = Arrays.asList(
-                new DisciplineAggregate(2, "f47ac10b-58cc-4372-a567-0e02b2c3d479", new Name("teste1"), new Description("teste12"), "f47ac10b-58cc-4372-a567-0e02b2c3d479", courseId),
-                new DisciplineAggregate(3, "f47ac10b-58cc-4372-a567-0e02b2c3d479",new Name("teste1"), new Description("teste12"), "f47ac10b-58cc-4372-a567-0e02b2c3d479", courseId),
-                new DisciplineAggregate(4, "f47ac10b-58cc-4372-a567-0e02b2c3d479",new Name("teste1"), new Description("teste12"), "f47ac10b-58cc-4372-a567-0e02b2c3d479", courseId)
+        List<Discipline> mockCourses = Arrays.asList(
+                new Discipline(2, "f47ac10b-58cc-4372-a567-0e02b2c3d479", new Name("teste1"), new Description("teste12"), "f47ac10b-58cc-4372-a567-0e02b2c3d479", courseId),
+                new Discipline(3, "f47ac10b-58cc-4372-a567-0e02b2c3d479",new Name("teste1"), new Description("teste12"), "f47ac10b-58cc-4372-a567-0e02b2c3d479", courseId),
+                new Discipline(4, "f47ac10b-58cc-4372-a567-0e02b2c3d479",new Name("teste1"), new Description("teste12"), "f47ac10b-58cc-4372-a567-0e02b2c3d479", courseId)
         );
 
         when(this.disciplineRepo.getAllDiscipline(courseId)).thenReturn(mockCourses);

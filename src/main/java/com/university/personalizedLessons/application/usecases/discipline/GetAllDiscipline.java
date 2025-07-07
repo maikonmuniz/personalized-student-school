@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.application.usecases.discipline;
 
-import com.university.personalizedLessons.domain.entities.discipline.DisciplineAggregate;
+import com.university.personalizedLessons.domain.entities.discipline.Discipline;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.DisciplineRepo;
 
@@ -20,7 +20,7 @@ public class GetAllDiscipline {
     }
 
     public Output execute (Input input) {
-        List<DisciplineAggregate> listDisciplineAggregate = this.disciplineRepo.getAllDiscipline(input.courseId);
+        List<Discipline> listDisciplineAggregate = this.disciplineRepo.getAllDiscipline(input.courseId);
         System.out.println(listDisciplineAggregate.size());
         if (listDisciplineAggregate.isEmpty()) throw this.exceptionAdapter.badRequest("List discipline is Empty!");
         return new Output(
@@ -32,6 +32,6 @@ public class GetAllDiscipline {
             int courseId
     ) {}
 
-    public static record Output (List<DisciplineAggregate> listDiscipline) {}
+    public static record Output (List<Discipline> listDiscipline) {}
 
 }

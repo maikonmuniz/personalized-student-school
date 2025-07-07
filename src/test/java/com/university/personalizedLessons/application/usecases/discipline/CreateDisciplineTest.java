@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.application.usecases.discipline;
 
-import com.university.personalizedLessons.domain.entities.discipline.DisciplineAggregate;
+import com.university.personalizedLessons.domain.entities.discipline.Discipline;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
@@ -117,7 +117,7 @@ class CreateDisciplineTest {
         String fieldDescription = "testDescription";
         int courseID = 2;
 
-        when(disciplineRepo.save(any(DisciplineAggregate.class))).thenReturn(null);
+        when(disciplineRepo.save(any(Discipline.class))).thenReturn(null);
 
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
@@ -147,14 +147,14 @@ class CreateDisciplineTest {
         String accountID = "2f7e9a4e-bb47-4b94-ae99-13c0f8a52c1f";
         int courseID = 1;
 
-        DisciplineAggregate expectationDiscipline = new DisciplineAggregate(
+        Discipline expectationDiscipline = new Discipline(
                 new Name(fieldName),
                 new Description(fieldDescription),
                 accountID,
                 courseID
         );
 
-        when(disciplineRepo.save(any(DisciplineAggregate.class))).thenReturn(expectationDiscipline);
+        when(disciplineRepo.save(any(Discipline.class))).thenReturn(expectationDiscipline);
 
         CreateDiscipline.Input input = new CreateDiscipline.Input(
                 fieldName,
@@ -164,7 +164,7 @@ class CreateDisciplineTest {
         );
         CreateDiscipline.Output output = useCase.execute(input);
 
-        verify(disciplineRepo, times(1)).save(any(DisciplineAggregate.class));
+        verify(disciplineRepo, times(1)).save(any(Discipline.class));
 
     }
 }

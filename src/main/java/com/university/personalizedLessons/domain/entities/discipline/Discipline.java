@@ -6,7 +6,7 @@ import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 
 import java.util.UUID;
 
-public class DisciplineAggregate {
+public class Discipline {
 
     private int id;
     private String disciplineID;
@@ -15,7 +15,7 @@ public class DisciplineAggregate {
     private CryptoID accountID;
     private int courseID;
 
-    public DisciplineAggregate (
+    public Discipline(
             Name name,
             Description description,
             String accountID,
@@ -28,7 +28,7 @@ public class DisciplineAggregate {
         this.courseID = courseID;
     }
 
-    public DisciplineAggregate (
+    public Discipline(
             int id,
             String disciplineID,
             Name name,

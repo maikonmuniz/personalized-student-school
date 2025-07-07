@@ -1,12 +1,9 @@
 package com.university.personalizedLessons.application.usecases.account;
 
-import com.university.personalizedLessons.application.usecases.discipline.CreateDiscipline;
-import com.university.personalizedLessons.domain.entities.discipline.DisciplineAggregate;
 import com.university.personalizedLessons.domain.entities.enrollmentCourse.Enrollment;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import com.university.personalizedLessons.infrastructure.repository.EnrollmentRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;

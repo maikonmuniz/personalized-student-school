@@ -1,7 +1,7 @@
 package com.university.personalizedLessons.infrastructure.repository;
 
 import com.university.personalizedLessons.application.repository.DisciplineRepository;
-import com.university.personalizedLessons.domain.entities.discipline.DisciplineAggregate;
+import com.university.personalizedLessons.domain.entities.discipline.Discipline;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.models.AccountModel;
@@ -32,13 +32,13 @@ public class DisciplineRepo implements DisciplineRepository {
     }
 
     @Override
-    public List<DisciplineAggregate> getAllDiscipline(int courseID) {
+    public List<Discipline> getAllDiscipline(int courseID) {
 
         List<DisciplineModel> listDisciplineModel = this.operationDisciplineJPA.findAll(courseID);
-        List<DisciplineAggregate> disciplineAggregatesList = new ArrayList<DisciplineAggregate>();
+        List<Discipline> disciplineAggregatesList = new ArrayList<Discipline>();
 
         for (DisciplineModel value : listDisciplineModel) {
-            disciplineAggregatesList.add(new DisciplineAggregate(
+            disciplineAggregatesList.add(new Discipline(
                     value.getId(),
                     value.getDisciplineID(),
                     new Name(value.getName()),
@@ -51,7 +51,7 @@ public class DisciplineRepo implements DisciplineRepository {
     }
 
     @Override
-    public DisciplineAggregate save(DisciplineAggregate discipline) {
+    public Discipline save(Discipline discipline) {
 
         DisciplineModel disciplineModel = new DisciplineModel();
 
@@ -89,7 +89,7 @@ public class DisciplineRepo implements DisciplineRepository {
         disciplineModel.setDescription(description);
         disciplineModel = this.operationDisciplineJPA.save(disciplineModel);
 
-        DisciplineAggregate disciplineEntity = new DisciplineAggregate (
+        Discipline disciplineEntity = new Discipline(
                 disciplineModel.getId(),
                 disciplineModel.getDisciplineID(),
                 new Name(disciplineModel.getName()),

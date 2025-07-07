@@ -1,6 +1,6 @@
 package com.university.personalizedLessons.application.usecases.discipline;
 
-import com.university.personalizedLessons.domain.entities.discipline.DisciplineAggregate;
+import com.university.personalizedLessons.domain.entities.discipline.Discipline;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
@@ -26,7 +26,7 @@ public class CreateDiscipline {
         if (Objects.equals(input.description, "")) throw this.exceptionAdapter.badRequest("Field description no exist!");
         if (Objects.equals(input.accountID, "")) throw this.exceptionAdapter.badRequest("Field account id no exist!");
         if (input.courseID <= 0) throw this.exceptionAdapter.badRequest("Field course id is empty!");
-        DisciplineAggregate discipline = new DisciplineAggregate(
+        Discipline discipline = new Discipline(
                 new Name(input.name),
                 new Description(input.description),
                 input.accountID,
@@ -42,7 +42,7 @@ public class CreateDiscipline {
 
     public static record Output (
             String messagem,
-            DisciplineAggregate discipline
+            Discipline discipline
     ) {}
 
     public static record Input (
