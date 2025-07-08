@@ -16,7 +16,7 @@ Este projeto tem como objetivo desenvolver um back-end para uma universidade, pe
 
 <img align="right" alt="" height="190px" src="./src/study.gif">
 
-<h3 align="left">---Técnologias que seram utilizadas</h3>
+<h3 align="left">---Técnologias utilizadas</h3>
 
 <div align="left">
   <img width="8" />
