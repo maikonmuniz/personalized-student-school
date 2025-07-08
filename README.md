@@ -40,6 +40,9 @@ Este projeto tem como objetivo desenvolver um back-end para uma universidade, pe
 ![Banco](doc/database.png)
 
 
+## Estrutura das pastas
+![arquitetura](doc/cleanArq.png)
+
 ## ⚙️ Pré-requisitos  
 -  **Docker**
 - **Docker Compose**
