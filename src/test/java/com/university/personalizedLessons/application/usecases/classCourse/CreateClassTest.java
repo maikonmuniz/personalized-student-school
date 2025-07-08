@@ -3,16 +3,10 @@ package com.university.personalizedLessons.application.usecases.classCourse;
 import com.university.personalizedLessons.application.repository.AccountRepository;
 import com.university.personalizedLessons.application.repository.ClassCourseRepository;
 import com.university.personalizedLessons.domain.entities.account.Account;
-import com.university.personalizedLessons.domain.entities.account.vo.*;
 import com.university.personalizedLessons.domain.entities.classCourse.ClassCourse;
-import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
-import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
-import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
 import com.university.personalizedLessons.infrastructure.exception.ExceptionAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
