@@ -1,12 +1,14 @@
 package com.university.personalizedLessons.domain.entities.account;
 
 import com.university.personalizedLessons.domain.entities.account.vo.*;
+import com.university.personalizedLessons.domain.valueObjectGlobal.AccountID;
+import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 
 import java.util.UUID;
 
 public class Account {
 
-    private final UUID idAccount;
+    private final CryptoID idAccount;
     private long id;
     private final FirstName firstName;
     private final LastName lastName;
@@ -23,7 +25,7 @@ public class Account {
             Password password,
             int idTypeAccount
     ) throws Exception {
-        this.idAccount = UUID.randomUUID();
+        this.idAccount = new CryptoID("");
         this.firstName = firstName;
         this.lastName = lastName;
         this.cpf = cpf;
@@ -42,7 +44,7 @@ public class Account {
             Password password,
             int idTypeAccount
     ) {
-        this.idAccount = idAccount;
+        this.idAccount = new CryptoID(idAccount.toString());
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -86,7 +88,7 @@ public class Account {
 
     public boolean validationTeacher () {
         var typeAccountIdTeacher = 8;
-        return (this.idTypeAccount != typeAccountIdTeacher);
+        return (this.idTypeAccount == typeAccountIdTeacher);
     }
 
     public boolean validationStudent() {
@@ -115,7 +117,7 @@ public class Account {
     }
 
     public UUID getIdAccount() {
-        return idAccount;
+        return idAccount.getValue();
     }
 
     public long getId() {

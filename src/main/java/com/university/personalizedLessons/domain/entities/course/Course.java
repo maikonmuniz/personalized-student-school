@@ -1,18 +1,17 @@
 package com.university.personalizedLessons.domain.entities.course;
 
-import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
-import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
+import com.university.personalizedLessons.domain.valueObjectGlobal.*;
 
 import java.util.UUID;
 
 public class Course {
 
-    private UUID courseID;
-    private int id;
+    private CryptoID courseID;
+    private CourseID id;
     private Name name;
     private int typeCourseId;
     private Description description;
-    private String accountId;
+    private AccountID accountId;
 
     public Course(
             Name name,
@@ -20,11 +19,11 @@ public class Course {
             int typeCourseId,
             String accountId
     ){
-        this.courseID = UUID.randomUUID();
+        this.courseID = new CryptoID("");
         this.name = name;
         this.description = description;
         this.typeCourseId = typeCourseId;
-        this.accountId = accountId;
+        this.accountId = new AccountID(accountId);
     }
 
     public Course(
@@ -35,12 +34,12 @@ public class Course {
             int typeCourseId,
             String accountId
     ){
-        this.courseID = courseID;
-        this.id = id;
+        this.courseID = new CryptoID(courseID.toString());
+        this.id =  new CourseID(id);
         this.name = name;
         this.description = description;
         this.typeCourseId = typeCourseId;
-        this.accountId = accountId;
+        this.accountId = new AccountID(accountId);
     }
 
     public String getName() {
@@ -56,14 +55,14 @@ public class Course {
     }
 
     public int getId() {
-        return id;
+        return id.getValue();
     }
 
     public String getAccountId() {
-        return accountId;
+        return accountId.getValue();
     }
 
     public UUID getCourseID() {
-        return courseID;
+        return courseID.getValue();
     }
 }

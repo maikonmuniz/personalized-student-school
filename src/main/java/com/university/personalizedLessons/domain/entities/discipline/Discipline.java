@@ -1,5 +1,6 @@
 package com.university.personalizedLessons.domain.entities.discipline;
 
+import com.university.personalizedLessons.domain.valueObjectGlobal.CourseID;
 import com.university.personalizedLessons.domain.valueObjectGlobal.CryptoID;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Description;
 import com.university.personalizedLessons.domain.valueObjectGlobal.Name;
@@ -13,7 +14,7 @@ public class Discipline {
     private Name name;
     private Description description;
     private CryptoID accountID;
-    private int courseID;
+    private CourseID courseID;
 
     public Discipline(
             Name name,
@@ -25,7 +26,7 @@ public class Discipline {
         this.name = name;
         this.description = description;
         this.accountID = new CryptoID(accountID);
-        this.courseID = courseID;
+        this.courseID = new CourseID(courseID);
     }
 
     public Discipline(
@@ -41,7 +42,7 @@ public class Discipline {
         this.name = name;
         this.description = description;
         this.accountID = new CryptoID(accountID);
-        this.courseID = courseID;
+        this.courseID = new CourseID(courseID);
     }
 
     public int getId() {
@@ -69,11 +70,11 @@ public class Discipline {
     }
 
     public int getCourseID() {
-        return courseID;
+        return courseID.getValue();
     }
 
     public void setCourseID(int courseID) {
-        this.courseID = courseID;
+        this.courseID = new CourseID(courseID);
     }
 
     public String getDisciplineID() {

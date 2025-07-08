@@ -63,7 +63,7 @@ class LoginAccountTest {
                 idTypeAccount
         );
 
-        when(accountRepo.findAccount(username)).thenReturn(account);
+        when(accountRepo.findUsername(anyString())).thenReturn(account);
 
         when(cryptAdapter.verifyPassword(anyString(), anyString())).thenReturn(true);
 
@@ -122,25 +122,23 @@ class LoginAccountTest {
     }
 
     @Test
-    @DisplayName("Should test an exeption the BadRequest for test if exist account!")
-    public void exeptionTestBadRequestNoExistAccount () {
-
+    @DisplayName("Should test an exception BadRequest if account does not exist")
+    public void exceptionTestBadRequestNoExistAccount() {
         String username = "maikon@muniz";
         String password = "maikon@muniz123";
 
         when(exceptionAdpter.badRequest("No exist account!"))
-                .thenThrow(new RuntimeException("No exist account!"));
+                .thenReturn(new RuntimeException("No exist account!")); // <- aqui está o fix
 
-        when(accountRepo.findAccount(username)).thenReturn(null);
+        when(accountRepo.findUsername(username)).thenReturn(null);
 
         assertThrows(RuntimeException.class, () -> this.loginAccount.execute(
-                new LoginAccount.Input(
-                        username,
-                        password
-                )));
+                new LoginAccount.Input(username, password)
+        ));
 
         verify(exceptionAdpter, times(1)).badRequest("No exist account!");
     }
+
 
     @Test
     @DisplayName("Should test an exeption if password resquest is equals password database!")
@@ -169,7 +167,7 @@ class LoginAccountTest {
                 idTypeAccount
         );
 
-        when(accountRepo.findAccount(username.getValue())).thenReturn(account);
+        when(accountRepo.findUsername(username.getValue())).thenReturn(account);
 
         when(cryptAdapter.verifyPassword(password.getValue(), passwordCrypt.getValue())).thenReturn(false);
 
