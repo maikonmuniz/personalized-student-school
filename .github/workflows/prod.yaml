@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t developer13031998maikonmuniz/personalizedLessons .
+        run: docker build -t developer13031998maikonmuniz/personalizedlessons .
 
       - name: Push Docker image
-        run: docker push developer13031998maikonmuniz/personalizedLessons
+        run: docker push developer13031998maikonmuniz/personalizedlessons
