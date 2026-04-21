@@ -9,4 +9,5 @@ public class PersonalizedLessonsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PersonalizedLessonsApplication.class, args);
 	}
+
 }
