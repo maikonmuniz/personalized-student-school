@@ -1,41 +1,61 @@
-version: '3.9'
-
 services:
   mysql:
-    image: mysql:latest
+    image: mysql:8.0
     container_name: mysql-container
+
+    command: --default-authentication-plugin=mysql_native_password
+
     environment:
       MYSQL_ROOT_PASSWORD: ${PASSWORD_ROOT}
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASS}
+
     volumes:
       - mysql-data:/var/lib/mysql
+
     networks:
       - database_network
+
     ports:
       - "3306:3306"
+
     restart: always
 
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${PASSWORD_ROOT}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
   app:
-    image: app-university-spring
     container_name: app-container
     build:
       context: .
+
+    image: app-university-spring
+
     environment:
       SPRING_DATASOURCE_URL: ${DB_URL}
       SPRING_DATASOURCE_USERNAME: ${DB_USER}
       SPRING_DATASOURCE_PASSWORD: ${DB_PASS}
+      SPRING_DATASOURCE_HIKARI_INITIALIZATION_FAIL_TIMEOUT: 60000
+
     volumes:
       - app-logs:/app/logs
       - ./logs:/app/logs
 
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
+
     networks:
       - database_network
+
     ports:
       - "8080:8080"
+
     restart: always
 
 networks:
@@ -43,5 +63,5 @@ networks:
     driver: bridge
 
 volumes:
-  mysql-data: {}
-  app-logs: {}
+  mysql-data:
+  app-logs:
