@@ -63,5 +63,11 @@ jobs:
             mkdir -p /home/ec2-user/app
             cd /home/ec2-user/app
 
+            echo "DB_URL=${{ secrets.DB_URL }}" > .env
+            echo "PASSWORD_ROOT=${{ secrets.PASSWORD_ROOT }}" >> .env
+            echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
+            echo "DB_USER=${{ secrets.DB_USER }}" >> .env
+            echo "DB_PASS=${{ secrets.DB_PASS }}" >> .env
+
             docker compose down
             docker compose up -d
