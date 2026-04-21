@@ -44,16 +44,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Copy docker-compose to EC2
+      - name: Copy project to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "docker-compose.yml"
+          source: "."
           target: "/home/ec2-user/app"
 
-      - name: Deploy via SSH
+      - name: Deploy via SSH (Docker Compose on EC2)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -63,6 +63,5 @@ jobs:
             mkdir -p /home/ec2-user/app
             cd /home/ec2-user/app
 
-            docker compose pull
             docker compose down
-            docker compose up -d
+            docker compose up -d --build

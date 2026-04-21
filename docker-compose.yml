@@ -34,7 +34,7 @@ services:
     build:
       context: .
 
-    image: app-university-spring
+    image: personalizedlessons
 
     environment:
       SPRING_DATASOURCE_URL: ${DB_URL}
