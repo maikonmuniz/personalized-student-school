@@ -12,3 +12,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # ☕ Configurar Java
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Build project
+        run: mvn clean install
+      - name: Login Docker Hub
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+      - name: docker build -t developer13031998maikonmuniz/personalizedLessons .
+        run: docker push developer13031998maikonmuniz/personalizedLessons
