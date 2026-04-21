@@ -34,7 +34,7 @@ services:
     build:
       context: .
 
-    image: personalizedlessons
+    image: developer13031998maikonmuniz/personalizedlessons:latest
 
     environment:
       SPRING_DATASOURCE_URL: ${DB_URL}
