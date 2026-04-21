@@ -50,6 +50,6 @@ jobs:
           script: |
             cd /home/ec2-user/app
 
-            docker-compose pull
-            docker-compose down
-            docker-compose up -d
+            docker compose pull
+            docker compose down
+            docker compose up -d
